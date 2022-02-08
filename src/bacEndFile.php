@@ -5,6 +5,12 @@ $dbname = "mydb";
 $username = "root";
 $passworddb = "Polk55_5";
 
+#campi vari rene
+$emailStudent = "rene@prova.it";
+$nome = "rene";
+$cognome = "jorge";
+$dataNascita = "2000-03-03";
+$passwordStudent = "RR12345678";
 
 
 try{
@@ -19,8 +25,9 @@ try{
 #inserimento student nel db + check presenza mail
 
     $db.query("insert into student(email, name, surname, birth_date, presentation, password)
-	values ('', '', '', '', '', '');");
+	values ('prova1@email.com', 'mario', 'giordano', '1966-10-21', 'sono un pagliaccio', 'z1234');");
 
+/*
 ##set categorie per studente
 
     $db.query("insert into student_has_category (Student_email, Category_Name)
@@ -69,5 +76,5 @@ try{
 #visualizzazione placement tramite filtro ricerca aggiuntivo
 
     $db.query("");
-
+*/
 ?>
