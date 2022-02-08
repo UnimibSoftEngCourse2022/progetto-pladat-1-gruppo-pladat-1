@@ -12,6 +12,10 @@
 html {
 scroll-behavior: smooth;
 }
+.container
+{
+    min-height: 100vh;
+}
 body {
 margin: 0;
 font-family: productsans, sans-serif !important;
@@ -83,4 +87,50 @@ background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http
 .navbar-toggler {
     border: 0;
     outline: none !important;
+}
+/*Intro*/
+#intro
+{
+    display:flex;
+}
+#intro>div:nth-child(1)
+{
+    background-color:red;
+}
+#intro > div:nth-child(2)
+{
+    display:flex;
+    justify-content: right;
+    align-items: center;
+}
+#intro > div:nth-child(2) > div > h1
+{
+    font-size: 55px;
+    text-align: right;
+    color:#3c4043;
+}
+#intro > div:nth-child(2) > div > h1 >span
+{
+    font-weight: 600;
+}
+#intro > div:nth-child(2) > div > h3
+{
+    margin-top: 15px;
+    color: #1a73e8;
+    font-size: 45px;
+    text-align: right;
+}
+.fadeIn
+{
+    animation: fadeIn 2s ease-in both;
+}
+@keyframes fadeIn {
+0% {
+    opacity: 0;
+    transform: translate3d(0, -20%, 0);
+}
+30% {
+    opacity: 1;
+transform: translate3d(0, 0, 0);
+}
 }
