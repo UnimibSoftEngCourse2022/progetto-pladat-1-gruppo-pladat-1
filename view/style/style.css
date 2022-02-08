@@ -1,3 +1,5 @@
+/*DFEBC0*/
+/*#f8f9fa*/
 @font-face {
     font-family: productsans;
     src: url(../font/productsansRegular.ttf);
@@ -35,6 +37,7 @@ text-decoration: none;
 {
 color: #3c4043 ;
 }
+
 nav{
     position: fixed !important;
     width: 100%;
@@ -48,7 +51,7 @@ nav{
     padding-right: 30px;
 }
 .nav-link {
-    color: #3c4043 !important;*/
+    color: #3c4043 !important;
 }
 .nav-link:hover {
 color: #1a73e8 !important;
@@ -56,6 +59,16 @@ color: #1a73e8 !important;
 .nav-item {
     padding-top: 9px;
     padding-bottom: 9px;
+}
+.login-button
+{
+    background-color: #fff;
+    border: 3px solid #f8f9fa;
+}
+.login-button:hover
+{
+    color: #3c4043 !important;
+    border-color:#1a73e8;
 }
 .nome-sito {
     font-size: 25px;
