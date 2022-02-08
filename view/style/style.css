@@ -1,10 +1,20 @@
+@font-face {
+    font-family: productsans;
+    src: url(../font/productsansRegular.ttf);
+  }
+  @font-face {
+    font-family: productsans;
+    src: url(../font/productsansMedium.ttf);
+    font-weight: 600;
+  }
 html {
 scroll-behavior: smooth;
 }
 body {
 margin: 0;
-font-family: 'Poppins', sans-serif !important;
+font-family: productsans, sans-serif !important;
 min-width: 280px;
+color:#3c4043;
 }
 a:hover
 {
@@ -23,7 +33,7 @@ text-decoration: none;
 }
 .nome-sito:hover
 {
-color: #666 ;
+color: #3c4043 ;
 }
 nav{
     position: fixed !important;
@@ -38,10 +48,10 @@ nav{
     padding-right: 30px;
 }
 .nav-link {
-    #color: #000 !important;
+    color: #3c4043 !important;*/
 }
 .nav-link:hover {
-color: #05a6f0 !important;
+color: #1a73e8 !important;
 }
 .nav-item {
     padding-top: 9px;
@@ -51,7 +61,7 @@ color: #05a6f0 !important;
     font-size: 25px;
     margin-bottom:0px;
     margin-left: 15px;
-    color: #666;
+    color: #3c4043;
     font-weight: 600;
 }
 .navbar-light .navbar-toggler-icon {
