@@ -89,12 +89,12 @@ nav{
     border: 0;
     outline: none !important;
 }
-#intro {
+.flex-2-colonne {
     display:flex;
     justify-content: center;
     align-items: center;
 }
-#intro>div:nth-child(1) {
+.flex-2-colonne>div:nth-child(1) {
     display:flex;
     justify-content: center;
     align-items: center;
@@ -102,7 +102,7 @@ nav{
 #intro>div:nth-child(1) >div>img {
     width: 33vw;
 }
-#intro > div:nth-child(2) {
+.flex-2-colonne > div:nth-child(2) {
     display:flex;
     justify-content: right;
     align-items: center;
