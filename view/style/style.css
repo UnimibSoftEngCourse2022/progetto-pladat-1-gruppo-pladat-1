@@ -161,8 +161,10 @@ nav{
     border-right:0px;
     border-bottom: 2px solid #f2f2f2;
 }
-.gruppo > input
-{}
+.gruppo > input:focus
+{
+    border-color:#1a73e8;
+}
 .input-modificato{
     font-size: 15px;
     z-index: 5;
@@ -182,6 +184,27 @@ nav{
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+.bottone:hover
+{
+    background-color:#f2f2f2;
+    color: #1a73e8;
+}
+.button-modifica 
+{
+    display: flex;
+    justify-content: right;
+}
+.button-modifica>button
+{
+    background-color:white;
+    display:block;
+    border:0px;
+    color:#3c4043;
+}
+.button-modifica>button:hover
+{
+    color:#1a73e8;
 }
 /*
  .radioForm
