@@ -17,4 +17,20 @@ function myfunct() {
 	$("#motivatore").width();
 	$("#motivatore").addClass("fadeIn");
 }
-
+function formeffect(id, para) {
+	var oggetto = document.getElementById(id);
+	oggetto.style = "font-size: 13px; top:-15px;";
+	document.getElementById(para).placeholder = "Scrivi qui...";
+	document.getElementById(para).focus();
+}
+function formeffect2(id,para) {
+	var label=document.getElementById(id);
+	var input=document.getElementById(para);
+	var valore=input.value.trim();
+	if(valore.length === 0)
+	{
+		document.getElementById(para).placeholder = "";
+		label.style = "font-size: 15px; top:5px;";
+	}
+		input.value=valore;
+}

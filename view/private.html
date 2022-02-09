@@ -35,15 +35,30 @@
          </div>
       </nav>
       <div class="container flex-2-colonne" id="intro">
-         <div class="col-0 col-lg-6">
-            <div>
-               <img src="image/persone.png" alt="immagine persone"/>
-            </div>
+         <div class="col-12 col-lg-6">
+               <form id="iscrizione" action="*******" method="******">
+                    <img src="image/profilo.png" alt="foto-profilo"/>
+                   <div class="gruppo">
+                      <label class="input-modificato" onclick="formeffect(this.id,'nomeInput')" id="nome">Nome e cognome</label>
+                      <input type="text" name="nome" onfocus="formeffect('nome',this.id)" onblur="formeffect2('nome',this.id)"  class="larghezzaInput" id="nomeInput" required/>
+                   </div>
+                   <!--
+                   <div class="grupporadio">
+                      <label class="radioForm">Hai un codice #BeTheBrain?</label>
+                      <input type="radio" name="siono" value="0" checked /> <label >Sì</label>
+                      <input type="radio" name="siono" value="1"/> <label>No</label>
+                   </div>
+                   <div class="gruppo">
+                      <input type="checkbox" value="consento" id="ioconsento" required/>   
+                      <label class="trattamento-privacy" for="ioconsento">Consento al trattamento dei miei dati personali ai sensi dell'art.13 del D. Lgs. 30/06/2003 n. 196. <a data-toggle="modal" data-target="#Normativaprivacy">(Leggi)</a></label>
+                   </div>
+                   -->
+                   <input type="submit" value="Iscriviti" class="bottone"/>
+             </form>
          </div>
          <div class="col-12 col-lg-6">
-            <div>
-               <h1><span>PlaDat:</span> il tirocinio 2.0</h1>
-               <h3 id="motivatore">Semplice</h3>
+            <div class="">
+               
             </div>
          </div>
       </div>
