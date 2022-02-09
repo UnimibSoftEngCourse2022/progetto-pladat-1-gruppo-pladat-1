@@ -156,6 +156,11 @@ nav{
     .nome-sito {
         margin-left: 0 ;
    }
+   .login-button{
+       padding-left:10px !important;
+       padding-right: 10px !important;
+       margin: auto;
+   }
 }
 .navbar-toggler:focus {
     box-shadow: none;
