@@ -19,7 +19,7 @@ function myfunct() {
 }
 function formeffect(id, para) {
 	var oggetto = document.getElementById(id);
-	oggetto.style = "font-size: 13px; top:-15px;";
+	oggetto.style = "font-size: 13px; top:-13px; color:#1a73e8";
 	document.getElementById(para).placeholder = "Scrivi qui...";
 	document.getElementById(para).focus();
 }
