@@ -13,7 +13,7 @@
    </head>
    <body>
       <nav class="navbar navbar-expand-lg navbar-light">
-         <a href="index.html" class="nome-sito"><img src="image/logo.png" class="navbar-brand">PlaDat</a>
+         <a href="index.html" class="nome-sito"><img src="image/logo.png" alt="logo" class="navbar-brand">PlaDat</a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
          </button>
@@ -34,15 +34,38 @@
             </ul>
          </div>
       </nav>
-      <div class="container flex-2-colonne" id="intro">
+      <div class="container flex-2-colonne">
          <div class="col-12 col-lg-6">
                <form id="iscrizione" action="*******" method="******">
                    <div class="button-modifica"><button>Modifica</button></div>
                     <img src="image/profilo.png" alt="foto-profilo"/>
                    <div class="gruppo">
-                      <label class="input-modificato" onclick="formeffect(this.id,'nomeInput')" id="nome">Nome e cognome</label>
+                      <label class="input-modificato" onclick="formeffect(this.id,'nomeInput')" id="nome">Nome</label>
                       <input type="text" name="nome" onfocus="formeffect('nome',this.id)" onblur="formeffect2('nome',this.id)"  class="larghezzaInput" id="nomeInput" required/>
                    </div>
+                   <div class="gruppo">
+                    <label class="input-modificato" onclick="formeffect(this.id,'cognome')" id="cognome">Cognome</label>
+                    <input type="text" name="cognome" onfocus="formeffect('cognome',this.id)" onblur="formeffect2('cognome',this.id)"  class="larghezzaInput" id="cognomeInput" required/>
+                 </div>
+                 <div class="gruppo">
+                    <label class="input-modificato" onclick="formeffect(this.id,'data')" id="data">Data</label>
+                    <input type="date" name="data" onfocus="formeffect('data',this.id)" onblur="formeffect2('data',this.id)"  class="larghezzaInput" id="dataInput" required/>
+                 </div>
+                   <input type="submit" value="Iscriviti" class="bottone"/>
+             </form>
+         </div>
+         <div class="col-12 col-lg-6">
+            <div class="elenco-privato">
+               <div class="privato-elenco privato-richiesta"></div>
+               <div class="privato-elenco privato-placement"></div>
+            </div>
+         </div>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="javascript/javascript.js"></script>
+   </body>
+</html>
                    <!--
                    <div class="grupporadio">
                       <label class="radioForm">Hai un codice #BeTheBrain?</label>
@@ -54,17 +77,3 @@
                       <label class="trattamento-privacy" for="ioconsento">Consento al trattamento dei miei dati personali ai sensi dell'art.13 del D. Lgs. 30/06/2003 n. 196. <a data-toggle="modal" data-target="#Normativaprivacy">(Leggi)</a></label>
                    </div>
                    -->
-                   <input type="submit" value="Iscriviti" class="bottone"/>
-             </form>
-         </div>
-         <div class="col-12 col-lg-6">
-            <div class="">
-               
-            </div>
-         </div>
-      </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      <script src="javascript/javascript.js"></script>
-   </body>
-</html>
