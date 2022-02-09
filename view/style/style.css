@@ -95,7 +95,13 @@ background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http
 }
 #intro>div:nth-child(1)
 {
-    background-color:red;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#intro>div:nth-child(1) >div>img
+{
+    width: 33vw;
 }
 #intro > div:nth-child(2)
 {
