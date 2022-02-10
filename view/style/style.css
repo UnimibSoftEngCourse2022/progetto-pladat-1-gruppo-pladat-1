@@ -87,6 +87,10 @@ nav{
     border: 0;
     outline: none !important;
 }
+.container > div
+{
+    margin-top:63px;
+}
 .flex-2-colonne {
     display:flex;
     justify-content: center;
@@ -141,11 +145,12 @@ nav{
     margin-top:20px;
     margin-bottom: 20px;
 }
-.gruppo > input:focus {
+.gruppo > input:focus, .gruppo > textarea {
     box-shadow:0px 0px 0px !important;
     outline:none !important;
+    border-color:#1a73e8;
 }
-.gruppo > input {
+.gruppo > input, .gruppo > textarea {
     margin-bottom: 0px;
     position:relative;
     padding:3px;
@@ -155,9 +160,6 @@ nav{
     border-left:0px;
     border-right:0px;
     border-bottom: 2px solid #f2f2f2;
-}
-.gruppo > input:focus {
-    border-color:#1a73e8;
 }
 .input-modificato{
     font-size: 15px;
@@ -238,7 +240,7 @@ nav{
    /*accettato 34a853*/
    /*rifiutato ea4335*/
 }
-.gruppo > input:focus
+.gruppo > input:focus, .gruppo > textarea:focus
 {
     border-color:#1a73e8;
 }
@@ -246,7 +248,7 @@ nav{
 {
     font-size: 13px; top:-13px; color:#1a73e8; 
 }
-.gruppo-evidenziato >input 
+.gruppo-evidenziato >input, .gruppo-evidenziato > textarea 
 {
     border-color: #1a73e8;
 }
@@ -254,18 +256,6 @@ nav{
 {
     color:transparent;
 }
-/* .radioForm {
-    font-size: 15px;
-    color: black;
-    font-weight: bold;
-}
-.grupporadio {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    margin-top: 40px;
-}
-*/
 ::placeholder { 
     color: #3c4043;
     opacity: 1;
@@ -310,6 +300,11 @@ nav{
 }
 .navbar-toggler:focus {
     box-shadow: none;
+}
+textarea
+{
+    width:100%;
+    resize: none;
 }
 @media screen and (max-width: 1200px) {
     .nome-sito {

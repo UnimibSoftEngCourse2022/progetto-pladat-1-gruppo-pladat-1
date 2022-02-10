@@ -2,10 +2,10 @@ $(document).ready(function () {
 	setInterval(myfunct, 2000);
 	$( ".elenco-privato" ).css('min-height', $( "#iscrizione" ).parent().height()+"px");
 	blurr();
-	$(".gruppo>input").val("");
+	$(".gruppo>input, .gruppo>textarea").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
-	$(".gruppo>input").attr("");
-	esecutore();
+	$(".gruppo>input, .gruppo>textarea").attr("");
+	$("#address").geocomplete();
 })
 let count = 1;
 
@@ -30,11 +30,11 @@ function blurr()
 	{
 		$(this).css("color","#3c4043");
 	});
-	$(".gruppo > input").focus(function()
+	$(".gruppo > input, .gruppo>textarea").focus(function()
 	{
 		$(this).parent().addClass("gruppo-evidenziato");
 	});
-	$(".gruppo > input").focusout(function()
+	$(".gruppo > input, .gruppo>textarea").focusout(function()
 	{
 		if($(this).val().trim()==="")
 		{
