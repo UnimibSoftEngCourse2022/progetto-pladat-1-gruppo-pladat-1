@@ -1,6 +1,10 @@
 $(document).ready(function () {
 	setInterval(myfunct, 2000);
 	$( ".elenco-privato" ).css('min-height', $( "#iscrizione" ).parent().height()+"px");
+	blurr();
+	$(".gruppo>input").val("");
+	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
+	$(".gruppo>input").attr("");
 })
 let count = 1;
 
@@ -18,20 +22,36 @@ function myfunct() {
 	$("#motivatore").width();
 	$("#motivatore").addClass("fadeIn");
 }
-function formeffect(id, para) {
-	var oggetto = document.getElementById(id);
-	oggetto.style = "font-size: 13px; top:-13px; color:#1a73e8";
-	document.getElementById(para).placeholder = "Scrivi qui...";
-	document.getElementById(para).focus();
-}
-function formeffect2(id,para) {
-	var label=document.getElementById(id);
-	var input=document.getElementById(para);
-	var valore=input.value.trim();
-	if(valore.length === 0)
+
+function blurr()
+{
+	$(".gruppo > input[type=date]").focus(function()
 	{
-		document.getElementById(para).placeholder = "";
-		label.style = "font-size: 15px; top:5px;";
-	}
-		input.value=valore;
+		$(this).css("color","#3c4043");
+	});
+	$(".gruppo > input").focus(function()
+	{
+		$(this).parent().addClass("gruppo-evidenziato");
+	});
+	$(".gruppo > input").focusout(function()
+	{
+		if($(this).val().trim()==="")
+		{
+			$(this).parent().removeClass("gruppo-evidenziato");
+			$(this).val("");
+		}
+	});
+	$(".gruppo > label").click(function()
+	{
+		$(this).parent().addClass("gruppo-evidenziato");
+		$(this).parent().children("input").focus();
+	});
 }
+let requestOptions = {
+	method: 'GET',
+  };
+
+fetch("https://api.geoapify.com/v1/geocode/autocomplete?text=Mosco&apiKey=YOUR_API_KEY", requestOptions)
+.then(response => response.json())
+.then(result => console.log(result))
+.catch(error => console.log('error', error));
