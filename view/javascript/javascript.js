@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	setInterval(myfunct, 2000);
-	$( ".elenco-privato" ).css('min-height', $( "#iscrizione" ).parent().height()+"px");
-	blurr();
+	$( ".elenco-privato" ).css('height', ($( "#iscrizione" ).parent().height()-10)+"px");
+	$( ".elenco-privato >div" ).css('height', ($( ".elenco-privato >div" ).parent().height()-$( ".elenco-privato >div" ).parent().children("h3").height()-10)+"px");
 	$(".gruppo>input, .gruppo>textarea").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	$(".gruppo>input, .gruppo>textarea").attr("");
