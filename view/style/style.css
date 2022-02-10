@@ -15,7 +15,7 @@ html {
 	scroll-behavior: smooth;
 }
 
-.container {
+.row {
 	min-height: 100vh;
 }
 
@@ -107,10 +107,6 @@ nav {
 .navbar-toggler {
 	border: 0;
 	outline: none !important;
-}
-
-.container>div {
-	margin-top: 63px;
 }
 
 .flex-2-colonne {

@@ -4,8 +4,11 @@ $(document).ready(function () {
 	$(".gruppo>input, .gruppo>textarea").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	$(".gruppo>input, .gruppo>textarea").attr("");
-	$("#address").geocomplete();
+	$(".row > div").css("margin-top",$("nav").height());
 })
+$(window).on('resize', function(){
+});
+
 let count = 1;
 
 function myfunct() {
