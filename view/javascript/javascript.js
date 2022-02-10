@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	setInterval(myfunct, 2000);
-	document.getElementsByClassName("elenco-privato").style.height = document.getElementById("iscrizione").clientHeight
+	$( ".elenco-privato" ).css('min-height', $( "#iscrizione" ).parent().height()+"px");
 })
 let count = 1;
 
