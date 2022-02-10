@@ -1,5 +1,4 @@
 /*DFEBC0*/
-/*#f8f9fa*/
 @font-face {
     font-family: productsans;
     src: url(../font/productsansRegular.ttf);
@@ -73,12 +72,10 @@ nav{
     color: #3c4043;
     font-weight: 600;
 }
-.navbar-brand
-{
+.navbar-brand {
     width:40px;
 }
-.nome-sito
-{
+.nome-sito {
     display: flex;
     align-items: center;
 }
@@ -124,19 +121,16 @@ nav{
 .fadeIn {
     animation: fadeIn 2s ease-in both;
 }
-#iscrizione
-{
+#iscrizione {
     padding:30px;
     width: 80%;
 }
-#iscrizione >img
-{
+#iscrizione >img {
     width:9vw;
     display:block;
     margin: 0 auto;
 }
-.gruppo
-{
+.gruppo {
     display:flex;
     flex-direction: column;
     align-self: center;
@@ -144,13 +138,11 @@ nav{
     margin-top:20px;
     margin-bottom: 20px;
 }
- .gruppo > input:focus
- {
+.gruppo > input:focus {
     box-shadow:0px 0px 0px !important;
     outline:none !important;
- }
- .gruppo > input
-{
+}
+.gruppo > input {
     margin-bottom: 0px;
     position:relative;
     padding:3px;
@@ -161,8 +153,7 @@ nav{
     border-right:0px;
     border-bottom: 2px solid #f2f2f2;
 }
-.gruppo > input:focus
-{
+.gruppo > input:focus {
     border-color:#1a73e8;
 }
 .input-modificato{
@@ -173,8 +164,7 @@ nav{
     top:6px;
     transition: .5s;
 }
-.bottone
-{
+.bottone {
     background-color:#1a73e8;
     margin: 0 auto;
     display:block;
@@ -186,82 +176,66 @@ nav{
     padding-bottom: 10px;
     border: 2px solid #1a73e8;
 }
-.bottone:hover
-{
+.bottone:hover {
     background-color:white;
     color: #1a73e8;
 }
-}
-.button-modifica 
-{
+.button-modifica {
     display: flex;
     justify-content: right;
 }
-.button-modifica>button
-{
+.button-modifica>button {
     background-color:white;
     display:block;
     border:0px;
     color:#3c4043;
 }
-.button-modifica>button:hover
-{
+.button-modifica>button:hover {
     color:#1a73e8;
 }
-.elenco-privato
-{
+.elenco-privato {
     padding:30px;
     width: 80%;
 }
-.elenco-privato > div
-{
+.elenco-privato > div {
     border: 2px solid #f2f2f2;
     padding:20px;
     margin-bottom: 20px;
 }
-.elenco-privato > div:hover
-{
+.elenco-privato > div:hover {
     border-color:#1a73e8;
 }
-.elenco-privato >h3 
-{
+.elenco-privato >h3 {
     margin-bottom:20px;
 }
-.privato-richiesta
-{
+.privato-richiesta, .privato-placement {
     display: flex;
     align-content: space-between;
 }
-.privato-richiesta > p
-{
+.privato-richiesta > p, .privato-placement > p {
     display:block;
     margin-bottom:0px;
 }
-.privato-richiesta > p:nth-child(2)
-{
+.privato-richiesta > p:nth-child(2), .privato-placement > p:nth-child(2) {
     margin-left: auto;
 }
-.privato-richiesta > p:nth-child(3) 
-{
+.privato-richiesta > p:nth-child(3) , .privato-placement>p:nth-child(3) {
     margin-left: auto;
-    color:#1a73e8;
+    color:#F6EFBD;
+   /*DFEBC0*/
 }
-/*
- .radioForm
-{
+/* .radioForm {
     font-size: 15px;
     color: black;
-    font-weight: bold; 
+    font-weight: bold;
 }
-.grupporadio
-{
+.grupporadio {
     display: flex;
     flex-direction: row;
     position: relative;
     margin-top: 40px;
 }
 */
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -294,10 +268,10 @@ nav{
     .nome-sito {
         margin-left: 0 ;
    }
-   .login-button{
-       padding-left:10px !important;
-       padding-right: 10px !important;
-       margin: auto;
+    .login-button{
+        padding-left:10px !important;
+        padding-right: 10px !important;
+        margin: auto;
    }
 }
 .navbar-toggler:focus {
