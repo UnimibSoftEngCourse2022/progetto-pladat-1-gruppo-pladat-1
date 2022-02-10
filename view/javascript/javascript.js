@@ -5,6 +5,7 @@ $(document).ready(function () {
 	$(".gruppo>input").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	$(".gruppo>input").attr("");
+	esecutore();
 })
 let count = 1;
 
@@ -47,11 +48,3 @@ function blurr()
 		$(this).parent().children("input").focus();
 	});
 }
-let requestOptions = {
-	method: 'GET',
-  };
-
-fetch("https://api.geoapify.com/v1/geocode/autocomplete?text=Mosco&apiKey=YOUR_API_KEY", requestOptions)
-.then(response => response.json())
-.then(result => console.log(result))
-.catch(error => console.log('error', error));
