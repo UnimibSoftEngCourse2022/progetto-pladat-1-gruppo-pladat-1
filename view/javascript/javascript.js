@@ -1,12 +1,13 @@
 $(document).ready(function () {
 	setInterval(myfunct, 2000);
-	$(".elenco-privato").css('height', ($("#iscrizione").parent().height() - 10) + "px");
 	$(".gruppo>input, .gruppo>textarea").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	$(".gruppo>input, .gruppo>textarea").attr("");
-	$(".row > div").css("margin-top",$("nav").height());
+	$(".elenco-privato").css('height', ($("#iscrizione").height()+63.20) + "px");
+	blurr();
 })
 $(window).on('resize', function(){
+	$(".elenco-privato").css('height', ($("#iscrizione").height()+63.20) + "px");
 });
 
 let count = 1;
