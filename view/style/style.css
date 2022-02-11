@@ -227,7 +227,7 @@ nav {
 
 .button-modifica {
 	display: flex;
-	justify-content: right;
+    align-content: space-between;
 }
 
 .button-modifica>button {
@@ -236,12 +236,22 @@ nav {
 	border: 0px;
 	color: #3c4043;
 }
-
-.button-modifica>button:hover {
+.button-modifica>button:nth-child(1)
+{
+    color:#ea4335;
+}
+.button-modifica>button:nth-child(2)
+{
+    margin-left:auto;
+}
+.button-modifica>button:nth-child(2):hover {
 	color: #1a73e8;
 	transition-duration: .5s;
 }
-
+.button-modifica>button:nth-child(1):hover {
+	color: #3c4043;
+	transition-duration: .5s;
+}
 .elenco-privato {
 	width: 80%;
 	margin: 0 auto;
