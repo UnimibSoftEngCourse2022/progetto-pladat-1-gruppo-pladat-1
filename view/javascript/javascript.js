@@ -1,13 +1,12 @@
 $(document).ready(function () {
 	setInterval(myfunct, 2000);
-	$(".gruppo>input, .gruppo>textarea").val("");
+	$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
-	$(".gruppo>input, .gruppo>textarea").attr("");
-	$(".elenco-privato").css('height', ($("#iscrizione").height()+63.20) + "px");
+	$(".elenco-privato").css('height', ($("#iscrizione").height() + 63.20) + "px");
 	blurr();
 })
-$(window).on('resize', function(){
-	$(".elenco-privato").css('height', ($("#iscrizione").height()+63.20) + "px");
+$(window).on('resize', function () {
+	$(".elenco-privato").css('height', ($("#iscrizione").height() + 63.20) + "px");
 });
 
 let count = 1;
@@ -40,8 +39,44 @@ function blurr() {
 			$(this).val("");
 		}
 	});
+	$(".gruppo > div>input").focus(function () {
+		$(this).parent().parent().addClass("gruppo-evidenziato");
+	});
+	$(".gruppo > div>input").focusout(function () {
+		if ($(this).val().trim() === "") {
+			$(this).parent().parent().removeClass("gruppo-evidenziato");
+			$(this).val("");
+		}
+	});
 	$(".gruppo > label").click(function () {
 		$(this).parent().addClass("gruppo-evidenziato");
 		$(this).parent().children("input").focus();
 	});
+}
+
+function loadMapScenario() {
+	Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+		callback: onLoad,
+		errorCallback: onError
+	});
+
+	function onLoad() {
+		var options = {
+			maxResults: 5
+		};
+		var manager = new Microsoft.Maps.AutosuggestManager(options);
+		manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
+	}
+
+	function onError(message) {
+		document.getElementById('printoutPanel').innerHTML = message;
+	}
+
+	function selectedSuggestion(suggestionResult) {
+		document.getElementById('printoutPanel').innerHTML =
+			'Suggestion: ' + suggestionResult.formattedSuggestion +
+			'<br> Lat: ' + suggestionResult.location.latitude +
+			'<br> Lon: ' + suggestionResult.location.longitude;
+	}
+
 }
