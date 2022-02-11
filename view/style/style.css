@@ -292,16 +292,21 @@ nav {
 
 .privato-richiesta>p:nth-child(3) {
 	margin-left: auto;
-	color: #34a853;
-	/*chiuso ea4335*/
 }
-
+.rifiuto
+{
+    color: #ea4335;
+}
+.accetto
+{
+	color: #34a853;
+}
+.attendo
+{
+	color: #fbbc05;
+}
 .privato-placement>p:nth-child(3) {
 	margin-left: auto;
-	color: #fbbc05;
-	text-shadow: 0 0 3px #f2f2f2;
-	/*accettato 34a853*/
-	/*rifiutato ea4335*/
 }
 
 .gruppo>input:focus,
