@@ -25,7 +25,7 @@ html {
 body {
 	margin: 0;
 	font-family: productsans, sans-serif !important;
-	min-width: 280px;
+	min-width: 350px;
 	color: #3c4043;
 }
 
@@ -77,12 +77,12 @@ nav {
 
 .login-button {
 	background-color: #fff;
-	border: 3px solid #f2f2f2;
+	border: 3px solid #1a73e8;
 }
 
 .login-button:hover {
-	color: #3c4043 !important;
-	border-color: #1a73e8;
+	color: #fff !important;
+    background-color: #1a73e8;
 	transition-duration: .5s;
 }
 
@@ -383,8 +383,26 @@ textarea {
 	resize: none;
 }
 
+@media screen and (max-width: 992px) {
+    #iscrizione > img
+    {
+        width: 10vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    #iscrizione > img
+    {
+        width: 14vw;
+    }
+}
+@media screen and (max-width: 576px) {
+    #iscrizione > img
+    {
+        width: 18vw;
+    }
+}
 @media screen and (max-width: 1200px) {
-	.nome-sito {
+    .nome-sito {
 		padding-top: 10px;
 		padding-bottom: 10px;
 	}
@@ -394,4 +412,20 @@ textarea {
 	#intro>div:nth-child(2)>div>h3 {
 		font-size: 25px
 	}
+	.elenco-privato {
+		width:100% !important;
+	}
+    #iscrizione
+    {
+        width:100% !important;
+    }
+}
+@media screen and (max-width: 1400px) {
+	.elenco-privato {
+		width:90%;
+	}
+    #iscrizione
+    {
+        width:90%;
+    }
 }
