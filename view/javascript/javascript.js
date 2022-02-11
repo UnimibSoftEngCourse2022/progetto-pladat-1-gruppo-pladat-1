@@ -61,22 +61,14 @@ function loadMapScenario() {
 	});
 
 	function onLoad() {
-		var options = {
-			maxResults: 5
-		};
+		var options = { maxResults: 5 };
 		var manager = new Microsoft.Maps.AutosuggestManager(options);
 		manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
 	}
-
 	function onError(message) {
-		document.getElementById('printoutPanel').innerHTML = message;
 	}
 
 	function selectedSuggestion(suggestionResult) {
-		document.getElementById('printoutPanel').innerHTML =
-			'Suggestion: ' + suggestionResult.formattedSuggestion +
-			'<br> Lat: ' + suggestionResult.location.latitude +
-			'<br> Lon: ' + suggestionResult.location.longitude;
+		$('#searchBox').val(suggestionResult.formattedSuggestion);
 	}
-
-}
+}	

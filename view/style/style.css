@@ -267,17 +267,24 @@ nav {
 }
 
 .asOuterContainer>ul {
-	height: 20vh;
+	height: 120px;
 	overflow-y: scroll;
-	max-width: 300px !important;
+    padding:0px !important;
+    margin-bottom: 0px !important;
 }
 
+.searchBoxContainer,
+.MicrosoftMap,
+#as_containerSearch_searchBox,
 .asOuterContainer,
-.bingLogoContainer {
-	margin-left: -5px !important;
-	display: block !important;
-	position: relative !important;
-	max-width: 300px !important;
+.bingLogoContainer
+{
+    width: 100% !important;
+    display: block !important
+}
+.bingLogoContainer > span {
+    margin-right:30px;
+    margin-bottom:30px;
 }
 
 .elenco-privato>div {
