@@ -1,12 +1,12 @@
 <?php
 
 namespace src;
-
+include 'DataBase.php';
 class Employer
 {
     public static function createEmployer($employeremail, $name, $description, $address, $password){
 
-        $db = DataBase::connect();
+        $db = DataBase::getDb();
 
         #inserimento employer nel db + check presenza email
         if(($db->query("SELECT email FROM employer WHERE email = '$employeremail';")->rowCount() == 0)
@@ -17,7 +17,7 @@ class Employer
     }
 
     public static function addPhoto($description, $path, $employeremail){
-        $db = DataBase::connect();
+        $db = DataBase::getDb();
 
         ###creazione photo student
         if(($db->query("SELECT email FROM employer WHERE email = '$employeremail';")->rowCount() != 0)) {
@@ -27,7 +27,7 @@ class Employer
     }
 
     public static function getPathImage($employeremail){
-        $db = DataBase::connect();
+        $db = DataBase::getDb();
 
         ###get path immagine profilo di student + controllo su photo email studente
         if(($db->query("SELECT email FROM employer WHERE email = '$employeremail';")->rowCount() != 0)
@@ -38,12 +38,52 @@ class Employer
     }
 
     public static function login($employeremail, $password){
-        $db = DataBase::connect();
+        $db = DataBase::getDb();
 
         if($db->query("SELECT email FROM employer WHERE email = '$employeremail' AND password = '$password';")->rowCount() != 0){
             return true;
         }
         return false;
+    }
+
+    public static function cancellazioneAccount($employeremail){
+        $db = DataBase::getDb();
+
+        if(($db->query("SELECT email FROM employer WHERE email = '$employeremail';")->rowCount() != 0)) {
+            $db->query("DELETE from employer WHERE email = '$employeremail';");
+        }
+    }
+
+    public static function changeName($email, $newName){
+        $db = DataBase::getDb();
+
+        if (($db->query("SELECT email FROM employer WHERE email = '$email';")->rowCount() != 0)) {
+            $db->query("UPDATE employer SET name = '$newName' WHERE email = '$email';");
+        }
+    }
+
+    public static function changeDescription($email, $newDescription){
+        $db = DataBase::getDb();
+
+        if (($db->query("SELECT email FROM employer WHERE email = '$email';")->rowCount() != 0)) {
+            $db->query("UPDATE employer SET description = '$newDescription' WHERE email = '$email';");
+        }
+    }
+
+    public static function changeAddress($email, $newAddress){
+        $db = DataBase::getDb();
+
+        if (($db->query("SELECT email FROM employer WHERE email = '$email';")->rowCount() != 0)) {
+            $db->query("UPDATE employer SET address = '$newAddress' WHERE email = '$email';");
+        }
+    }
+
+    public static function changePassword($email, $newPassword){
+        $db = DataBase::getDb();
+
+        if (($db->query("SELECT email FROM employer WHERE email = '$email';")->rowCount() != 0)) {
+            $db->query("UPDATE employer SET password = '$newPassword' WHERE email = '$email';");
+        }
     }
 }
 ?>

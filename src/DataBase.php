@@ -5,21 +5,27 @@ use PDO;
 
 class DataBase
 {
-    public static function connect(){
+    private static $db;
 
-        $servername = "localhost";
-        $dbname = "mydb";
-        $username = "root";
-        $passworddb = "dbpass";
+    private function __construct(){}
 
-        try{
-            $db = new PDO("mysql:=$servername;dbname=$dbname", $username, $passworddb);
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $db;
-        } catch (PDOException $e){
-            print "Errore! ". $e->getMessage() ." <br/>";
-            die();
+    public static function getDb(){
+        if(self::$db == null){
+            $ini = parse_ini_file('config/config.ini');
+            $servername = $ini['servername'];
+            $dbname = $ini['dbname'];
+            $username = $ini['username'];
+            $password = $ini['password'];
+            try{
+                self::$db = new PDO("mysql:=$servername;dbname=$dbname", $username, $password);
+                self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $e) {
+                print "Errore! " . $e->getMessage() . " <br/>";
+                die();
+            }
         }
+        return self::$db;
+
     }
 }
 ?>
