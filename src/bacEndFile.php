@@ -1,4 +1,5 @@
 <?php
+include 'Placement.php';
 
 $servername = "localhost";
 $dbname = "mydb";
@@ -27,14 +28,20 @@ $studentemail = 'prova2@email.com';
 $employeremail = 'microsoft@gmial.com';
 $category = 'Java';
 $idPhoto = 1;
+
+$temp = \src\Placement::searchPlacements(['EXCEL']);
+foreach($temp as &$a){
+    echo $a[0];
+}
+/*
 #inserimento student nel db + check presenza mail
-if(($db->query("SELECT email FROM student WHERE email = '$studentemail';")->fetch()['email'] == null)
-    && ($db->query("SELECT email FROM employer WHERE email = '$employeremail';")->fetch()['email'] == null)){
+if(($db->query("SELECT email FROM student WHERE email = '$studentemail';")->rowCount() == 0)
+    && ($db->query("SELECT email FROM employer WHERE email = '$employeremail';")->rowCount() == 0)){
     $db->query("insert into student(email, name, surname, birth_date, presentation, password)
 	values ('$studentemail', 'mario', 'giordano', '1966-10-21', 'sono un pagliaccio', 'z1234');");
 }
 #inserimento employer nel db + check presenza email
-if(($db->query("SELECT email FROM employer WHERE email = '$employeremail';")->fetch()['email'] == null)
+if(($db->query("SELECT email FROM employer WHERE email = '$employeremail';")->rowCount() == 0)
     && ($db->query("SELECT email FROM student WHERE email = '$studentemail';")->fetch()['email'] == null)){
     $db->query("insert into mydb.employer(email, name, description, address, password)
         values ('$employeremail', 'microsoft', 'microsoft descreiption', 'microsoft addr', 'onedrive1');");
