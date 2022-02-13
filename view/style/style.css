@@ -83,7 +83,7 @@ nav {
 .login-button:hover {
 	color: #fff !important;
 	background-color: #1a73e8;
-	transition-duration: .5s;
+	transition: .5s;
 }
 
 .nome-sito {
@@ -225,7 +225,7 @@ nav {
 .bottone:hover {
 	background-color: white;
 	color: #1a73e8;
-	transition-duration: .5s;
+	transition: .5s;
 }
 
 .button-modifica {
@@ -250,12 +250,12 @@ nav {
 
 .button-modifica>button:nth-child(2):hover {
 	color: #1a73e8;
-	transition-duration: .5s;
+	transition: .5s;
 }
 
 .button-modifica>button:nth-child(1):hover {
 	color: #3c4043;
-	transition-duration: .5s;
+	transition: .5s;
 }
 
 .elenco-privato {
@@ -303,7 +303,7 @@ nav {
 
 .elenco-privato>div>div:hover {
 	border-color: #1a73e8;
-	transition-duration: .5s;
+	transition: .5s;
 }
 
 .elenco-privato>h3 {
@@ -407,9 +407,47 @@ nav {
 		margin: auto;
 	}
 }
-.btnclose
+.modal-content 
 {
-
+border-radius: 0;
+border:2px solid #f2f2f2;
+}
+.modal-header{
+	border-bottom: 2px solid #f2f2f2;
+}
+.modal-footer
+{
+	border-top: 2px solid #f2f2f2;
+}
+.chiusurax
+{
+	color:#3c4043;
+	border: 0px;
+	background-color:transparent;
+}
+.chiusurax:hover
+{
+	color: #1a73e8 !important;
+	transition: .5;
+}
+.bottone-invio
+{
+	background-color: #1a73e8;
+	color: white;
+	border: 0px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 2px solid #1a73e8;
+	
+}
+.bottone-invio:hover
+{
+	background-color:white;
+	color:#1a73e8;
+	opacity: 1;
+	transition: .5s;
 }
 .navbar-toggler:focus {
 	box-shadow: none;
