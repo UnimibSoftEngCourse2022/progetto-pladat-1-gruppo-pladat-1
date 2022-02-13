@@ -6,6 +6,7 @@ $(document).ready(function () {
 	blurr();
 	scrittura();
 })
+
 $(window).on('resize', function () {
 	$(".elenco-privato").css('height', ($("#modifica").height() + 63.20) + "px");
 });
