@@ -155,14 +155,14 @@ nav {
 	animation: fadeIn 2s ease-in both;
 }
 
-#iscrizione {
+#iscrizione, #modifica {
 	padding: 30px;
 	width: 80%;
 	border: 2px solid #f2f2f2;
 	box-shadow: 0px 0px 30px #f2f2f2;
 }
 
-#iscrizione>img {
+#iscrizione>img, #modifica  >img {
 	width: 8vw;
 	display: block;
 	margin: 0 auto;
@@ -407,7 +407,10 @@ nav {
 		margin: auto;
 	}
 }
+.btnclose
+{
 
+}
 .navbar-toggler:focus {
 	box-shadow: none;
 }
@@ -418,19 +421,19 @@ textarea {
 }
 
 @media screen and (max-width: 992px) {
-	#iscrizione>img {
+	#iscrizione>img, #modifica >img {
 		width: 10vw;
 	}
 }
 
 @media screen and (max-width: 768px) {
-	#iscrizione>img {
+	#iscrizione>img , #modifica >img{
 		width: 14vw;
 	}
 }
 
 @media screen and (max-width: 576px) {
-	#iscrizione>img {
+	#iscrizione>img, #modifica >img {
 		width: 18vw;
 	}
 }
@@ -449,7 +452,7 @@ textarea {
 	.elenco-privato {
 		width: 100% !important;
 	}
-	#iscrizione {
+	#iscrizione, #modifica {
 		width: 100% !important;
 	}
 }
@@ -458,7 +461,7 @@ textarea {
 	.elenco-privato {
 		width: 90%;
 	}
-	#iscrizione {
+	#iscrizione, #modifica {
 		width: 90%;
 	}
 }
