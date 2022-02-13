@@ -190,6 +190,7 @@ nav {
 #iscrizione>h3 {
 	text-align: center;
 	margin-bottom: 40px;
+	color:#1a73e8;
 }
 
 .gruppo {
@@ -256,7 +257,19 @@ nav {
 	display: flex;
 	align-content: space-between;
 }
-
+.button-modifica2
+{
+	display: flex;
+	align-content: space-between;
+}
+.button-modifica2>button
+{
+	background-color: white;
+	display: block;
+	border: 0px;
+	color: #3c4043;
+	margin-left: auto;
+}
 .button-modifica>button {
 	background-color: white;
 	display: block;
@@ -272,7 +285,7 @@ nav {
 	margin-left: auto;
 }
 
-.button-modifica>button:nth-child(2):hover {
+.button-modifica>button:nth-child(2):hover, .button-modifica2>button:hover {
 	color: #1a73e8;
 	transition: .5s;
 }
@@ -495,7 +508,11 @@ textarea {
 	width: 100%;
 	resize: none;
 }
-
+.h-captcha
+{
+	text-align:center;
+	margin-bottom: 20px;
+}
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
 	#modifica>img {
