@@ -133,24 +133,40 @@ nav {
 	justify-content: right;
 	align-items: center;
 }
-
-#intro>div:nth-child(2)>div>h1 {
+.scritte
+{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+#intro>div:nth-child(2)>div>h1{
 	font-size: 55px;
 	text-align: right;
 	color: #3c4043;
 }
-
-#intro>div:nth-child(2)>div>h1>span {
+.scritte>div>h1 
+{
+	font-size: 55px;
+	text-align: left;
+	color: #3c4043;
+}
+#intro>div:nth-child(2)>div>h1>span, .scritte>div>h1>span {
 	font-weight: 600;
 }
 
-#intro>div:nth-child(2)>div>h3 {
+#intro>div:nth-child(2)>div>h3{
 	margin-top: 15px;
 	color: #1a73e8;
 	font-size: 45px;
 	text-align: right;
 }
-
+.scritte>div>h3
+{
+	margin-top: 15px;
+	color: #1a73e8;
+	font-size: 35px;
+	text-align: left;
+}
 .fadeIn {
 	animation: fadeIn 2s ease-in both;
 }
@@ -169,6 +185,7 @@ nav {
 }
 #iscrizione  >h3 {
 	text-align: center;
+	margin-bottom: 40px;
 }
 .gruppo {
 	display: flex;
@@ -505,6 +522,10 @@ textarea {
 	}
 	#iscrizione, #modifica {
 		width: 100% !important;
+	}
+	.scritte
+	{
+		display:none !important;
 	}
 }
 
