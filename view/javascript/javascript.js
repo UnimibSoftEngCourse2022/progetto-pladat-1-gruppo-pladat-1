@@ -4,6 +4,7 @@ $(document).ready(function () {
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	$(".elenco-privato").css('height', ($("#modifica").height() + 63.20) + "px");
 	blurr();
+	scrittura();
 })
 $(window).on('resize', function () {
 	$(".elenco-privato").css('height', ($("#modifica").height() + 63.20) + "px");
@@ -11,6 +12,15 @@ $(window).on('resize', function () {
 
 let count = 1;
 
+function scrittura()
+{
+	$('.invito').typeIt({
+		speed: 100,
+  		startDelay: 1000,
+		loop:true,
+		loopDelay:5000,
+	}).tiType("Registrati ora! &#200; semplice!")
+}
 function myfunct() {
 	if (count == 0) {
 		$("#motivatore").html("Semplice");
