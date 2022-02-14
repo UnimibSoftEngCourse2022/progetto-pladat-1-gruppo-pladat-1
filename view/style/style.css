@@ -174,20 +174,28 @@ nav {
 }
 
 #iscrizione,
-#modifica {
+#modifica
+ {
 	padding: 30px;
 	width: 80%;
 	border: 2px solid #f2f2f2;
 	box-shadow: 0px 0px 30px #f2f2f2;
 }
-
+#login1
+{
+	padding: 30px;
+	width: 60%;
+	border: 2px solid #f2f2f2;
+	box-shadow: 0px 0px 30px #f2f2f2;
+	background-color:white;
+}
 #modifica>img {
 	width: 8vw;
 	display: block;
 	margin: 0 auto;
 }
 
-#iscrizione>h3 {
+#iscrizione>h3, #login1>h3 {
 	text-align: center;
 	margin-bottom: 40px;
 	color:#1a73e8;
@@ -257,10 +265,26 @@ nav {
 	display: flex;
 	align-content: space-between;
 }
-.button-modifica2
+.button-modifica2,.button-modifica3
 {
 	display: flex;
 	align-content: space-between;
+}
+.button-modifica3>div
+{
+	display: flex;
+	margin-left: auto;
+}
+.button-modifica3>div>p
+{
+	display: inline-block;
+}
+.button-modifica3>div>a
+{
+	margin-left: 10px;
+	display: block;
+	border: 0px;
+	color: #3c4043;
 }
 .button-modifica2>button
 {
@@ -268,7 +292,6 @@ nav {
 	display: block;
 	border: 0px;
 	color: #3c4043;
-	margin-left: auto;
 }
 .button-modifica>button {
 	background-color: white;
@@ -285,9 +308,9 @@ nav {
 	margin-left: auto;
 }
 
-.button-modifica>button:nth-child(2):hover, .button-modifica2>button:hover {
-	color: #1a73e8;
-	transition: .5s;
+.button-modifica>button:nth-child(2):hover, .button-modifica2>button:hover, .button-modifica3>div>a:hover {
+	color: #1a73e8 !important;
+	transition: .5s !important;
 }
 
 .button-modifica>button:nth-child(1):hover {
@@ -417,7 +440,6 @@ nav {
 .radio>div:nth-child(3) {
 	margin-left: 20px;
 }
-
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
@@ -535,6 +557,9 @@ textarea {
 }
 
 @media screen and (max-width: 1200px) {
+	#login1:nth-child(1)>div>div>span {
+		display: none;
+		}
 	.nome-sito {
 		padding-top: 10px;
 		padding-bottom: 10px;

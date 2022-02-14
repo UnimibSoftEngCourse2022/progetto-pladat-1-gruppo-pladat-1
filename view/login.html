@@ -33,52 +33,22 @@
          </div>
       </nav>
       <div class="container">
-         <div class="row  flex-2-colonne">
-            <div class="col-0 col-lg-6 scritte">
-               <div>
-                  <h1><span>PlaDat:</span> il tirocinio 2.0</h1>
-                  <h3 class="invito"></h3>
-               </div>
-            </div>
+         <div class="row  flex-2-colonne flex-2-colonne-login">
             <div class="col-12 col-lg-6">
-               <form id="iscrizione" action="*******" method="******">
-                  <div class="button-modifica2"><button>Login</button></div>
-                  <h3>Registrati ora!</h3>
+               <form id="login1" action="*******" method="******">
+                  <div class="button-modifica3">
+                     <div><span>Non sei registrato?</span><a>Registrati</a></div>
+                  </div>
+                  <h3>Torna da noi!</h3>
                   <div class="gruppo">
-                     <div class="radio">
-                        <label>Sono</label>
-                        <div>
-                           <input type="radio" id="Studente" name="chi" value="Studente">
-                           <label for="Studente">Studente</label>
-                        </div>
-                        <div>
-                           <input type="radio" id="Azienda" name="chi" value="Azienda">
-                           <label for="Azienda">Azienda</label>
-                        </div>
-                     </div>
+                     <label class="input-modificato">Email</label>
+                     <input type="email" name="email"  required/>
                   </div>
                   <div class="gruppo">
-                     <label class="input-modificato">Nome</label>
-                     <input type="text" name="nome"  required/>
+                     <label class="input-modificato">Password</label>
+                     <input type="password" name="password" required/>
                   </div>
-                  <div class="gruppo">
-                     <label class="input-modificato">Cognome</label>
-                     <input type="text" name="cognome" required/>
-                  </div>
-                  <div class="gruppo">
-                     <label class="input-modificato">Data</label>
-                     <input type="date" required/>
-                  </div>
-                  <div class="gruppo">
-                     <label class="input-modificato">Via</label>
-                     <div id='searchBoxContainer'><input id="searchBox" type="text" required/></div>
-                  </div>
-                  <div class="gruppo">
-                     <label class="input-modificato">Descrizione</label>
-                     <textarea rows="1" required></textarea>
-                  </div>
-                  <div class="h-captcha" data-sitekey="10000000-ffff-ffff-ffff-000000000001"></div>
-                  <input type="submit" value="Iscriviti" class="bottone"/>
+                  <input type="submit" value="Accedi" class="bottone"/>
                </form>
             </div>
          </div>
