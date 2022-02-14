@@ -2,6 +2,7 @@ $(document).ready(function () {
 	$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	animazioneRicerca();
+	caricaRicerca();
 })
 
 function animazioneRicerca()
@@ -24,5 +25,31 @@ function animazioneRicerca()
 			istanza.unfreeze()
 			$('#scrittaRicerconaAuto').removeClass("nascondi");
 		}
+	})
+}
+let lista=["ciao","pippo"];
+function caricaRicerca()
+{
+	$('#elencoRicerca').css("display","none");
+	$('#ricercona').focus(function(){
+		$('#elencoRicerca').css("display","block");
+	})
+	$('#ricercona').focusout(function(){
+		$('#elencoRicerca').css("display","none");
+	})
+	for (let i = 0; i < lista.length; i++) {
+		$('#elencoRicerca').append("<li>"+lista[i]+"</li>");
+	}
+	$("#ricercona").keyup(function(){
+		$('#elencoRicerca').text("");
+		for (let i = 0; i < lista.length; i++) {
+			if (lista[i].toUpperCase().indexOf($("#ricercona").val().toUpperCase()) > -1) {
+				$('#elencoRicerca').append("<li>"+lista[i]+"</li>");
+			}
+		}
+	});
+	$('#elencoRicerca').click(function(){
+		alert("ciao");
+		$("#ricercona").val($(this).text());
 	})
 }
