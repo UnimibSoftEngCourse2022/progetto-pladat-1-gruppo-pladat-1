@@ -551,7 +551,7 @@ textarea {
 }
 #scrittaRicerconaAuto
 {
-	font-size: 15px;
+	font-size: 20px;
 	z-index: 5;
 	color: #3c4043;
 	position: absolute;
@@ -566,6 +566,10 @@ textarea {
 	#modifica>img {
 		width: 10vw;
 	}
+	.flex-ricerca >div> .gruppo
+	{
+		width: 80%;
+	}
 	#login1
 	{
 		width:80%;
@@ -576,6 +580,11 @@ textarea {
 	#iscrizione>img,
 	#modifica>img {
 		width: 14vw;
+	}
+	#scrittaRicerconaAuto
+	{
+		font-size:16px;
+		top:10px;
 	}
 }
 
