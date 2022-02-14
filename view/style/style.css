@@ -172,7 +172,6 @@ nav {
 .fadeIn {
 	animation: fadeIn 2s ease-in both;
 }
-
 #iscrizione,
 #modifica
  {
@@ -535,10 +534,41 @@ textarea {
 	text-align:center;
 	margin-bottom: 5px;
 }
+.flex-ricerca > div
+{
+	justify-content: flex-start !important;
+	flex-direction: column;
+}
+.flex-ricerca >div> .gruppo
+{
+	margin-top:40px;
+	width: 60%;
+}
+.flex-ricerca >div> .gruppo > input
+{
+	font-size: 20px;
+	border-bottom: 3px solid #f2f2f2;
+}
+#scrittaRicerconaAuto
+{
+	font-size: 15px;
+	z-index: 5;
+	color: #3c4043;
+	position: absolute;
+	top: 6px;
+	transition: .5s;
+}
+.nascondi{
+	display:none;
+}
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
 	#modifica>img {
 		width: 10vw;
+	}
+	#login1
+	{
+		width:80%;
 	}
 }
 
