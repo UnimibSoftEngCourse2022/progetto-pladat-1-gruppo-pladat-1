@@ -37,19 +37,22 @@ function caricaRicerca()
 	$('#ricercona').focusout(function(){
 		$('#elencoRicerca').css("display","none");
 	})
+	$('#elencoRicerca').hover(function() {
+		$('#ricercona').focus();
+	});
 	for (let i = 0; i < lista.length; i++) {
-		$('#elencoRicerca').append("<li>"+lista[i]+"</li>");
+		$('#elencoRicerca').append("<li onclick='scriviricerca(this)'>"+lista[i]+"</li>");
 	}
 	$("#ricercona").keyup(function(){
 		$('#elencoRicerca').text("");
 		for (let i = 0; i < lista.length; i++) {
 			if (lista[i].toUpperCase().indexOf($("#ricercona").val().toUpperCase()) > -1) {
-				$('#elencoRicerca').append("<li>"+lista[i]+"</li>");
+				$('#elencoRicerca').append("<li onclick='scriviricerca(this)'>"+lista[i]+"</li>");
 			}
 		}
 	});
-	$('#elencoRicerca').click(function(){
-		alert("ciao");
-		$("#ricercona").val($(this).text());
-	})
+}
+function scriviricerca(event)
+{
+	document.getElementById('ricercona').value=event.innerHTML;
 }
