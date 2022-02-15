@@ -3,6 +3,7 @@ $(document).ready(function () {
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	$(".elenco-privato").css('height', ($("#modifica").height() + 63.20) + "px");
 	blurr();
+	infoOfferte();
 })
 
 $(window).on('resize', function () {
@@ -54,4 +55,15 @@ function loadMapScenario() {
 	function selectedSuggestion(suggestionResult) {
 		$('#searchBox').val(suggestionResult.formattedSuggestion);
 	}
+}
+function infoOfferte()
+{
+	let ilMioHtml="";
+	$(".privato-placement").hover(
+	function() {
+    ilMioHtml=$(this).html();
+		$(this).html("<p data-bs-toggle='modal' data-bs-target='#informazioni'>Informazioni</p><p data-bs-toggle='modal' data-bs-target='#applicanti'>Applicanti</p>");
+    },function() {
+        $(this).html(ilMioHtml);
+    })
 }	

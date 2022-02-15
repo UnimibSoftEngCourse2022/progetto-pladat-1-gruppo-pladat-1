@@ -619,6 +619,7 @@ hr {
 	margin-bottom: 20px;
 	border: 2px solid #f2f2f2;
 	background-color: white;
+	box-shadow: 0 0 20px #f2f2f2;
 }
 
 .elencoOfferte>div>p {
@@ -642,7 +643,7 @@ hr {
 .elencoOfferte>div:hover {
 	border-color: #1a73e8;
 }
-
+.privato-placement>p:hover,
 .elencoOfferte>div>p:hover {
 	color: #1a73e8;
 	;
@@ -657,7 +658,7 @@ hr {
 	z-index: -10;
 }
 
-.tirocinio>p:nth-child(1) {
+.tirocinio>p:nth-child(1),.offerta>p:nth-child(1) {
 	text-align: justify;
 }
 
@@ -677,7 +678,7 @@ hr {
 	margin-top: 1rem;
 }
 
-.tirocinio>p:nth-child(1)>span {
+.tirocinio>p:nth-child(1)>span,.offerta>p:nth-child(1)>span {
 	font-style: italic;
 }
 

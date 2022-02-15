@@ -71,13 +71,13 @@ function caricaRicerca()
 function elencoOfferte()
 {
 	let ilMioHtml="";
-	$(".elencoOfferte>div").mouseenter(function(){
-		ilMioHtml=$(this).html();
+	$(".elencoOfferte>div").hover(
+	function() {
+    ilMioHtml=$(this).html();
 		$(this).html("<p data-bs-toggle='modal' data-bs-target='#informazioni'>Informazioni</p><p data-bs-toggle='modal' data-bs-target='#applica'>Applica</p>");
-	});
-	$(".elencoOfferte>div").mouseleave(function(){
-		$(this).html(ilMioHtml);
-	});
+    },function() {
+        $(this).html(ilMioHtml);
+    })
 }
 function scriviricerca(event)
 {
