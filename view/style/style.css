@@ -707,7 +707,15 @@ hr {
 .tirocinio>p:nth-child(5) {
 	justify-content: center;
 }
-
+.elencoApplicanti
+{
+	overflow-y: scroll;
+	height: 70vh;
+}
+.modalApplicanti >div>.modal-content
+{
+	width: 60vw;
+}
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
 	#modifica>img {
@@ -719,6 +727,10 @@ hr {
 	#login1 {
 		width: 80%;
 	}
+	.modalApplicanti >div>.modal-content
+{
+	width: 100vw;
+}
 }
 
 @media screen and (max-width: 768px) {
