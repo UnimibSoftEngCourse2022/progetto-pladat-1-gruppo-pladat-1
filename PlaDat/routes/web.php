@@ -27,12 +27,17 @@ Route::get('/', [\App\Http\Controllers\IndexController::class, 'loginPage']);
  */
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'registrationPage']);
 
-
+/*
+ * ENDPOINT PROFILE
+ *
+ * questo metodo si occuperà di modificare il profilo
+ */
+Route::put('/profile/', [\App\Http\Controllers\ProfileController::class, 'updateProfile']);
 
 /*
  * Questo metodo ritorna la home page con i placement aggiornati
  */
-Route::post('/home/', [\App\Http\Controllers\HomePageController::class, 'loadHomePage']);
+Route::post('/profile/', [\App\Http\Controllers\ProfileController::class, 'placementView']);
 
 
 
