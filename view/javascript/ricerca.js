@@ -73,10 +73,13 @@ function elencoOfferte()
 	let ilMioHtml="";
 	$(".elencoOfferte>div").mouseenter(function(){
 		ilMioHtml=$(this).html();
-		$(this).html("<p>Informazioni</p><p>Applica</p>");
+		$(this).html("<p data-bs-toggle='modal' data-bs-target='#informazioni'>Informazioni</p><p data-bs-toggle='modal' data-bs-target='#applica'>Applica</p>");
 	});
 	$(".elencoOfferte>div").mouseleave(function(){
 		$(this).html(ilMioHtml);
+	});
+	$(".elencoOfferte>div>p").click(function(){
+		alert("cia");
 	});
 }
 function scriviricerca(event)

@@ -618,6 +618,7 @@ hr{
 	margin: 0 auto;
 	margin-bottom: 20px;
 	border:2px solid #f2f2f2;
+	background-color:white;
 }
 .elencoOfferte >div>p {
 	display: block;
@@ -637,6 +638,19 @@ hr{
 .elencoOfferte >div:hover
 {
 	border-color: #1a73e8;
+}
+.elencoOfferte >div>p:hover
+{
+	color:#1a73e8;;
+}
+.sfondoRicerca
+{
+	opacity:0.5;
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:30%;
+	z-index: -10;
 }
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
