@@ -447,9 +447,7 @@ nav {
 	margin-left: 20px;
 }
 
-.gruppo-lista {
-
-}
+.gruppo-lista {}
 
 @keyframes fadeIn {
 	0% {
@@ -525,6 +523,7 @@ nav {
 	padding-bottom: 5px;
 	border: 2px solid #1a73e8;
 }
+
 .bottone-chiusura {
 	background-color: #ea4335;
 	color: white;
@@ -535,13 +534,14 @@ nav {
 	padding-bottom: 5px;
 	border: 2px solid #ea4335;
 }
-.bottone-chiusura:hover
-{
+
+.bottone-chiusura:hover {
 	background-color: white;
 	color: #ea4335;
 	opacity: 1;
 	transition: .5s;
 }
+
 .bottone-invio:hover {
 	background-color: white;
 	color: #1a73e8;
@@ -620,6 +620,7 @@ textarea {
 	width: 80%;
 	margin-top: 40px;
 }
+
 hr {
 	background-color: #1a73e8;
 	height: 2px !important;
@@ -661,6 +662,7 @@ hr {
 .elencoOfferte>div:hover {
 	border-color: #1a73e8;
 }
+
 .privato-placement>p:hover,
 .elencoOfferte>div>p:hover {
 	color: #1a73e8;
@@ -676,7 +678,8 @@ hr {
 	z-index: -10;
 }
 
-.tirocinio>p:nth-child(1),.offerta>p:nth-child(1) {
+.tirocinio>p:nth-child(1),
+.offerta>p:nth-child(1) {
 	text-align: justify;
 }
 
@@ -696,7 +699,8 @@ hr {
 	margin-top: 1rem;
 }
 
-.tirocinio>p:nth-child(1)>span,.offerta>p:nth-child(1)>span {
+.tirocinio>p:nth-child(1)>span,
+.offerta>p:nth-child(1)>span {
 	font-style: italic;
 }
 
@@ -707,17 +711,17 @@ hr {
 .tirocinio>p:nth-child(5) {
 	justify-content: center;
 }
-.elencoApplicanti
-{
+
+.elencoApplicanti {
 	overflow-y: scroll;
 	height: 70vh;
 }
-.modalApplicanti >div>.modal-content
-{
+
+.modalApplicanti>div>.modal-content {
 	width: 60vw;
 }
-.elencoApplicanti >div
-{
+
+.elencoApplicanti>div {
 	border: 2px solid #f2f2f2;
 	padding: 20px;
 	width: 90%;
@@ -728,27 +732,29 @@ hr {
 	align-items: center;
 	border-top: 2px solid #f2f2f2;
 }
-.elencoApplicanti >div >p {
-	margin-bottom:0;
+
+.elencoApplicanti>div>p {
+	margin-bottom: 0;
 }
-.elencoApplicanti >div >p:nth-child(1)
-{
-	margin-left:0;
+
+.elencoApplicanti>div>p:nth-child(1) {
+	margin-left: 0;
 }
-.elencoApplicanti >div >p:nth-child(2)
-{
-	margin-left:auto;
+
+.elencoApplicanti>div>p:nth-child(2) {
+	margin-left: auto;
 }
-.elencoApplicanti >div >a:nth-child(3)
-{
+
+.elencoApplicanti>div>a:nth-child(3) {
 	display: block;
-	margin-left:auto;
+	margin-left: auto;
 }
-.elencoApplicanti >div >a:nth-child(3)>img
-{
-	width:20px;
-	height:20px;
+
+.elencoApplicanti>div>a:nth-child(3)>img {
+	width: 20px;
+	height: 20px;
 }
+
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
 	#modifica>img {
@@ -760,10 +766,9 @@ hr {
 	#login1 {
 		width: 80%;
 	}
-	.modalApplicanti >div>.modal-content
-{
-	width: 100vw;
-}
+	.modalApplicanti>div>.modal-content {
+		width: 100vw;
+	}
 }
 
 @media screen and (max-width: 768px) {
@@ -775,20 +780,17 @@ hr {
 		font-size: 16px;
 		top: 10px;
 	}
-	.elencoOfferte
-	{
+	.elencoOfferte {
 		margin-top: 20px;
 	}
-	.elencoOfferte>div
-	{
+	.elencoOfferte>div {
 		padding: 10px;
 	}
 	.elencoOfferte>div>p {
-		font-size:12px;
+		font-size: 12px;
 	}
-	.modal-body > p
-	{
-	font-size:14px;
+	.modal-body>p {
+		font-size: 14px;
 	}
 }
 
