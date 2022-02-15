@@ -716,6 +716,39 @@ hr {
 {
 	width: 60vw;
 }
+.elencoApplicanti >div
+{
+	border: 2px solid #f2f2f2;
+	padding: 20px;
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	display: flex;
+	align-content: space-between;
+	align-items: center;
+	border-top: 2px solid #f2f2f2;
+}
+.elencoApplicanti >div >p {
+	margin-bottom:0;
+}
+.elencoApplicanti >div >p:nth-child(1)
+{
+	margin-left:0;
+}
+.elencoApplicanti >div >p:nth-child(2)
+{
+	margin-left:auto;
+}
+.elencoApplicanti >div >a:nth-child(3)
+{
+	display: block;
+	margin-left:auto;
+}
+.elencoApplicanti >div >a:nth-child(3)>img
+{
+	width:20px;
+	height:20px;
+}
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
 	#modifica>img {
