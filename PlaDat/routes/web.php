@@ -14,15 +14,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
+ * ENDPOINT INDEX
+ *
  * Alla richiesta GET all'endpoint '/', viene eseguito il metodo loginPage che torna
  * la pagina di login.
  */
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'loginPage']);
 
 /*
+ * Alla richiesta GET all'endpoint '/', viene eseguito il metodo registrationPage che torna
+ * la pagina di registrazione.
+ */
+Route::get('/', [\App\Http\Controllers\IndexController::class, 'registrationPage']);
+
+
+
+/*
  * Questo metodo ritorna la home page con i placement aggiornati
  */
 Route::post('/home/', [\App\Http\Controllers\HomePageController::class, 'loadHomePage']);
+
+
 
 /*
  * ENDPOINT LOGIN
