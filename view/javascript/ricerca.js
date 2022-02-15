@@ -78,9 +78,6 @@ function elencoOfferte()
 	$(".elencoOfferte>div").mouseleave(function(){
 		$(this).html(ilMioHtml);
 	});
-	$(".elencoOfferte>div>p").click(function(){
-		alert("cia");
-	});
 }
 function scriviricerca(event)
 {

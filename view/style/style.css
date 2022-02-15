@@ -602,7 +602,6 @@ textarea {
 	width: 80%;
 	margin-top: 40px;
 }
-
 hr {
 	background-color: #1a73e8;
 	height: 2px !important;
@@ -712,6 +711,21 @@ hr {
 		font-size: 16px;
 		top: 10px;
 	}
+	.elencoOfferte
+	{
+		margin-top: 20px;
+	}
+	.elencoOfferte>div
+	{
+		padding: 10px;
+	}
+	.elencoOfferte>div>p {
+		font-size:12px;
+	}
+	.modal-body > p
+	{
+	font-size:14px;
+	}
 }
 
 @media screen and (max-width: 576px) {
@@ -724,6 +738,9 @@ hr {
 @media screen and (max-width: 1200px) {
 	#login1:nth-child(1)>div>div>span {
 		display: none;
+	}
+	.elencoOfferte {
+		width: 100%;
 	}
 	.nome-sito {
 		padding-top: 10px;
