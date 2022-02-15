@@ -446,10 +446,9 @@ nav {
 .radio>div:nth-child(3) {
 	margin-left: 20px;
 }
-.gruppo-lista
-{
 
-}
+.gruppo-lista {}
+
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
@@ -576,11 +575,11 @@ textarea {
 	left: -3px;
 	list-style: none;
 	color: #3c4043 !important;
-	display:block;
-	border-bottom:2px solid #f2f2f2;
-	border-left:2px solid #f2f2f2;
-	border-right:2px solid #f2f2f2;
-	border-top:1px solid #f2f2f2;
+	display: block;
+	border-bottom: 2px solid #f2f2f2;
+	border-left: 2px solid #f2f2f2;
+	border-right: 2px solid #f2f2f2;
+	border-top: 1px solid #f2f2f2;
 }
 
 #elencoRicerca>li {
@@ -594,22 +593,24 @@ textarea {
 #elencoRicerca :hover {
 	color: #1a73e8;
 }
+
 .nascondi {
 	display: none;
 }
-.elencoOfferte
-{
+
+.elencoOfferte {
 	width: 80%;
 	margin-top: 40px;
 }
-hr{
+
+hr {
 	background-color: #1a73e8;
 	height: 2px !important;
-	width:100%;
-	opacity:1 !important;
+	width: 100%;
+	opacity: 1 !important;
 }
-.elencoOfferte >div
-{
+
+.elencoOfferte>div {
 	width: 100%;
 	padding: 20px;
 	display: flex;
@@ -617,72 +618,76 @@ hr{
 	padding: 20px;
 	margin: 0 auto;
 	margin-bottom: 20px;
-	border:2px solid #f2f2f2;
-	background-color:white;
+	border: 2px solid #f2f2f2;
+	background-color: white;
 }
-.elencoOfferte >div>p {
+
+.elencoOfferte>div>p {
 	display: block;
 	margin-bottom: 0px;
 }
-.elencoOfferte >div>p:nth-child(1) {
+
+.elencoOfferte>div>p:nth-child(1) {
 	font-weight: bold;
 }
-.elencoOfferte >div>p:nth-child(2) {
+
+.elencoOfferte>div>p:nth-child(2) {
 	margin-left: auto;
 	font-weight: bold;
 }
 
-.elencoOfferte >div>p:nth-child(3) {
+.elencoOfferte>div>p:nth-child(3) {
 	margin-left: auto;
 }
-.elencoOfferte >div:hover
-{
+
+.elencoOfferte>div:hover {
 	border-color: #1a73e8;
 }
-.elencoOfferte >div>p:hover
-{
-	color:#1a73e8;;
+
+.elencoOfferte>div>p:hover {
+	color: #1a73e8;
+	;
 }
-.sfondoRicerca
-{
-	opacity:0.5;
-	position:absolute;
-	bottom:0;
-	left:0;
-	width:30%;
+
+.sfondoRicerca {
+	opacity: 0.5;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 30%;
 	z-index: -10;
 }
-.tirocinio >p:nth-child(1)
-{
+
+.tirocinio>p:nth-child(1) {
 	text-align: justify;
 }
-.tirocinio >p:nth-child(2),
-.tirocinio >p:nth-child(4),
-.applicazione >p:nth-child(1),
-.applicazione >p:nth-child(3)
-{
+
+.tirocinio>p:nth-child(2),
+.tirocinio>p:nth-child(4),
+.applicazione>p:nth-child(1),
+.applicazione>p:nth-child(3) {
 	color: #34a853;
 }
-.applicazione>textarea
-{
+
+.applicazione>textarea {
 	box-shadow: 0px 0px 0px !important;
 	outline: none !important;
 }
-.applicazione >p:nth-child(3)
-{
+
+.applicazione>p:nth-child(3) {
 	margin-top: 1rem;
 }
-.tirocinio >p:nth-child(1) > span
-{
-	font-style: italic; 
+
+.tirocinio>p:nth-child(1)>span {
+	font-style: italic;
 }
-.tirocinio >p:nth-child(3)
-{
-	justify-content:center;
+
+.tirocinio>p:nth-child(3) {
+	justify-content: center;
 }
-.tirocinio >p:nth-child(5)
-{
-	justify-content:center;
+
+.tirocinio>p:nth-child(5) {
+	justify-content: center;
 }
 
 @media screen and (max-width: 992px) {
