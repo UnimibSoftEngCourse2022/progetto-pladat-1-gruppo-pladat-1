@@ -15,7 +15,7 @@ class Employer
                 values ('$employeremail', '$name', '$description', '$address', '$password');");
         }
     }
-
+    /*
     public static function addPhoto($description, $path, $employeremail){
         $db = DataBase::getDb();
 
@@ -36,6 +36,7 @@ class Employer
         }
         return "Errore";
     }
+    */
 
     public static function login($employeremail, $password){
         $db = DataBase::getDb();

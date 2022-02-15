@@ -14,6 +14,7 @@ class Student
         }
     }
 
+    /*
     public static function addCategory($studentemail, $category){
         $db = DataBase::getDb();
 
@@ -25,6 +26,8 @@ class Student
         }
     }
 
+    */
+    /*
     public static function addPhoto($description, $path, $studentemail){
         $db = DataBase::getDb();
 
@@ -45,7 +48,7 @@ class Student
         }
         return "Errore";
     }
-
+    */
     public static function login($studentemail, $password){
         $db = DataBase::getDb();
 

@@ -13,7 +13,7 @@ class Placement
                 values ('$title','$description','$duration','$start_date','$expiration_date','$start_placement','$salary','$employeremail');");
         }
     }
-
+    /*
     public static function addCategory($idPlacement, $category){
         $db = DataBase::getDb();
 
@@ -24,7 +24,8 @@ class Placement
 	                values('$idPlacement', '$category');");
         }
     }
-
+    */
+    /*
     public static function addPhoto($description, $path, $idPlacement){
         $db = DataBase::getDb();
 
@@ -56,7 +57,7 @@ class Placement
         }
         return "Errore";
     }
-
+    */
     public static function searchPlacements($categorylist){
         $db = DataBase::getDb();
         $return = [];
@@ -65,14 +66,14 @@ class Placement
         }
         return $return;
     }
-
+    /*
     public static function getCurriculum($idPlacement){
         $db = DataBase::getDb();
         if($db->query("SELECT idPlacement FROM placement WHERE idPlacement = '$idPlacement';")->rowCount() != 0){
             return $db->query("select Path from curriculum where Request_Placement_idPlacement = '$idPlacement'");
         }
     }
-
+    */
     public static function cancellazionePlacement($idPlacement){
         $db = DataBase::getDb();
 
