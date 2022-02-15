@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+ * Alla richiesta GET all'endpoint '/', viene eseguito il metodo loginPage che torna
+ * la pagina di login.
+ */
+Route::get('/', [\App\Http\Controllers\LoginController::class, 'loginPage']);
+
+/*
+ * Questo metodo ritorna la home page con i placement aggiornati
+ */
+Route::post('/home/', [\App\Http\Controllers\HomePageController::class, 'loadHomePage']);
