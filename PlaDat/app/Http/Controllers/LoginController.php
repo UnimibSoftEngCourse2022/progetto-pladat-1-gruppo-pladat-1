@@ -6,13 +6,6 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-
-    /*
-     * Questo metodo ritornerà la pagina di login
-     */
-    public function loginPage(){
-        return view('loginPage');
-    }
     /*
      * Questo metodo si occupa di verificare se la mail e la password sono valide
      * Se sono valide, viene fatto un reindirizzamento alla pagina home, altrimenti
@@ -30,5 +23,13 @@ class LoginController extends Controller
          *
          */
 
+    }
+
+    /*
+     * Questo metodo si occupa di ritornare la pagina di registrazione nel caso in cui venga
+     * schiacciato il tasto "registrati"
+     */
+    public function registationPage(){
+        return view('registrationPage');
     }
 }
