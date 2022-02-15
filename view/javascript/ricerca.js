@@ -3,6 +3,7 @@ $(document).ready(function () {
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	animazioneRicerca();
 	caricaRicerca();
+	elencoOfferte();
 })
 
 function animazioneRicerca()
@@ -33,9 +34,24 @@ function caricaRicerca()
 	$('#elencoRicerca').css("display","none");
 	$('#ricercona').focus(function(){
 		$('#elencoRicerca').css("display","block");
+		$('#ricercona').css("border-top","2px solid #f2f2f2");
+		$('#ricercona').css("border-left","2px solid #f2f2f2");
+		$('#ricercona').css("border-right","2px solid #f2f2f2");
+		$('#ricercona').css("border-bottom","0");
 	})
 	$('#ricercona').focusout(function(){
 		$('#elencoRicerca').css("display","none");
+		$('#ricercona').css("border-top","0");
+		$('#ricercona').css("border-left","0");
+		$('#ricercona').css("border-right","0");
+		if($('#ricercona').val().trim()!=="")
+		{
+			$('#ricercona').css("border-bottom","2px solid #1a73e8");
+		}
+		else
+		{
+			$('#ricercona').css("border-bottom","2px solid #f2f2f2");
+		}
 	})
 	$('#elencoRicerca').hover(function() {
 		$('#ricercona').focus();
@@ -50,6 +66,17 @@ function caricaRicerca()
 				$('#elencoRicerca').append("<li onclick='scriviricerca(this)'>"+lista[i]+"</li>");
 			}
 		}
+	});
+}
+function elencoOfferte()
+{
+	let ilMioHtml="";
+	$(".elencoOfferte>div").mouseenter(function(){
+		ilMioHtml=$(this).html();
+		$(this).html("<p>Informazioni</p><p>Applica</p>");
+	});
+	$(".elencoOfferte>div").mouseleave(function(){
+		$(this).html(ilMioHtml);
 	});
 }
 function scriviricerca(event)

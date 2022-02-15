@@ -573,35 +573,37 @@ textarea {
 	position: absolute;
 	top: 36px;
 	width: 100%;
-	left: -4px;
+	left: -3px;
 	list-style: none;
 	color: #3c4043 !important;
 	display:block;
+	border-bottom:2px solid #f2f2f2;
+	border-left:2px solid #f2f2f2;
+	border-right:2px solid #f2f2f2;
+	border-top:1px solid #f2f2f2;
 }
 
 #elencoRicerca>li {
 	margin-left: -32px;
 	padding-left: 20px;
-	background-color: #f2f2f2;
+	background-color: #fff;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
 #elencoRicerca :hover {
-	background-color: #1a73e8 !important;
-	color: white !important
+	color: #1a73e8;
 }
-
 .nascondi {
 	display: none;
 }
 .elencoOfferte
 {
-	width: 100%;
+	width: 80%;
 	margin-top: 40px;
 }
 hr{
-	background-color: #3c4043;
+	background-color: #1a73e8;
 	height: 2px !important;
 	width:100%;
 	opacity:1 !important;
@@ -621,9 +623,12 @@ hr{
 	display: block;
 	margin-bottom: 0px;
 }
-
+.elencoOfferte >div>p:nth-child(1) {
+	font-weight: bold;
+}
 .elencoOfferte >div>p:nth-child(2) {
 	margin-left: auto;
+	font-weight: bold;
 }
 
 .elencoOfferte >div>p:nth-child(3) {
