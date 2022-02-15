@@ -595,20 +595,43 @@ textarea {
 .nascondi {
 	display: none;
 }
-.privato-richiesta
+.elencoOfferte
+{
+	width: 100%;
+	margin-top: 40px;
+}
+hr{
+	background-color: #3c4043;
+	height: 2px !important;
+	width:100%;
+	opacity:1 !important;
+}
+.elencoOfferte >div
 {
 	width: 100%;
 	padding: 20px;
 	display: flex;
 	align-content: space-between;
-	border: 2px solid #f2f2f2;
 	padding: 20px;
 	margin: 0 auto;
 	margin-bottom: 20px;
+	border:2px solid #f2f2f2;
 }
-.privato-richiesta:hover
+.elencoOfferte >div>p {
+	display: block;
+	margin-bottom: 0px;
+}
+
+.elencoOfferte >div>p:nth-child(2) {
+	margin-left: auto;
+}
+
+.elencoOfferte >div>p:nth-child(3) {
+	margin-left: auto;
+}
+.elencoOfferte >div:hover
 {
-	background-color:#3c4043;
+	border-color: #1a73e8;
 }
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
