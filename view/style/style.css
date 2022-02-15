@@ -652,6 +652,30 @@ hr{
 	width:30%;
 	z-index: -10;
 }
+.tirocinio >p:nth-child(1)
+{
+	text-align: justify;
+}
+.tirocinio >p:nth-child(2)
+{
+	color: #34a853;
+}
+.tirocinio >p:nth-child(1) > span
+{
+	font-style: italic; 
+}
+.tirocinio >p:nth-child(3)
+{
+	justify-content:center;
+}
+
+{
+	color: #34a853; 
+}
+.tirocinio >p:nth-child(5)
+{
+	justify-content:center;
+}
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
 	#modifica>img {
