@@ -447,7 +447,9 @@ nav {
 	margin-left: 20px;
 }
 
-.gruppo-lista {}
+.gruppo-lista {
+
+}
 
 @keyframes fadeIn {
 	0% {
@@ -523,7 +525,23 @@ nav {
 	padding-bottom: 5px;
 	border: 2px solid #1a73e8;
 }
-
+.bottone-chiusura {
+	background-color: #ea4335;
+	color: white;
+	border: 0px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 2px solid #ea4335;
+}
+.bottone-chiusura:hover
+{
+	background-color: white;
+	color: #ea4335;
+	opacity: 1;
+	transition: .5s;
+}
 .bottone-invio:hover {
 	background-color: white;
 	color: #1a73e8;
