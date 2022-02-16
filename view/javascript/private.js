@@ -65,5 +65,12 @@ function infoOfferte()
 		$(this).html("<p data-bs-toggle='modal' data-bs-target='#informazioni'>Informazioni</p><p data-bs-toggle='modal' data-bs-target='#applicanti'>Applicanti</p>");
     },function() {
         $(this).html(ilMioHtml);
-    })
+    });
+	$(".bloccoelencoapplicanti").hover(
+		function() {
+		$(this).children().eq(1).removeClass("nascondi");
+		},function() {
+			$(this).children().eq(1).addClass("nascondi");
+		});
 }	
+

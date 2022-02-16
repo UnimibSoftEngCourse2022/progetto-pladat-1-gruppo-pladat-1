@@ -663,6 +663,10 @@ hr {
 	border-color: #1a73e8;
 }
 
+.modalApplicanti>div {
+	max-width: 70vw;
+  }
+
 .privato-placement>p:hover,
 .elencoOfferte>div>p:hover {
 	color: #1a73e8;
@@ -715,42 +719,47 @@ hr {
 .elencoApplicanti {
 	overflow-y: scroll;
 	height: 70vh;
+	
 }
-
-.modalApplicanti>div>.modal-content {
-	width: 60vw;
-}
-
-.elencoApplicanti>div {
+.bloccoelencoapplicanti
+{
+	width: 90%;
 	border: 2px solid #f2f2f2;
 	padding: 20px;
-	width: 90%;
 	margin: 0 auto;
 	margin-bottom: 20px;
+}
+.bloccoelencoapplicanti:hover
+{
+	border-color: #1a73e8;
+}
+.bloccoelencoapplicanti>div:nth-child(1) {
+	width: 100%;
 	display: flex;
 	align-content: space-between;
 	align-items: center;
-	border-top: 2px solid #f2f2f2;
 }
-
-.elencoApplicanti>div>p {
+.bloccoelencoapplicanti>div:nth-child(2) {
+	margin-top: 20px;
+}
+.bloccoelencoapplicanti>div:nth-child(1)>p, .bloccoelencoapplicanti>div:nth-child(2)>p {
 	margin-bottom: 0;
 }
 
-.elencoApplicanti>div>p:nth-child(1) {
+.bloccoelencoapplicanti>div:nth-child(1)>p:nth-child(1) {
 	margin-left: 0;
 }
 
-.elencoApplicanti>div>p:nth-child(2) {
+.bloccoelencoapplicanti>div:nth-child(1)>p:nth-child(2) {
 	margin-left: auto;
 }
 
-.elencoApplicanti>div>a:nth-child(3) {
+.bloccoelencoapplicanti>div:nth-child(1)>a:nth-child(3) {
 	display: block;
 	margin-left: auto;
 }
 
-.elencoApplicanti>div>a:nth-child(3)>img {
+.bloccoelencoapplicanti>div:nth-child(1)>a:nth-child(3)>img {
 	width: 20px;
 	height: 20px;
 }
