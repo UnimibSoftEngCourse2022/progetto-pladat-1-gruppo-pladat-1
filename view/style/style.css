@@ -17,9 +17,10 @@ p:first-letter,h1:first-letter,h2:first-letter,h3:first-letter,h4:first-letter, 
 }
 .row>div {
 	display: flex;
-	padding-top: 63px;
+	padding-top: 73px;
 	min-height: 100vh;
 	flex-grow: 1;
+	padding-bottom: 10px;
 }
 
 body {
@@ -27,13 +28,6 @@ body {
 	font-family: productsans, sans-serif !important;
 	min-width: 350px;
 	color: #3c4043;
-}
-.alert
-{
-	position: absolute;
-	z-index:120;
-	margin: auto;
-	top: 30px;
 }
 a:hover {
 	text-decoration: none;
@@ -183,17 +177,17 @@ nav {
 
 #iscrizione,
 #modifica {
-	padding: 30px;
+	padding: 20px;
 	width: 80%;
 	border: 2px solid #f2f2f2;
-	box-shadow: 0px 0px 30px #f2f2f2;
+	box-shadow: 0px 0px 20px #f2f2f2;
 }
 
 #login1 {
-	padding: 30px;
+	padding: 20px;
 	width: 60%;
 	border: 2px solid #f2f2f2;
-	box-shadow: 0px 0px 30px #f2f2f2;
+	box-shadow: 0px 0px 20px #f2f2f2;
 	background-color: white;
 }
 
@@ -206,7 +200,7 @@ nav {
 #iscrizione>h3,
 #login1>h3 {
 	text-align: center;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	color: #1a73e8;
 }
 
@@ -281,7 +275,7 @@ nav {
 .button-modifica3 {
 	display: flex;
 	align-content: space-between;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .button-modifica3>div {
@@ -337,7 +331,7 @@ nav {
 .elenco-privato {
 	width: 80%;
 	margin: 0 auto;
-	padding: 30px;
+	padding: 20px;
 	border: 2px solid #f2f2f2;
 	box-shadow: 0px 0px 30px #f2f2f2;
 }

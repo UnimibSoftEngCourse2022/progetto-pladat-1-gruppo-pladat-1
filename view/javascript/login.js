@@ -47,8 +47,8 @@ function invioDati() {
 	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='email']").get(0).setCustomValidity("L'email deve avere il formato corretto");
 	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password deve avere tra i 6 ed i 20 caratteri, contenere almento una letta maiuscola, almeno una lettera minuscola ed almeno un numero. NON sono concessi caratteri speciali");
 	$("#invioDatiLogin").click(function () {
-		let email = $(this).parent().children(".gruppo").children("input[name='email']").val();
-		let password = $(this).parent().children(".gruppo").children("input[name='password']").val();
+		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
+		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
 		if (!isEmail(email)) {
 			$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#ea4335");
 		} else {

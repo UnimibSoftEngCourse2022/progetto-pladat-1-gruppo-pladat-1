@@ -42,43 +42,68 @@
             </div>
             <div class="col-12 col-lg-6">
                <form id="iscrizione" action="*******" method="******">
-                  <div class="button-modifica2"><button>Login</button></div>
                   <h3>Registrati ora!</h3>
                   <div class="gruppo">
                      <div class="radio">
                         <label>Sono</label>
                         <div>
-                           <input type="radio" id="Studente" name="chi" value="Studente">
-                           <label for="Studente">Studente</label>
+                           <input type="radio" id="studente" name="chi" value="studente" checked >
+                           <label for="studente">Studente</label>
                         </div>
                         <div>
-                           <input type="radio" id="Azienda" name="chi" value="Azienda">
-                           <label for="Azienda">Azienda</label>
+                           <input type="radio" id="azienda" name="chi" value="azienda">
+                           <label for="azienda">Azienda</label>
                         </div>
                      </div>
                   </div>
-                  <div class="gruppo">
+                  <div class="gruppo gutente">
+                     <label class="input-modificato">Email</label>
+                     <input type="email" name="email"   />
+                  </div>
+                  <div class="gruppo gutente">
+                     <label class="input-modificato">Password</label>
+                     <input type="password" name="Password"  />
+                  </div>
+                  <div class="gruppo gutente">
                      <label class="input-modificato">Nome</label>
-                     <input type="text" name="nome"  required/>
+                     <input type="text" name="nome"  />
                   </div>
-                  <div class="gruppo">
+                  <div class="gruppo gutente">
                      <label class="input-modificato">Cognome</label>
-                     <input type="text" name="cognome" required/>
+                     <input type="text" name="cogome"  />
                   </div>
-                  <div class="gruppo">
-                     <label class="input-modificato">Data</label>
-                     <input type="date" required/>
+                  <div class="gruppo gutente">
+                     <label class="input-modificato">Data di nascita</label>
+                     <input type="text" name="data"  />
                   </div>
-                  <div class="gruppo">
-                     <label class="input-modificato">Via</label>
-                     <div id='searchBoxContainer'><input id="searchBox" type="text" required/></div>
-                  </div>
-                  <div class="gruppo">
+                  <div class="gruppo gutente">
                      <label class="input-modificato">Descrizione</label>
-                     <textarea rows="1" required></textarea>
+                     <textarea name="descrizione" rows="1"  ></textarea>
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Email</label>
+                     <input type="email" name="email"   />
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Password</label>
+                     <input type="password" name="Password"  />
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Nome compagnia</label>
+                     <input type="text" name="nomeCompagnia"  />
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Via</label>
+                     <div id='searchBoxContainer'>
+                        <input id="searchBox" name="via" type="text"  />
+                     </div>
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Descrizione</label>
+                     <textarea name="descrizione" rows="1"  ></textarea>
                   </div>
                   <div class="h-captcha" data-sitekey="10000000-ffff-ffff-ffff-000000000001"></div>
-                  <input type="submit" value="Iscriviti" class="bottone"/>
+                  <input type="button" value="Iscriviti" class="bottone"/>
                </form>
             </div>
          </div>
