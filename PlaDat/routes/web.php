@@ -54,4 +54,9 @@ Route::get('/login/', [\App\Http\Controllers\LoginController::class, 'registrati
  *
  * L'idea è che torni un valore che permette a javascript di decidere cosa fare.
  */
-Route::get('/login/', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
+Route::get('/login/loginCheck/', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
+
+/*
+ * Questo metodo tornerà la pagina profilo del profilo corrispondente
+ */
+Route::get('/login/access/', [\App\Http\Controllers\LoginController::class, 'profilePage']);

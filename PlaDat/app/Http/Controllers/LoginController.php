@@ -32,4 +32,11 @@ class LoginController extends Controller
     public function registationPage(){
         return view('registrationPage');
     }
+
+    /*
+     * Questo metodo tornerà la pagina del profilo quando il login ha avuto esito positivo
+     */
+    public function profilePage(){
+        return view('profilePage');
+    }
 }
