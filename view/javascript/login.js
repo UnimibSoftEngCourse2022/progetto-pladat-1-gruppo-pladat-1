@@ -39,13 +39,13 @@ function isEmail(email) {
 }
 
 function isPassword(password) {
-	let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+	let regex = /^.{1,40}$/;
 	return regex.test(password);
 }
 
 function invioDati() {
 	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='email']").get(0).setCustomValidity("L'email deve avere il formato corretto");
-	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password deve avere tra i 6 ed i 20 caratteri, contenere almento una letta maiuscola, almeno una lettera minuscola ed almeno un numero. NON sono concessi caratteri speciali");
+	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password non può essere nulla");
 	$("#invioDatiLogin").click(function () {
 		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
 		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();

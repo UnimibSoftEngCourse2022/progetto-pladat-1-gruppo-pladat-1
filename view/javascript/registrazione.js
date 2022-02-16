@@ -3,8 +3,8 @@ $(document).ready(function () {
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
 	blurr();
 	scrittura();
-	invioDati();
 	change();
+	invioDati();
 })
 
 function scrittura()
@@ -100,22 +100,116 @@ function isPassword(password) {
 	let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 	return regex.test(password);
 }
-
+function isNome(nome) {
+	let regex = /^.{3,20}$/;
+	return regex.test(nome);
+}
+function isCognome(cognome) {
+	let regex = /^.{3,30}$/;
+	return regex.test(cognome);
+}
+function isData(data) {
+	return true;
+}
+function isNomeCompagnia(nomeCompagnia) {
+	let regex = /^.{3,30}$/;
+	return regex.test(nomeCompagnia);
+}
+function isVia(via) {
+	let regex = /^.{3,50}$/;
+	return regex.test(via);
+}
+function isDescrizione(descrizione) {
+	let regex = /^.{0,200}$/;
+	return regex.test(descrizione);
+}
 function invioDati() {
-	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='email']").get(0).setCustomValidity("L'email deve avere il formato corretto");
-	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password deve avere tra i 6 ed i 20 caratteri, contenere almento una letta maiuscola, almeno una lettera minuscola ed almeno un numero. NON sono concessi caratteri speciali");
-	$("#invioDatiLogin").click(function () {
-		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
-		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
-		if (!isEmail(email)) {
-			$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#ea4335");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='email']").get(0).setCustomValidity("L'email deve avere il formato corretto");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password deve avere tra i 6 ed i 20 caratteri, contenere almento una lettera maiuscola, almeno una lettera minuscola ed almeno un numero. NON sono concessi caratteri speciali");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='nome']").get(0).setCustomValidity("Il nome deve avere dai 3 ai 20 caratteri");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='cognome']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='data']").get(0).setCustomValidity("La data è obbligatoria");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='descrizione']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='email1']").get(0).setCustomValidity("L'email deve avere il formato corretto");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='password1']").get(0).setCustomValidity("La password deve avere tra i 6 ed i 20 caratteri, contenere almento una lettera maiuscola, almeno una lettera minuscola ed almeno un numero. NON sono concessi caratteri speciali");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='nomeCompagnia']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='via']").get(0).setCustomValidity("La vai deve avere dai 3 ai 50 caratteri. CONSIGLIATO usare quela proposta da BING maps.");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='descrizione1']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
+	alert("aui");
+	$("#invioDatiRegistrazione").click(function () {
+		if($('#studente').is(':checked'))
+		{
+			let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
+			let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
+			let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
+			let cognome = $(this).parent().children(".gruppo").children("input[name='cognome']").val().trim().toLowerCase();
+			let data = $(this).parent().children(".gruppo").children("input[name='nome']").val();
+			let descrizione = $(this).parent().children(".gruppo").children("input[name='descrizione']").val().trim();
+			if (!isEmail(email)) {
+				$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#1a73e8");
+			}
+			if (!isPassword(password)) {
+				$(this).parent().children(".gruppo").children("input[name='password']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='password']").parent().children("input").css("border-color", "#1a73e8");
+			}
+			if (!isNome(nome)) {
+				$(this).parent().children(".gruppo").children("input[name='nome']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='nome']").parent().children("input").css("border-color", "#1a73e8");
+			}
+			if (!isCognome(cognome)) {
+				$(this).parent().children(".gruppo").children("input[name='cognome']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='cognome']").parent().children("input").css("border-color", "#1a73e8");
+			}
+			if (!isData(data)) {
+				$(this).parent().children(".gruppo").children("input[name='data']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='data']").parent().children("input").css("border-color", "#1a73e8");
+			}
+	
+		if (!isDescrizione(descrizione)) {
+			$(this).parent().children(".gruppo").children("input[name='descrizione']").parent().children("input").css("border-color", "#ea4335");
 		} else {
-			$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#1a73e8");
+			$(this).parent().children(".gruppo").children("input[name='descrizione']").parent().children("input").css("border-color", "#1a73e8");
 		}
-		if (!isPassword(password)) {
-			$(this).parent().children(".gruppo").children("input[name='password']").parent().children("input").css("border-color", "#ea4335");
-		} else {
-			$(this).parent().children(".gruppo").children("input[name='password']").parent().children("input").css("border-color", "#1a73e8");
+	}
+		if($('#azienda').is(':checked'))
+		{
+
+			let email1 = $(this).parent().children(".gruppo").children("input[name='email1']").val().trim().toLowerCase();
+			let password1 = $(this).parent().children(".gruppo").children("input[name='password1']").val().trim();
+			let nomeCompagnia = $(this).parent().children(".gruppo").children("input[name='nomeCompagnia']").val().trim().toLowerCase();
+			let via = $(this).parent().children(".gruppo").children("input[name='via']").val().trim().toLowerCase();
+			let descrizione1 = $(this).parent().children(".gruppo").children("input[name='descrizione1']").val().trim();
+			if (!isEmail(email1)) {
+				$(this).parent().children(".gruppo").children("input[name='email1']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='email1']").parent().children("input").css("border-color", "#1a73e8");
+			}
+			if (!isPassword(password1)) {
+				$(this).parent().children(".gruppo").children("input[name='password1']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='password1']").parent().children("input").css("border-color", "#1a73e8");
+			}
+			if (!isNomeCompagnia(nomeCompagnia)) {
+				$(this).parent().children(".gruppo").children("input[name='nomeCompagnia']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='nomeCompagnia']").parent().children("input").css("border-color", "#1a73e8");
+			}
+			if (!via(nomeCompagniviaa)) {
+				$(this).parent().children(".gruppo").children("input[name='via']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='via']").parent().children("input").css("border-color", "#1a73e8");
+			}
+			if (!isDescrizione(descrizione1)) {
+				$(this).parent().children(".gruppo").children("input[name='descrizione1']").parent().children("input").css("border-color", "#ea4335");
+			} else {
+				$(this).parent().children(".gruppo").children("input[name='descrizione1']").parent().children("input").css("border-color", "#1a73e8");
+			}
 		}
 	});
 }
