@@ -28,7 +28,13 @@ body {
 	min-width: 350px;
 	color: #3c4043;
 }
-
+.alert
+{
+	position: absolute;
+	z-index:120;
+	margin: auto;
+	top: 30px;
+}
 a:hover {
 	text-decoration: none;
 }
@@ -257,6 +263,7 @@ nav {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border: 2px solid #1a73e8;
+	text-align: center;
 }
 
 .bottone:hover {
@@ -274,6 +281,7 @@ nav {
 .button-modifica3 {
 	display: flex;
 	align-content: space-between;
+	margin-bottom: 20px;
 }
 
 .button-modifica3>div {
