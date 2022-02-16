@@ -14,6 +14,13 @@ function blurr() {
 	$(".gruppo > input[type=date]").focus(function () {
 		$(this).css("color", "#3c4043");
 	});
+	$(".gruppo > input[type=date]").focusout(function () {
+		if ($(this).val().trim() === "") {
+			$(this).parent().removeClass("gruppo-evidenziato");
+			$(this).val("");
+			$(this).css("color", "white");
+		}
+	});
 	$(".gruppo > input, .gruppo>textarea").focus(function () {
 		$(this).parent().addClass("gruppo-evidenziato");
 	});
