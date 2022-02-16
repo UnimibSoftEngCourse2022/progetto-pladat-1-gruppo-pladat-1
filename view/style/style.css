@@ -715,7 +715,7 @@ hr {
 .tirocinio>p:nth-child(4),
 .applicazione>p:nth-child(1),
 .applicazione>p:nth-child(3) {
-	color: #34a853;
+	font-weight: bold;
 }
 #offerta>.gruppo
 {
@@ -850,6 +850,10 @@ margin-top: 2rem;
 	#iscrizione>img,
 	#modifica>img {
 		width: 18vw;
+	}
+	.elencoOfferte>div>p:nth-child(3)
+	{
+		display: none;
 	}
 }
 
