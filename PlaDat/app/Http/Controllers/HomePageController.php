@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 class HomePageController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /*
      * Questo metodo deve chiamare una classe a livello di dominio che si deve occupare
      * di ritornare un lista di n placement che andranno mostrati successivamente.

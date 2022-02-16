@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     /*
+     * Costruttore che fa si che alla chiamata del costruttore sia necessaria
+     * l'autenticazione da parte dell'utente
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /*
      * Questo metodo si occuperà di modificare i dati dell'utente quando l'utente
      * modificherà anche solo un campo.
      */
