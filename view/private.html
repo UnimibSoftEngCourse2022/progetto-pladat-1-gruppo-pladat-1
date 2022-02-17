@@ -38,27 +38,53 @@
                <form id="modifica" action="*******" method="******">
                   <div class="button-modifica"><button>Elimina</button><button>Modifica</button></div>
                   <img data-bs-toggle="modal" data-bs-target="#cambiaImmagine" src="image/profilo.png" alt="foto-profilo"/>
-                  <div class="gruppo">
+                  <div class="gruppo gutente">
+                     <label class="input-modificato">Email</label>
+                     <input type="email" name="email"   />
+                  </div>
+                  <div class="gruppo gutente">
+                     <label class="input-modificato">Password</label>
+                     <input type="password" name="password"  />
+                  </div>
+                  <div class="gruppo gutente">
                      <label class="input-modificato">Nome</label>
-                     <input type="text" name="nome"  required/>
+                     <input type="text" name="nome"  />
                   </div>
-                  <div class="gruppo">
+                  <div class="gruppo gutente">
                      <label class="input-modificato">Cognome</label>
-                     <input type="text" name="cognome" required/>
+                     <input type="text" name="cognome"  />
                   </div>
-                  <div class="gruppo">
-                     <label class="input-modificato">Data</label>
-                     <input type="date" required/>
+                  <div class="gruppo gutente">
+                     <label class="input-modificato">Data di nascita</label>
+                     <input type="date" name="data"  />
                   </div>
-                  <div class="gruppo">
-                     <label class="input-modificato">Via</label>
-                     <div id='searchBoxContainer'><input id="searchBox" type="text" required/></div>
-                  </div>
-                  <div class="gruppo">
+                  <div class="gruppo gutente">
                      <label class="input-modificato">Descrizione</label>
-                     <textarea rows="1" required></textarea>
+                     <textarea name="descrizione" rows="1"  ></textarea>
                   </div>
-                  <input type="submit" value="Modifica" class="bottone"/>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Email</label>
+                     <input type="email" name="email1"   />
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Password</label>
+                     <input type="password" name="password1"  />
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Nome compagnia</label>
+                     <input type="text" name="nomeCompagnia"  />
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Via</label>
+                     <div id='searchBoxContainer'>
+                        <input id="searchBox" name="via" type="text"  />
+                     </div>
+                  </div>
+                  <div class="gruppo gazienda">
+                     <label class="input-modificato">Descrizione</label>
+                     <textarea name="descrizione1" rows="1"  ></textarea>
+                  </div>
+                  <input type="button" id="invioDatiPrivato" value="Modifica" class="bottone"/>
                </form>
             </div>
             <div class="col-12 col-lg-6">
@@ -162,23 +188,23 @@
                   <form id="offerta" action="*******" method="******">
                      <div class="gruppo">
                         <label class="input-modificato">Titolo</label>
-                        <input type="text" name="titolo"  required/>
+                        <input type="text" name="titolo"  ""/>
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Durata tirocinio</label>
-                        <input type="text" name="durata" required/>
+                        <input type="text" name="durata" ""/>
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Data inizio prenotazioni</label>
-                        <input type="date"  name="dataInizio" required/>
+                        <input type="date"  name="dataInizio" ""/>
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Data fine prenotazioni</label>
-                        <input type="date" name="dataFine"  required/>
+                        <input type="date" name="dataFine"  ""/>
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Descrizione</label>
-                        <textarea rows="1" required></textarea>
+                        <textarea rows="1" ""></textarea>
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Salario</label>
