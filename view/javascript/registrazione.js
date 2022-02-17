@@ -5,7 +5,16 @@ $(document).ready(function () {
 	scrittura();
 	change();
 	invioDati();
+	riempiCategoria();
 })
+
+let listaCat = ["prima", "seconda", "terza", "quarta"];
+
+function riempiCategoria() {
+	for (let i = 0; i < listaCat.length; i++) {
+		$("#categoria").append("<option value=" + listaCat[i] + ">" + listaCat[i] + "</option>");
+	}
+}
 
 function scrittura() {
 	$('.invito').typeIt({
@@ -139,13 +148,12 @@ function invioDati() {
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='nome']").get(0).setCustomValidity("Il nome deve avere dai 3 ai 20 caratteri");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='cognome']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='data']").get(0).setCustomValidity("La data è obbligatoria");
-	$("#invioDatiRegistrazione").parent().children(".gruppo").children("textarea[name='descrizione']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='email1']").get(0).setCustomValidity("L'email deve avere il formato corretto");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='password1']").get(0).setCustomValidity("La password deve avere tra i 6 ed i 20 caratteri, contenere almento una lettera maiuscola, almeno una lettera minuscola ed almeno un numero. NON sono concessi caratteri speciali");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='nomeCompagnia']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").get(0).setCustomValidity("La vai deve avere dai 3 ai 50 caratteri. CONSIGLIATO usare quela proposta da BING maps.");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("textarea[name='descrizione1']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
-	$(this).parent().children(".gruppo").children("input[name='data']").val("");
+	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='data']").val("");
 	$("#invioDatiRegistrazione").click(function () {
 		if ($('#studente').is(':checked')) {
 			let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
@@ -153,37 +161,36 @@ function invioDati() {
 			let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
 			let cognome = $(this).parent().children(".gruppo").children("input[name='cognome']").val().trim().toLowerCase();
 			let data = $(this).parent().children(".gruppo").children("input[name='data']").val();
-			let descrizione = $(this).parent().children(".gruppo").children("textarea[name='descrizione']").val().trim();
 			if (!isEmail(email)) {
-				$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#1a73e8");
 			}
 			if (!isPassword(password)) {
-				$(this).parent().children(".gruppo").children("input[name='password']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='password']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#1a73e8");
 			}
 			if (!isNome(nome)) {
-				$(this).parent().children(".gruppo").children("input[name='nome']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='nome']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='nome']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='nome']").css("border-color", "#1a73e8");
 			}
 			if (!isCognome(cognome)) {
-				$(this).parent().children(".gruppo").children("input[name='cognome']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='cognome']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='cognome']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='cognome']").css("border-color", "#1a73e8");
 			}
 			if (!isData(data)) {
-				$(this).parent().children(".gruppo").children("input[name='data']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='data']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='data']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='data']").css("border-color", "#1a73e8");
 			}
-
-			if (!isDescrizione(descrizione)) {
-				$(this).parent().children(".gruppo").children("textarea[name='descrizione']").parent().children("input").css("border-color", "#ea4335");
-			} else {
-				$(this).parent().children(".gruppo").children("textarea[name='descrizione']").parent().children("input").css("border-color", "#1a73e8");
+			if($("#categoria").val().length===0) {
+				$("#categoria").css("border-color", "#ea4335");
+			}
+			else {
+				$("#categoria").css("border-color", "#1a73e8");
 			}
 		}
 		if ($('#azienda').is(':checked')) {
@@ -193,29 +200,29 @@ function invioDati() {
 			let via = $(this).parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").val().trim().toLowerCase();
 			let descrizione1 = $(this).parent().children(".gruppo").children("textarea[name='descrizione1']").val().trim();
 			if (!isEmail(email1)) {
-				$(this).parent().children(".gruppo").children("input[name='email1']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='email1']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='email1']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='email1']").css("border-color", "#1a73e8");
 			}
 			if (!isPassword(password1)) {
-				$(this).parent().children(".gruppo").children("input[name='password1']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='password1']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='password1']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='password1']").css("border-color", "#1a73e8");
 			}
 			if (!isNomeCompagnia(nomeCompagnia)) {
-				$(this).parent().children(".gruppo").children("input[name='nomeCompagnia']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='nomeCompagnia']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='nomeCompagnia']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='nomeCompagnia']").css("border-color", "#1a73e8");
 			}
 			if (!isVia(via)) {
-				$(this).parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").css("border-color", "#1a73e8");
 			}
 			if (!isDescrizione(descrizione1)) {
-				$(this).parent().children(".gruppo").children("input[name='descrizione1']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("input[name='descrizione1']").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='descrizione1']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("input[name='descrizione1']").css("border-color", "#1a73e8");
 			}
 		}
 	});

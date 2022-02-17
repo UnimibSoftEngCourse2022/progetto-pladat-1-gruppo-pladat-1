@@ -62,8 +62,8 @@
                      <input type="date" name="data"  disabled/>
                   </div>
                   <div class="gruppo gutente">
-                     <label class="input-modificato">Descrizione</label>
-                     <textarea name="descrizione" rows="1"  disabled></textarea>
+                     <select name="categoria" id="categoria" size="3" multiple disabled>
+                      </select>
                   </div>
                   <div class="gruppo gazienda">
                      <label class="input-modificato">Email</label>
@@ -164,6 +164,7 @@
                            <p>Google com</p>
                            <p>Front-end developer</p>
                            <a href="***" download><img alt="dowload" src="image/download.png"></a>
+                           <p class="attendo sceltaAccettazione">&#10140;</p>
                         </div>
                         <div class="nascondi">
                            <p>Il tirocinio proposto bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
@@ -174,6 +175,7 @@
                            <p>Google com</p>
                            <p>Front-end developer</p>
                            <a href="***" download><img alt="dowload" src="image/download.png"></a>
+                           <p class="attendo sceltaAccettazione">&#10140;</p>
                         </div>
                         <div class="nascondi">
                            <p>Il tirocinio proposto bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
@@ -215,6 +217,10 @@
                         <div class="gruppo">
                            <label class="input-modificato">Salario</label>
                            <input type="text" name="salario"/>
+                        </div>
+                        <div class="gruppo">
+                           <select name="categoria1" id="categoria1" size="3" multiple>
+                            </select>
                         </div>
                         <input id="invioDatiOfferta" type="button" value="Lancia" class="bottone"/>
                      </form>

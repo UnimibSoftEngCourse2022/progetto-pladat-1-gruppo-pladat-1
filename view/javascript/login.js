@@ -50,14 +50,14 @@ function invioDati() {
 		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
 		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
 		if (!isEmail(email)) {
-			$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#ea4335");
+			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#ea4335");
 		} else {
-			$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#1a73e8");
+			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#1a73e8");
 		}
 		if (!isPassword(password)) {
-			$(this).parent().children(".gruppo").children("input[name='password']").parent().children("input").css("border-color", "#ea4335");
+			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#ea4335");
 		} else {
-			$(this).parent().children(".gruppo").children("input[name='password']").parent().children("input").css("border-color", "#1a73e8");
+			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#1a73e8");
 		}
 	});
 }
