@@ -15,18 +15,20 @@ return new class extends Migration
     {
         Schema::create('request', function (Blueprint $table) {
             $table->string('student_email', 100);
-            $table->integer('placement_idPlacement');
-            $table->string('presentation_letter')->nullable()->default(null);
-            $table->primary(['student_email', 'placement_idPlacement']);
+            $table->string('presentation_letter', 10000)->nullable()->default(null);
 
             $table->foreign('student_email')
                 ->references('email')
                 ->on('student');
-            $table->foreign('placement_idPlacement')
-                ->references('idPlacement')
+            $table->foreignId('idPlacement')
                 ->on('placement');
+            $table->index('idPlacement');
+
+            $table->primary(['student_email', 'idPlacement']);
 
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 

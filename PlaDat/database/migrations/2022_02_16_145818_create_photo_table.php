@@ -13,27 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('photo', function (Blueprint $table) {
-            $table->integer('idPhoto');
+        Schema::create('photos', function (Blueprint $table) {
+            $table->id();
             $table->string('description', 1000)->nullable()->default(null);
             $table->string('path', 1000);
-            $table->string('employer_email', 100)->nullable()->default(null);
-            $table->string('student_email', 100)->nullable()->default(null);
-            $table->integer('placement_idPlacement')->nullable()->default(null);
-
-            $table->primary('idPhoto');
-
-            $table->foreign('employer_email')
-                ->references('email')
-                ->on('employer');
-            $table->foreign('student_email')
-                ->references('email')
-                ->on('student');
-            $table->foreign('placement_idPlacement')
-                ->references('idPlacement')
-                ->on('placement');
 
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 

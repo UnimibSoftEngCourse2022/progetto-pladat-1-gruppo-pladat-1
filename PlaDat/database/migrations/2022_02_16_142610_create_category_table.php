@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name', 50);
             $table->primary('name');
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 

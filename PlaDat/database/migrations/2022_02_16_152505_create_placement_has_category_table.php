@@ -14,21 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('placement_has_category', function (Blueprint $table) {
-            $table->integer('idPlac');
-            $table->string('idCat', 40);
 
-
-            $table->foreign('idCat')
-                ->references('name')
-                ->on('category')
-                ->constrained();
-            $table->foreign('idPlac')
-                ->references('idPlacement')
-                ->on('placement')
-                ->constrained();
+            $table->foreignId('idCategory')
+                ->on('category');
+            $table->foreignId('idPlacement')
+                ->on('placement');
+            $table->primary(['idCategory', 'idPlacement']);
             $table->timestamps();
-
-            $table->primary(['idPlac', 'idCat']);
 
             $table->engine = 'InnoDB';
         });

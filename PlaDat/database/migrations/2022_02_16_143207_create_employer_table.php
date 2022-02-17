@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('password', 45);
             $table->primary('email');
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 

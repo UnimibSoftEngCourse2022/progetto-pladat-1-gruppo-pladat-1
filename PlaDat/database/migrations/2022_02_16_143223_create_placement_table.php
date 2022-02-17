@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('placement', function (Blueprint $table) {
-            $table->integer('idPlacement');
+            $table->id();
             $table->string('title', 100);
             $table->string('description', 1000);
             $table->integer('duration');
@@ -24,13 +24,14 @@ return new class extends Migration
             $table->integer('salary')->nullable()->default(null);
             $table->string('employer_email', 100);
 
-            $table->primary('idPlacement');
-
             $table->foreign('employer_email')
                 ->references('email')
                 ->on('employer');
 
+
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 

@@ -25,6 +25,8 @@ return new class extends Migration
                 ->references('email')
                 ->on('student');
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 

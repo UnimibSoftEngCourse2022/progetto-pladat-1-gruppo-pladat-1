@@ -14,19 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('curriculum', function (Blueprint $table) {
-            $table->integer('idCurriculum');
+            $table->id();
             $table->string('path', 1000);
             $table->string('request_student_email', 100);
-            $table->integer('request_placement_idPlacement');
-            $table->primary('idCurriculum');
+            $table->bigInteger('request_idPlacement')->unsigned()->index();
 
             $table->foreign('request_student_email')
                 ->references('email')
                 ->on('student');
-            $table->foreign('request_placement_idPlacement')
-                ->references('placement_idPlacement')
-                ->on('request');
+            $table->foreign('request_idPlacement')
+                ->references('idPlacement')
+                ->on('request')
+                ->onDelete('cascade');
             $table->timestamps();
+
+            $table->engine = 'InnoDB';
         });
     }
 
