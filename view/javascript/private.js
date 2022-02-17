@@ -24,6 +24,7 @@ function riempiCategoria() {
 		$("#categoria1").append("<option value=" + listaCat[i] + ">" + listaCat[i] + "</option>");
 	}
 }
+
 function blurr() {
 	$(".gruppo > input[type=date]").focus(function () {
 		if (!$(this).is(':disabled')) {
@@ -227,12 +228,9 @@ function invioDati() {
 			} else {
 				$(this).parent().children(".gruppo").children("input[name='data']").css("border-color", "#1a73e8");
 			}
-			if($("#categoria").val().length===0)
-			{
+			if ($("#categoria").val().length === 0) {
 				$("#categoria").css("border-color", "#ea4335");
-			}
-			else
-			{
+			} else {
 				$("#categoria").css("border-color", "#1a73e8");
 			}
 			location.reload();
@@ -285,15 +283,14 @@ function startModifica() {
 			}
 			$("#invioDatiPrivato").css("display", "block");
 			$("#modificaPrivato").text("Annulla");
+		} else {
+			if (chi === "utente") {
+				location.reload();
+			}
+			if (chi === "azienda") {
+				location.reload();
+			}
 		}
-		else
-		{if (chi === "utente") {
-			location.reload();
-		}
-		if (chi === "azienda") {
-			location.reload();
-		}
-		} 
 	});
 }
 
@@ -344,34 +341,26 @@ function invioDati2() {
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='salario']").css("border-color", "#1a73e8");
 		}
-		if($("#categoria1").val().length===0)
-			{
-				$("#categoria1").css("border-color", "#ea4335");
-			}
-			else
-			{
-				$("#categoria1").css("border-color", "#1a73e8");
-			}
+		if ($("#categoria1").val().length === 0) {
+			$("#categoria1").css("border-color", "#ea4335");
+		} else {
+			$("#categoria1").css("border-color", "#1a73e8");
+		}
 	});
 };
 
-function sceltaAccetazione()
-{
-	$(".sceltaAccettazione").click(function()
-	{
-		if($(this).text().charCodeAt(0)=="10140")
-		{
-			$(this).html("&#10004;");
+function sceltaAccetazione() {
+	$(".sceltaAccettazione").click(function () {
+		if ($(this).text().charCodeAt(0) == "10140") {
+			$(this).html("✔");
 			$(this).removeClass("attendo");
 			$(this).addClass("accetto");
-		}else if($(this).text().charCodeAt(0)=="10004")
-		{
-			$(this).html("&#10006;");
+		} else if ($(this).text().charCodeAt(0) == "10004") {
+			$(this).html("✖");
 			$(this).removeClass("accetto");
 			$(this).addClass("rifiuto");
-		}else if($(this).text().charCodeAt(0)=="10006")
-		{
-			$(this).html("&#10004;");
+		} else if ($(this).text().charCodeAt(0) == "10006") {
+			$(this).html("✔");
 			$(this).removeClass("rifiuto");
 			$(this).addClass("accetto");
 		}

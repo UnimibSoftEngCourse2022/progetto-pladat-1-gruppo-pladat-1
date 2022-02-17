@@ -230,11 +230,11 @@ nav {
 	outline: none !important;
 	border-color: #1a73e8;
 }
-.gruppo>select {
-	border:2px solid #f2f2f2;
-	color:#3c4043;
-}
 
+.gruppo>select {
+	border: 2px solid #f2f2f2;
+	color: #3c4043;
+}
 
 .gruppo>input,
 .gruppo>div>input,
@@ -791,8 +791,7 @@ hr {
 }
 
 .bloccoelencoapplicanti>div:nth-child(1)>p,
-.bloccoelencoapplicanti>div:nth-child(2)>p
- {
+.bloccoelencoapplicanti>div:nth-child(2)>p {
 	margin-bottom: 0;
 }
 
