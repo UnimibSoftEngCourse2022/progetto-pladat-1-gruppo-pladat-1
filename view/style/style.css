@@ -301,29 +301,29 @@ nav {
 	color: #3c4043;
 }
 
-.button-modifica>button {
+.button-modifica>div {
 	background-color: white;
 	display: block;
 	border: 0px;
 	color: #3c4043;
 }
 
-.button-modifica>button:nth-child(1) {
+.button-modifica>div:nth-child(1) {
 	color: #ea4335;
 }
 
-.button-modifica>button:nth-child(2) {
+.button-modifica>div:nth-child(2) {
 	margin-left: auto;
 }
 
-.button-modifica>button:nth-child(2):hover,
+.button-modifica>div:nth-child(2):hover,
 .button-modifica2>button:hover,
 .button-modifica3>div>a:hover {
 	color: #1a73e8 !important;
 	transition: .5s !important;
 }
 
-.button-modifica>button:nth-child(1):hover {
+.button-modifica>div:nth-child(1):hover {
 	color: #3c4043;
 	transition: .5s;
 }

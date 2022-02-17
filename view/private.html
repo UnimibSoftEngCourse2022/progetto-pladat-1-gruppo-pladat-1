@@ -36,7 +36,7 @@
          <div class="row flex-2-colonne">
             <div class="col-12 col-lg-6">
                <form id="modifica" action="*******" method="******">
-                  <div class="button-modifica"><button>Elimina</button><button>Modifica</button></div>
+                  <div class="button-modifica"><div>Elimina</div><div>Modifica</div></div>
                   <img data-bs-toggle="modal" data-bs-target="#cambiaImmagine" src="image/profilo.png" alt="foto-profilo"/>
                   <div class="gruppo gutente">
                      <label class="input-modificato">Email</label>
@@ -188,29 +188,29 @@
                   <form id="offerta" action="*******" method="******">
                      <div class="gruppo">
                         <label class="input-modificato">Titolo</label>
-                        <input type="text" name="titolo"  ""/>
+                        <input type="text" name="titolo"  />
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Durata tirocinio</label>
-                        <input type="text" name="durata" ""/>
+                        <input type="text" name="durata" />
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Data inizio prenotazioni</label>
-                        <input type="date"  name="dataInizio" ""/>
+                        <input type="date"  name="dataInizio"/>
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Data fine prenotazioni</label>
-                        <input type="date" name="dataFine"  ""/>
+                        <input type="date" name="dataFine" />
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Descrizione</label>
-                        <textarea rows="1" ""></textarea>
+                        <textarea rows="1" name="descrizione2"></textarea>
                      </div>
                      <div class="gruppo">
                         <label class="input-modificato">Salario</label>
-                        <input type="salario"/>
+                        <input type="text" name="salario"/>
                      </div>
-                     <input type="submit" value="Lancia" class="bottone"/>
+                     <input id="invioDatiOfferta" type="button" value="Lancia" class="bottone"/>
                   </form>
                </div>
             </div>

@@ -145,13 +145,14 @@ function invioDati() {
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("input[name='nomeCompagnia']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").get(0).setCustomValidity("La vai deve avere dai 3 ai 50 caratteri. CONSIGLIATO usare quela proposta da BING maps.");
 	$("#invioDatiRegistrazione").parent().children(".gruppo").children("textarea[name='descrizione1']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
+	$(this).parent().children(".gruppo").children("input[name='data']").val("");
 	$("#invioDatiRegistrazione").click(function () {
 		if ($('#studente').is(':checked')) {
 			let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
 			let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
 			let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
 			let cognome = $(this).parent().children(".gruppo").children("input[name='cognome']").val().trim().toLowerCase();
-			let data = $(this).parent().children(".gruppo").children("input[name='nome']").val();
+			let data = $(this).parent().children(".gruppo").children("input[name='data']").val();
 			let descrizione = $(this).parent().children(".gruppo").children("textarea[name='descrizione']").val().trim();
 			if (!isEmail(email)) {
 				$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#ea4335");
@@ -180,9 +181,9 @@ function invioDati() {
 			}
 
 			if (!isDescrizione(descrizione)) {
-				$(this).parent().children(".gruppo").children("input[name='descrizione']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("textarea[name='descrizione']").parent().children("input").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='descrizione']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("textarea[name='descrizione']").parent().children("input").css("border-color", "#1a73e8");
 			}
 		}
 		if ($('#azienda').is(':checked')) {

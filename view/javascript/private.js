@@ -5,6 +5,7 @@ $(document).ready(function () {
 	infoOfferte();
 	invioDati();
 	change();
+	invioDati2();
 	$(".elenco-privato").css('height', ($("#modifica").height()+43.2) + "px");
 })
 
@@ -15,13 +16,6 @@ $(window).on('resize', function () {
 function blurr() {
 	$(".gruppo > input[type=date]").focus(function () {
 		$(this).css("color", "#3c4043");
-	});
-	$(".gruppo > input[type=date]").focusout(function () {
-		if ($(this).val().trim() === "") {
-			$(this).parent().removeClass("gruppo-evidenziato");
-			$(this).val("");
-			$(this).css("color", "white");
-		}
 	});
 	$(".gruppo > input[type=date]").focusout(function () {
 		if ($(this).val().trim() === "") {
@@ -129,6 +123,18 @@ function isDescrizione(descrizione) {
 	let regex = /^.{0,200}$/;
 	return regex.test(descrizione);
 }
+function isTitolo(titolo) {
+	let regex = /^.{1,40}$/;
+	return regex.test(titolo);
+}
+function isDurata(durata) {
+	let regex = /^.{1,40}$/;
+	return regex.test(durata);
+}
+function isSalario(salario) {
+	let regex = /^\d+.{0,10}$/;
+	return regex.test(salario);
+}
 
 let chi="utente";
 function change() {
@@ -136,7 +142,7 @@ function change() {
 		$('.gazienda').addClass("nascondi");
 		$('.gutente').removeClass("nascondi");
 	}
-	if (chi==="utente") {
+	if (chi==="azienda") {
 		$('.gazienda').removeClass("nascondi");
 		$('.gutente').addClass("nascondi");
 	}
@@ -153,13 +159,14 @@ function invioDati() {
 	$("#invioDatiPrivato").parent().children(".gruppo").children("input[name='nomeCompagnia']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
 	$("#invioDatiPrivato").parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").get(0).setCustomValidity("La vai deve avere dai 3 ai 50 caratteri. CONSIGLIATO usare quela proposta da BING maps.");
 	$("#invioDatiPrivato").parent().children(".gruppo").children("textarea[name='descrizione1']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
+	$("#invioDatiPrivato").parent().children(".gruppo").children("input[name='data']").val("");
 	$("#invioDatiPrivato").click(function () {
 		if (chi==="utente") {
 			let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
 			let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
 			let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
 			let cognome = $(this).parent().children(".gruppo").children("input[name='cognome']").val().trim().toLowerCase();
-			let data = $(this).parent().children(".gruppo").children("input[name='nome']").val();
+			let data = $(this).parent().children(".gruppo").children("input[name='data']").val();
 			let descrizione = $(this).parent().children(".gruppo").children("textarea[name='descrizione']").val().trim();
 			if (!isEmail(email)) {
 				$(this).parent().children(".gruppo").children("input[name='email']").parent().children("input").css("border-color", "#ea4335");
@@ -188,9 +195,9 @@ function invioDati() {
 			}
 
 			if (!isDescrizione(descrizione)) {
-				$(this).parent().children(".gruppo").children("input[name='descrizione']").parent().children("input").css("border-color", "#ea4335");
+				$(this).parent().children(".gruppo").children("textarea[name='descrizione']").parent().children("input").css("border-color", "#ea4335");
 			} else {
-				$(this).parent().children(".gruppo").children("input[name='descrizione']").parent().children("input").css("border-color", "#1a73e8");
+				$(this).parent().children(".gruppo").children("textarea[name='descrizione']").parent().children("input").css("border-color", "#1a73e8");
 			}
 		}
 		if (chi==="azienda") {
@@ -227,5 +234,54 @@ function invioDati() {
 		}
 	});
 }
+function invioDati2()
+{
+	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='titolo']").get(0).setCustomValidity("Il titolo deve avere da 1 a 40 caratteri");
+	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='durata']").get(0).setCustomValidity("La durata è obbligatoria (es: 3 settimane)");
+	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='dataInizio']").get(0).setCustomValidity("La data è obbligatoria");
+	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='dataFine']").get(0).setCustomValidity("La data è obbligatoria");
+	$("#invioDatiOfferta").parent().children(".gruppo").children("textarea[name='descrizione2']").get(0).setCustomValidity("La descrizione non è obbligatoria");
+	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='salario']").get(0).setCustomValidity("Il salario non è obbligatorio");
+	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='dataFine']").val("");
+	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='dataInizio']").val("");
+	$("#invioDatiOfferta").click(function () {
+		let titolo = $(this).parent().children(".gruppo").children("input[name='titolo']").val().trim().toLowerCase();
+		let durata = $(this).parent().children(".gruppo").children("input[name='durata']").val().trim().toLowerCase();
+		let dataInizio = $(this).parent().children(".gruppo").children("input[name='dataInizio']").val();
+		let dataFine = $(this).parent().children(".gruppo").children("input[name='dataFine']").val();
+		let descrizione2 = $(this).parent().children(".gruppo").children("textarea[name='descrizione2']").val().trim().toLowerCase();
+		let salario = $(this).parent().children(".gruppo").children("input[name='salario']").val().toLowerCase();
+		if (!isTitolo(titolo)) {
+			$(this).parent().children(".gruppo").children("input[name='titolo']").parent().children("input").css("border-color", "#ea4335");
+		} else {
+			$(this).parent().children(".gruppo").children("input[name='titolo']").parent().children("input").css("border-color", "#1a73e8");
+		}
+		if (!isDurata(durata)) {
+			$(this).parent().children(".gruppo").children("input[name='durata']").parent().children("input").css("border-color", "#ea4335");
+		} else {
+			$(this).parent().children(".gruppo").children("input[name='durata']").parent().children("input").css("border-color", "#1a73e8");
+		}
+		if (!isData(dataInizio)) {
+			$(this).parent().children(".gruppo").children("input[name='dataInizio']").parent().children("input").css("border-color", "#ea4335");
+		} else {
+			$(this).parent().children(".gruppo").children("input[name='dataInizio']").parent().children("input").css("border-color", "#1a73e8");
+		}
+		if (!isData(dataFine)) {
+			$(this).parent().children(".gruppo").children("input[name='dataFine']").parent().children("input").css("border-color", "#ea4335");
+		} else {
+			$(this).parent().children(".gruppo").children("input[name='dataFine']").parent().children("input").css("border-color", "#1a73e8");
+		}
+		if (!isDescrizione(descrizione2)) {
+			$(this).parent().children(".gruppo").children("input[name='descrizione2']").parent().children("input").css("border-color", "#ea4335");
+		} else {
+			$(this).parent().children(".gruppo").children("input[name='descrizione2']").parent().children("input").css("border-color", "#1a73e8");
+		}
+		if (!idData(salario)) {
+			$(this).parent().children(".gruppo").children("input[name='salario']").parent().children("input").css("border-color", "#ea4335");
+		} else {
+			$(this).parent().children(".gruppo").children("input[name='salario']").parent().children("input").css("border-color", "#1a73e8");
+		}
+	});
+};
 
 
