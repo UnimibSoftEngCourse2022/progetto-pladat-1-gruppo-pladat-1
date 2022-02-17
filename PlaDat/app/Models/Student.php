@@ -24,8 +24,7 @@ class Student extends Model
         'password',
         'surname',
         'birth_date',
-        'Presentation',
-        'photo_idPhoto'
+        'presentation',
     ];
 
     /*
