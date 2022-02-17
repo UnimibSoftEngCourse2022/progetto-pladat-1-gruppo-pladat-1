@@ -12,9 +12,18 @@
 html {
 	scroll-behavior: smooth;
 }
-p:first-letter,h1:first-letter,h2:first-letter,h3:first-letter,h4:first-letter, label:first-letter, input:first-letter, li:first-letter {
+
+p:first-letter,
+h1:first-letter,
+h2:first-letter,
+h3:first-letter,
+h4:first-letter,
+label:first-letter,
+input:first-letter,
+li:first-letter {
 	text-transform: capitalize;
 }
+
 .row>div {
 	display: flex;
 	padding-top: 73px;
@@ -29,6 +38,7 @@ body {
 	min-width: 350px;
 	color: #3c4043;
 }
+
 a:hover {
 	text-decoration: none;
 }
@@ -375,31 +385,36 @@ nav {
 	border-color: #1a73e8;
 	transition: .5s;
 }
-.elenco-privato>div:nth-child(1)
-{
+
+.elenco-privato>div:nth-child(1) {
 	display: flex;
 	align-content: space-between;
 }
+
 .elenco-privato>div:nth-child(1)>h3:nth-child(1) {
 	margin-bottom: 20px;
-	margin-left:0;
+	margin-left: 0;
 }
+
 .elenco-privato>div:nth-child(1)>h3:nth-child(2) {
 	margin-bottom: 20px;
-	margin-left:auto;
+	margin-left: auto;
 }
-.elenco-privato>div:nth-child(1)>h3:nth-child(2):hover{
+
+.elenco-privato>div:nth-child(1)>h3:nth-child(2):hover {
 	color: #1a73e8;
 }
+
 .privato-richiesta,
 .privato-placement {
 	display: flex;
 	align-content: space-between;
 }
-.modal-title
-{
+
+.modal-title {
 	font-weight: bold;
 }
+
 .privato-richiesta>p,
 .privato-placement>p {
 	display: block;
@@ -683,7 +698,7 @@ hr {
 
 .modalApplicanti>div {
 	max-width: 70vw;
-  }
+}
 
 .privato-placement>p:hover,
 .elencoOfferte>div>p:hover {
@@ -711,10 +726,11 @@ hr {
 .applicazione>p:nth-child(3) {
 	font-weight: bold;
 }
-#offerta>.gruppo
-{
+
+#offerta>.gruppo {
 	margin-top: 0px;
 }
+
 .applicazione>textarea {
 	box-shadow: 0px 0px 0px !important;
 	outline: none !important;
@@ -740,35 +756,37 @@ hr {
 .elencoApplicanti {
 	overflow-y: scroll;
 	height: 70vh;
-	
 }
-.bloccoelencoapplicanti
-{
+
+.bloccoelencoapplicanti {
 	width: 90%;
 	border: 2px solid #f2f2f2;
 	padding: 20px;
 	margin: 0 auto;
 	margin-bottom: 20px;
 }
-.modalApplicanti>div>div>.modal-header
-{
-	border:0px;
+
+.modalApplicanti>div>div>.modal-header {
+	border: 0px;
 }
 
-.bloccoelencoapplicanti:hover
-{
+.bloccoelencoapplicanti:hover {
 	border-color: #1a73e8;
 }
+
 .bloccoelencoapplicanti>div:nth-child(1) {
 	width: 100%;
 	display: flex;
 	align-content: space-between;
 	align-items: center;
 }
+
 .bloccoelencoapplicanti>div:nth-child(2) {
 	margin-top: 20px;
 }
-.bloccoelencoapplicanti>div:nth-child(1)>p, .bloccoelencoapplicanti>div:nth-child(2)>p {
+
+.bloccoelencoapplicanti>div:nth-child(1)>p,
+.bloccoelencoapplicanti>div:nth-child(2)>p {
 	margin-bottom: 0;
 }
 
@@ -776,6 +794,7 @@ hr {
 	font-weight: bold;
 	margin-left: 0;
 }
+
 .bloccoelencoapplicanti>div:nth-child(1)>p:nth-child(2) {
 	margin-left: auto;
 }
@@ -789,18 +808,20 @@ hr {
 	width: 20px;
 	height: 20px;
 }
-.bloccoelencoapplicanti>div:nth-child(2)>p{
+
+.bloccoelencoapplicanti>div:nth-child(2)>p {
 	font-style: italic;
 }
-#aggiungiOfferta>div>div>.modal-header
-{
-	border-bottom:0px;
+
+#aggiungiOfferta>div>div>.modal-header {
+	border-bottom: 0px;
 }
-#aggiungiOfferta>div>div>.modal-body>form>.bottone
-{
-margin-right:0px;
-margin-top: 2rem;
+
+#aggiungiOfferta>div>div>.modal-body>form>.bottone {
+	margin-right: 0px;
+	margin-top: 2rem;
 }
+
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
 	#modifica>img {
@@ -832,7 +853,10 @@ margin-top: 2rem;
 	.elencoOfferte>div {
 		padding: 10px;
 	}
-	.elencoOfferte>div>p, .privato-richiesta>p , .privato-placement>p, .bloccoelencoapplicanti>div>p  {
+	.elencoOfferte>div>p,
+	.privato-richiesta>p,
+	.privato-placement>p,
+	.bloccoelencoapplicanti>div>p {
 		font-size: 12px;
 	}
 	.modal-body>p {
@@ -845,8 +869,7 @@ margin-top: 2rem;
 	#modifica>img {
 		width: 18vw;
 	}
-	.elencoOfferte>div>p:nth-child(3)
-	{
+	.elencoOfferte>div>p:nth-child(3) {
 		display: none;
 	}
 }
