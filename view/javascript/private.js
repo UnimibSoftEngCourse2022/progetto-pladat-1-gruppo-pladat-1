@@ -15,7 +15,10 @@ $(window).on('resize', function () {
 
 function blurr() {
 	$(".gruppo > input[type=date]").focus(function () {
+		if(!$(this).is(':disabled'))
+		{
 		$(this).css("color", "#3c4043");
+		}
 	});
 	$(".gruppo > input[type=date]").focusout(function () {
 		if ($(this).val().trim() === "") {
@@ -25,7 +28,10 @@ function blurr() {
 		}
 	});
 	$(".gruppo > input, .gruppo>textarea").focus(function () {
+		if(!$(this).is(':disabled'))
+		{
 		$(this).parent().addClass("gruppo-evidenziato");
+		}
 	});
 	$(".gruppo > input, .gruppo>textarea").focusout(function () {
 		if ($(this).val().trim() === "") {
@@ -34,7 +40,10 @@ function blurr() {
 		}
 	});
 	$(".gruppo > div>input").focus(function () {
-		$(this).parent().parent().addClass("gruppo-evidenziato");
+		if(!$(this).is(':disabled'))
+		{
+			$(this).parent().parent().addClass("gruppo-evidenziato");
+		}
 	});
 	$(".gruppo > div>input").focusout(function () {
 		if ($(this).val().trim() === "") {
@@ -43,8 +52,22 @@ function blurr() {
 		}
 	});
 	$(".gruppo > label").click(function () {
-		$(this).parent().addClass("gruppo-evidenziato");
-		$(this).parent().children("input").focus();
+		if($(this).parent().children().get(1).tagName==="input")
+		{
+			if(!$(this).parent().children("input").is(':disabled'))
+			{
+				$(this).parent().addClass("gruppo-evidenziato");
+				$(this).parent().children("input").focus();
+			}
+		}
+		if($(this).parent().children().get(1).tagName==="textarea")
+		{
+		if(!$(this).parent().children("textarea").is(':disabled'))
+		{
+			$(this).parent().addClass("gruppo-evidenziato");
+			$(this).parent().children("textarea").focus();
+		}
+	}
 	});
 }
 
