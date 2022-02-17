@@ -836,6 +836,9 @@ hr {
 	.modalApplicanti>div>.modal-content {
 		width: 100vw;
 	}
+	.modalApplicanti>div {
+		max-width: 100vw;
+	}
 }
 
 @media screen and (max-width: 768px) {
