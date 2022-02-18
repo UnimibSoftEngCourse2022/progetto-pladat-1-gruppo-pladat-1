@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('surname', 100);
             $table->date('birth_date');
             $table->string('presentation', 10000)->default('')->nullable();
-            $table->string('password', 45);
+            $table->string('password');
             $table->primary('email');
             $table->foreignId('idPhoto')
-                ->on('photo');
+                ->on('photo')
+                ->default('1');
             $table->timestamps();
 
             $table->engine = 'InnoDB';

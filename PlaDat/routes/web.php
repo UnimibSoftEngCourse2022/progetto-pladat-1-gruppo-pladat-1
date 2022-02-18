@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,44 +20,16 @@ use Illuminate\Support\Facades\Route;
  * Alla richiesta GET all'endpoint '/', viene eseguito il metodo loginPage che torna
  * la pagina di login.
  */
-Route::get('/', [\App\Http\Controllers\IndexController::class, 'loginPage']);
+Route::get('/', function(){
+    return view('welcome');
+});
 
-/*
- * Alla richiesta GET all'endpoint '/', viene eseguito il metodo registrationPage che torna
- * la pagina di registrazione.
- */
-Route::get('/', [\App\Http\Controllers\IndexController::class, 'registrationPage']);
+Auth::routes();
 
-/*
- * ENDPOINT PROFILE
- *
- * questo metodo si occuperà di modificare il profilo
- */
-Route::put('/profile/', [\App\Http\Controllers\ProfileController::class, 'updateProfile']);
+Route::resource('student', \App\Http\Controllers\StudentController::class);
 
-/*
- * Questo metodo ritorna la home page con i placement aggiornati
- */
-Route::post('/profile/', [\App\Http\Controllers\ProfileController::class, 'placementView']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'profileView']);
 
-
-/*
- * ENDPOINT LOGIN
- *
- * Questo metodo ritorna la pagina di registrazione nel caso in cui l'utente non sia
- * ancora inscritto
- */
-Route::get('/login/', [\App\Http\Controllers\LoginController::class, 'registrationPage']);
-
-/*
- * Questo metodo verifica la email e in base alla risposta della verifica.
- *
- * L'idea è che torni un valore che permette a javascript di decidere cosa fare.
- */
-Route::get('/login/loginCheck/', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
-
-/*
- * Questo metodo tornerà la pagina profilo del profilo corrispondente
- */
-Route::get('/login/access/', [\App\Http\Controllers\LoginController::class, 'profilePage']);
+Route::get('/profile/placementList', [\App\Http\Controllers\ProfileController::class, 'placementList']);
