@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
+use App\Models\Employer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -11,32 +14,40 @@ class LoginController extends Controller
      * Se sono valide, viene fatto un reindirizzamento alla pagina home, altrimenti
      * si ritorna alla pagina di login.
      *
-     * NB. capire se è meglio ritornare un boolean, controllato da javascript. In questo modo
-     * farei una nuova richiesta get al nuovo indirizzo, chiamando i metodi specifici.
-     *
      */
-    public function loginCheck(){
+
+    public function loginCheck(Request $request){
+
         /*
-         * if(!(Employer/Student.counterEmail == 0 && Employer/Student.checkEmail))
-         *      return view('loginPage')
-         * return view('home');
+         * Da request recuper le credenziali di accesso
          *
+         * Validate verifica che siano state inserite e controlla determinati
+         * requisiti.
          */
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-    }
+        /*
+         * Questa variabile contiene un valore boolean che fa riferimento alla
+         * colonna 'remeber_token'. Se è true la sessione di quell'utente viene mantenuta.
+         */
+        $remember = $request->input('remember_token');
 
-    /*
-     * Questo metodo si occupa di ritornare la pagina di registrazione nel caso in cui venga
-     * schiacciato il tasto "registrati"
-     */
-    public function registationPage(){
-        return view('registrationPage');
-    }
-
-    /*
-     * Questo metodo tornerà la pagina del profilo quando il login ha avuto esito positivo
-     */
-    public function profilePage(){
-        return view('profilePage');
+        /*
+         * Il metodo attempt cerca se l'email esiste nel db e in caso confronta la password
+         * Se tutto è rispettato viene instanziata una sessione
+         */
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended();
+        }
+        /*
+         * Se non vengono validate le credenziali lancia un errore
+         */
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 }
