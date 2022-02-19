@@ -44,9 +44,9 @@ class StudentController extends Controller
          * con il try catch
          */
         try {
-            $email = $request->input('email');
-            $student = Student::findOrFail($email);
-            $student->delete();
+            $email = $request->session()->get('email');
+            DB::table('student')->where('email', $email)->delete();
+            DB::table('request')->where('student_email', $email)->delete();
         }catch(ModelNotFoundException){
             return redirect()->route('profile')->with(['message'=> 'Error']);
         }

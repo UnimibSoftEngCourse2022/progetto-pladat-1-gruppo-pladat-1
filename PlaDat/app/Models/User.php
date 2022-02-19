@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'Student';
+    protected $primaryKey = 'email';
+    protected $keyType = 'string';
+    protected $connection = 'mysql';
+
     /**
      * The attributes that are mass assignable.
      *

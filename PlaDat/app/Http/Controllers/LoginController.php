@@ -33,8 +33,9 @@ class LoginController extends Controller
         /*
          * Questa variabile contiene un valore boolean che fa riferimento alla
          * colonna 'remeber_token'. Se è true la sessione di quell'utente viene mantenuta.
+         * $remember = $request->input('remember_token');
          */
-        $remember = $request->input('remember_token');
+
         $data = $request->input('email');
 
         /*
@@ -47,20 +48,22 @@ class LoginController extends Controller
             $request->session()->save();
             return redirect()->route('profile')->with(['message'=> 'Login']);
         }*/
-        if(DB::table('student')->where($credentials)->exists()){
+
+        if(DB::table('student')->where($credentials)->exists()) {
             $request->session()->regenerate();
             $request->session()->put('email', $data);
             $request->session()->save();
-            return redirect()->route('profile')->with(['message'=> 'Login']);
+            return redirect()->route('profile')->with(['message' => 'Login']);
         }
-        /*
-         * Se non vengono validate le credenziali lancia un errore
+        else{
+            if(DB::table('employer')->where($credentials)->exists()){
+                $request->session()->regenerate();
+                $request->session()->put('email', $data);
+                $request->session()->save();
+                return redirect()->route('profile')->with(['message' => 'Login']);
+            }
+        }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);*/
-
-        //
         return redirect()->route('login')->with(['message'=> 'Login']);
 
     }
