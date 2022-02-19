@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Student extends Model
 {
+    use HasFactory;
+
     /*
      * Associa a Studente la rispettiva tabella nel db
      */
@@ -25,13 +28,15 @@ class Student extends Model
         'surname',
         'birth_date',
         'presentation',
+        'idPhoto',
     ];
 
     /*
      * Attributi che devono essere nascosti nella serializzazione
      */
     protected $hidden = [
-        'password'
+        'password',
+        'remeber_token',
     ];
 
     /*
@@ -40,5 +45,5 @@ class Student extends Model
      */
 
 
-    use HasFactory;
+
 }
