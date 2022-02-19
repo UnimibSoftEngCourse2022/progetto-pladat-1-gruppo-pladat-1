@@ -20,7 +20,7 @@ class RegistrationController extends Controller
 
         $student = Student::create($request->all());
         $student->save();
-        return response($student, 200);
+        return redirect()->route('home')->with(['message'=> 'Created Student Account']);
     }
 
     /*
@@ -33,7 +33,7 @@ class RegistrationController extends Controller
          */
         $employer = Employer::create($request->all());
         $employer->save();
-        return response($employer, 200);
+        return redirect()->route('home')->with(['message'=> 'Created Employer Account']);
     }
 
 }
