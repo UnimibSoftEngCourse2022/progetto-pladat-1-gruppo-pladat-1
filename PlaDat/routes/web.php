@@ -21,15 +21,31 @@ use Illuminate\Support\Facades\Route;
  * la pagina di login.
  */
 Route::get('/', function(){
-    return view('welcome');
+    return view('home');
 });
 
-Auth::routes();
+Route::get('/login', function(){
+    return view('login');
+});
 
-Route::resource('student', \App\Http\Controllers\StudentController::class);
+Route::get('/registration', function(){
+    return view('registration');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', function(){
+    return view('profile');
+});
 
-Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'profileView']);
+/*
+ * Endpoint per la registrazione di un employer e di uno student
+ */
+Route::post('/registration/student', [\App\Http\Controllers\RegistrationController::class, 'StudentRegistration']);
 
-Route::get('/profile/placementList', [\App\Http\Controllers\ProfileController::class, 'placementList']);
+Route::post('/registration/employer', [\App\Http\Controllers\RegistrationController::class, 'EmployerRegistration']);
+
+/*
+ * Endpoint per la verifica delle credenziali in fase di login
+ */
+Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
+
+
