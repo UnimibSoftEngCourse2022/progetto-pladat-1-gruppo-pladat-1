@@ -6,6 +6,7 @@ use App\Models\Student;
 use App\Models\Employer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -23,7 +24,7 @@ class LoginController extends Controller
          *
          * Validate verifica che siano state inserite e controlla determinati
          * requisiti.
-         */
+        */
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -34,20 +35,33 @@ class LoginController extends Controller
          * colonna 'remeber_token'. Se è true la sessione di quell'utente viene mantenuta.
          */
         $remember = $request->input('remember_token');
+        $data = $request->input('email');
 
         /*
          * Il metodo attempt cerca se l'email esiste nel db e in caso confronta la password
          * Se tutto è rispettato viene instanziata una sessione
-         */
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended();
+            $request->session()->put('email', "banana");
+            $request->session()->save();
+            return redirect()->route('profile')->with(['message'=> 'Login']);
+        }*/
+        if(DB::table('student')->where($credentials)->exists()){
+            $request->session()->regenerate();
+            $request->session()->put('email', $data);
+            $request->session()->save();
+            return redirect()->route('profile')->with(['message'=> 'Login']);
         }
         /*
          * Se non vengono validate le credenziali lancia un errore
-         */
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
-        ]);
+        ]);*/
+
+        //
+        return redirect()->route('login')->with(['message'=> 'Login']);
+
     }
 }
