@@ -22,11 +22,11 @@ use Illuminate\Support\Facades\Route;
  */
 Route::get('/', function(){
     return view('home');
-});
+})->name('home');
 
 Route::get('/login', function(){
     return view('login');
-});
+})->name('login');
 
 Route::get('/registration', function(){
     return view('registration');
@@ -34,7 +34,7 @@ Route::get('/registration', function(){
 
 Route::get('/profile', function(){
     return view('profile');
-});
+})->name('profile');
 
 /*
  * Endpoint per la registrazione di un employer e di uno student
@@ -46,6 +46,24 @@ Route::post('/registration/employer', [\App\Http\Controllers\RegistrationControl
 /*
  * Endpoint per la verifica delle credenziali in fase di login
  */
-Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
+Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck'])->name('loginCheck');
 
+/*
+ * Endpoint student
+ */
+Route::post('student/update', [\App\Http\Controllers\StudentController::class, 'update']);
+
+Route::post('student/delete', [\App\Http\Controllers\StudentController::class, 'delete']);
+
+Route::post('student/request/create', [\App\Http\Controllers\StudentController::class, 'createRequest']);
+
+Route::post('student/request/update', [\App\Http\Controllers\StudentController::class, 'updateRequest']);
+
+Route::post('student/request/delete', [\App\Http\Controllers\StudentController::class, 'deleteRequest']);
+
+Route::get('student/request/list', [\App\Http\Controllers\StudentController::class, 'requestList']);
+
+/*
+ * Endpoint Employer
+ */
 
