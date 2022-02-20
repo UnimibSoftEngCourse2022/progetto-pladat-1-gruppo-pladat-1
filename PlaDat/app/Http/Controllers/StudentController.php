@@ -18,7 +18,7 @@ class StudentController extends Controller
          /*
          * Appena ho la sessione funzionante la prendo da quella la email da modificare
         */
-        $email = $request->input('email');
+        $email = $request->session()->get('email');
         $name = $request->input('name');
         $surname = $request->input('surname');
         $presentation = $request->input('presentation');
@@ -38,15 +38,14 @@ class StudentController extends Controller
     function delete(Request $request){
 
         /*
-         * Prelevo la email ( potrei farlo anche dalla sessione appena è disponibile )
-         * e la cerco nel db.
-         * Dato che il metodo findOrFail se non trova nulla solleva un eccezione, la gestisco
-         * con il try catch
+         * Viene prelevata la email dalla sessione.
+         * In base ad esssa vengono eliminate tutte le chiavi esterne e poi effettivamente lo studente.
          */
         try {
             $email = $request->session()->get('email');
-            DB::table('student')->where('email', $email)->delete();
+            DB::table('curriculum')->where('request_student_email', $email)->delete();
             DB::table('request')->where('student_email', $email)->delete();
+            DB::table('student')->where('email', $email)->delete();
         }catch(ModelNotFoundException){
             return redirect()->route('profile')->with(['message'=> 'Error']);
         }
@@ -62,7 +61,7 @@ class StudentController extends Controller
          * Non posso farlo perchè Models non supporta le chiavi esterne
          */
         try {
-            $student_email = $request->input('student_email');
+            $student_email = $request->session()->get('email');
             $idPlacement = $request->input('idPlacement');
             $letter = $request->input('presentation_letter');
 
@@ -86,7 +85,7 @@ class StudentController extends Controller
          * Non posso farlo perchè Models non supporta le chiavi esterne
          */
         try {
-            $student_email = $request->input('student_email');
+            $student_email = $request->session()->get('email');
             $idPlacement = $request->input('idPlacement');
             $letter = $request->input('presentation_letter');
 
@@ -140,6 +139,9 @@ class StudentController extends Controller
             ])->get();
 
         return response($req->jsonSerialize());
-
     }
+
+    /*
+     * Questo metodo serve per aggiungere una photo al DB.
+     */
 }

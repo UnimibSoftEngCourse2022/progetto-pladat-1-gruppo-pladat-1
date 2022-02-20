@@ -3,3 +3,7 @@
 <form method="POST"action="student/delete">
     <button type="submit">Delete</button>
 </form>
+<form method="POST"action="student/update">
+    <button type="submit">Update</button>
+</form>
+

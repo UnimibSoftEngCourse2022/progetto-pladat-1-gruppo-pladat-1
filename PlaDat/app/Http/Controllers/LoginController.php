@@ -48,7 +48,7 @@ class LoginController extends Controller
             $request->session()->save();
             return redirect()->route('profile')->with(['message'=> 'Login']);
         }*/
-
+        /*
         if(DB::table('student')->where($credentials)->exists()) {
             $request->session()->regenerate();
             $request->session()->put('email', $data);
@@ -62,6 +62,14 @@ class LoginController extends Controller
                 $request->session()->save();
                 return redirect()->route('profile')->with(['message' => 'Login']);
             }
+        }
+        */
+
+        if(DB::table('student')->join('employer')->where($credentials)->exists()){
+            $request->session()->regenerate();
+            $request->session()->put('email', $data);
+            $request->session()->save();
+            return redirect()->route('profile')->with(['message' => 'Login']);
         }
 
         return redirect()->route('login')->with(['message'=> 'Login']);
