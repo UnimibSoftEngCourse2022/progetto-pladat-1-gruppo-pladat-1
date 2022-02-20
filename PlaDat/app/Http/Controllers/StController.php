@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
-class StudentController extends Controller
+class StController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::all();
+        $student = DB::table('student')->get();
         if($student == null)
             return response($student->jsonSerialize(), 404);
         return response($student->jsonSerialize(), 200);
@@ -25,7 +26,7 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($request)
     {
 
     }
@@ -68,9 +69,11 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function show(Request $request)
+    public function show(Request $request, Student $student)
     {
-        return $request;
+        return view('user.profile', [
+            'user' => Student::findOrFail($student->get('email'))
+        ]);
 
     }
 
@@ -80,7 +83,7 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit($student)
+    public function edit(Student $student)
     {
         return view('user.profile', [
             'user' => $student
@@ -125,7 +128,6 @@ class StudentController extends Controller
     public function destroy(Request $request, $email)
     {
         try {
-            DB::table('student_has_category')->where('Student_email', $email)->delete();
             DB::table('curriculum')->where('request_student_email', $email)->delete();
             DB::table('request')->where('student_email', $email)->delete();
             DB::table('student')->where('email', $email)->delete();
@@ -135,4 +137,3 @@ class StudentController extends Controller
         return redirect()->route('home')->with(['message'=> 'Eliminated Account']);
     }
 }
-
