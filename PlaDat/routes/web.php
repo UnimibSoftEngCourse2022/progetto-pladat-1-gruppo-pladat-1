@@ -66,4 +66,6 @@ Route::get('student/request/list', [\App\Http\Controllers\StudentController::cla
 /*
  * Endpoint Employer
  */
+Route::resource('employer.placement', \App\Http\Controllers\PlacementController::class);
+Route::resource('student.request', \App\Http\Controllers\RequestController::class);
 

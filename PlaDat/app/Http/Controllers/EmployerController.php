@@ -22,14 +22,6 @@ class EmployerController extends Controller
         $description = $request->input('description');
         $address = $request->input('address');
 
-        /*
-        Employer::where('email', $email)
-            ->update([
-                'name' => $name,
-                'description'=>$description,
-                'address'=>$address,
-            ]);
-        */
         DB::table('employer')->where('email', $email)->update([
             'name' => $name,
             'description'=>$description,
@@ -53,27 +45,6 @@ class EmployerController extends Controller
             return redirect()->route('profile');
         }
         return redirect()->route('home');
-    }
-
-    /*
-     * Questo metodo si occupa della creazione del placement.
-     */
-    function createPlacement(Request $request){
-
-        $email = $request->session()->get('email');
-        DB::table('placement')->where('email', $email)->insert([
-            'title'=>$request->get('title'),
-            'description'=>$request->get('description'),
-            'duration'=>$request->get('duration'),
-            'start_date'=>$request->get('start_date'),
-            'expiration_date'=>$request->get('expiration_date'),
-            'start_placement'=>$request->get('start_placement'),
-            'salary'=>$request->get('salary'),
-            'employer_email'=>$email,
-        ]);
-
-        return redirect()->route('profile');
-
     }
 
     /*

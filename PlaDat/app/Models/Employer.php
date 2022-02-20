@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employer extends Model
 {
+    use HasFactory;
+
     protected $table = 'Employer';
     protected $primaryKey = 'email';
     protected $keyType = 'string';
@@ -23,5 +25,5 @@ class Employer extends Model
         'password'
     ];
 
-    use HasFactory;
+
 }
