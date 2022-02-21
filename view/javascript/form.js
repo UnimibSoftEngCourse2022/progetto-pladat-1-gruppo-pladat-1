@@ -191,7 +191,6 @@ function checkAzienda(id) {
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='descrizione1']").css("border-color", "#1a73e8");
 		}
-		/*location.reload();*/
 	});
 }
 
@@ -238,7 +237,6 @@ function checkStudent(id) {
 		} else {
 			$("#categoria").css("border-color", "#1a73e8");
 		}
-		/*location.reload();*/
 	});
 }
 
