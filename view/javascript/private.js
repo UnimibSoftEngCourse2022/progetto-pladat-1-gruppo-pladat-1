@@ -3,7 +3,8 @@ $(document).ready(function () {
 	$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
 	riempiCategoria();
 	$(".gruppo").children().prop("disabled", true);
-	sceltaAccetazione()
+	sceltaAccetazione();
+	startModifica();
 })
 
 $(window).on('resize', function () {
@@ -16,6 +17,29 @@ function riempiCategoria() {
 		$("#categoria").append("<option value=" + row + ">" + row + "</option>");
 		$("#categoria1").append("<option value=" + row + ">" + row + "</option>");
 	}
+}
+
+function startModifica() {
+	$("#invioDatiPrivato").css("display", "none");
+	$("#modificaPrivato").click(function () {
+		if ($(this).text() === "Modifica") {
+			if (chi === "azienda") {
+				$(".gazienda").children().prop("disabled", false);
+			}
+			if (chi === "utente") {
+				$(".gutente").children().prop("disabled", false);
+			}
+			$("#invioDatiPrivato").css("display", "block");
+			$("#modificaPrivato").text("Annulla");
+		} else {
+			if (chi === "utente") {
+				location.reload();
+			}
+			if (chi === "azienda") {
+				location.reload();
+			}
+		}
+	});
 }
 
 function infoOfferte() {

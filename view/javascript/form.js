@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
+    invioDati();
 })
 function isEmail(email) {
 	let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -294,29 +295,6 @@ function invioDati() {
 	});
 }
 
-function startModifica() {
-	$("#invioDatiPrivato").css("display", "none");
-	$("#modificaPrivato").click(function () {
-		if ($(this).text() === "Modifica") {
-			if (chi === "azienda") {
-				$(".gazienda").children().prop("disabled", false);
-			}
-			if (chi === "utente") {
-				$(".gutente").children().prop("disabled", false);
-			}
-			$("#invioDatiPrivato").css("display", "block");
-			$("#modificaPrivato").text("Annulla");
-		} else {
-			if (chi === "utente") {
-				location.reload();
-			}
-			if (chi === "azienda") {
-				location.reload();
-			}
-		}
-	});
-}
-
 function invioDati2() {
 	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='titolo']").get(0).setCustomValidity("Il titolo deve avere da 1 a 40 caratteri");
 	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='durata']").get(0).setCustomValidity("La durata è obbligatoria (es: 3 settimane)");
@@ -370,4 +348,8 @@ function invioDati2() {
 			$("#categoria1").css("border-color", "#1a73e8");
 		}
 	});
+}
+function invioDati()
+{
+    
 }
