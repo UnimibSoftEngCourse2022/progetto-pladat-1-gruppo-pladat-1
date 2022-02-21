@@ -1,8 +1,34 @@
 $(document).ready(function () {
 	$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
-	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
+	$(".gruppo>input[type=date]").val("");
 	invioDati();
 })
+
+function invioDati() {
+	if (document.URL.includes("login.html")) {
+		invioDatiLogin();
+	} else if (document.URL.includes("registrazione.html")) {
+		change();
+		checkStudent("#invioDatiRegistrazione");
+		checkAzienda("#invioDatiRegistrazione");
+	} else if (document.URL.includes("private.html")) {
+		let who = "azienda";
+		if (who === "azienda") {
+			$('.gazienda').removeClass("nascondi");
+			$('.gutente').addClass("nascondi");
+			checkAzienda("#invioDatiPrivato");
+			invioDati2();
+		} else {
+			$('.gazienda').addClass("nascondi");
+			$('.gutente').removeClass("nascondi");
+			checkStudent("#invioDatiPrivato");
+		}
+        $(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
+        startModifica(who);
+	} else {
+		console.log("errore");
+	}
+}
 
 function isEmail(email) {
 	let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -17,6 +43,11 @@ function isPassword(password) {
 function isNome(nome) {
 	let regex = /^.{3,20}$/;
 	return regex.test(nome);
+}
+
+function isPasswordLogin(cognome) {
+	let regex = /^.{1,30}$/;
+	return regex.test(cognome);
 }
 
 function isCognome(cognome) {
@@ -59,35 +90,6 @@ function isSalario(salario) {
 	return regex.test(salario);
 }
 
-function invioDati() {
-	if (document.URL.includes("login.html")) {
-		invioDatiLogin();
-	} else if (document.URL.includes("registrazione.html")) {
-		change();
-		if ($('#studente').is(':checked')) {
-			checkStudent("#invioDatiPrivato");
-		}
-		if ($('#azienda').is(':checked')) {
-			checkAzienda("#invioDatiPrivato");
-		}
-	} else if (document.URL.includes("private.html")) {
-        alert("");
-		let who = "azienda";
-		if (who === "azienda") {
-			$('.gazienda').removeClass("nascondi");
-			$('.gutente').addClass("nascondi");
-			checkAzienda("#invioDatiPrivato");
-			invioDati2();
-		} else {
-			$('.gazienda').addClass("nascondi");
-			$('.gutente').removeClass("nascondi");
-			checkStudent("#invioDatiPrivato");
-		}
-	} else {
-		console.log("errore");
-	}
-}
-
 function change() {
 	if ($('#studente').is(':checked')) {
 		$('.gazienda').addClass("nascondi");
@@ -98,6 +100,8 @@ function change() {
 		$('.gutente').addClass("nascondi");
 	}
 	$("input[type='radio']").change(function () {
+        $(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
+	    $(".gruppo>input[type=date]").val("");
 		if ($('#studente').is(':checked')) {
 			$('.gazienda').addClass("nascondi");
 			$('.gutente').removeClass("nascondi");
@@ -105,6 +109,24 @@ function change() {
 		if ($('#azienda').is(':checked')) {
 			$('.gazienda').removeClass("nascondi");
 			$('.gutente').addClass("nascondi");
+		}
+	});
+}
+
+function startModifica(chi) {
+	$("#invioDatiPrivato").css("display", "none");
+	$("#modificaPrivato").click(function () {
+		if ($(this).text() === "Modifica") {
+			if (chi === "azienda") {
+				$(".gazienda").children().prop("disabled", false);
+			}
+			if (chi === "utente") {
+				$(".gutente").children().prop("disabled", false);	
+			}
+			$("#invioDatiPrivato").css("display", "block");
+			$("#modificaPrivato").text("Annulla");
+		} else {
+				location.reload();
 		}
 	});
 }
@@ -120,7 +142,7 @@ function invioDatiLogin() {
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#1a73e8");
 		}
-		if (!isPassword(password)) {
+		if (!isPasswordLogin(password)) {
 			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#ea4335");
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#1a73e8");
@@ -166,7 +188,9 @@ function checkAzienda(id) {
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='descrizione1']").css("border-color", "#1a73e8");
 		}
-		location.reload();
+        if (document.URL.includes("private.html")) {
+		    location.reload();
+        }
 	});
 }
 
@@ -177,12 +201,12 @@ function checkStudent(id) {
 	$(id).parent().children(".gruppo").children("input[name='cognome']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
 	$(id).parent().children(".gruppo").children("input[name='data']").get(0).setCustomValidity("La data è obbligatoria");
 	$(id).parent().children(".gruppo").children("select").get(0).setCustomValidity("Seleziona almeno una categoria");
-	let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
-	let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
-	let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
-	let cognome = $(this).parent().children(".gruppo").children("input[name='cognome']").val().trim().toLowerCase();
-	let data = $(this).parent().children(".gruppo").children("input[name='data']").val();
 	$(id).click(function () {
+        let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
+        let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
+        let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
+        let cognome = $(this).parent().children(".gruppo").children("input[name='cognome']").val().trim().toLowerCase();
+        let data = $(this).parent().children(".gruppo").children("input[name='data']").val();
 		if (!isEmail(email)) {
 			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#ea4335");
 		} else {
@@ -213,7 +237,9 @@ function checkStudent(id) {
 		} else {
 			$("#categoria").css("border-color", "#1a73e8");
 		}
+        if (document.URL.includes("private.html")) {
 		location.reload();
+        }
 	});
 }
 
