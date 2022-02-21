@@ -19,6 +19,7 @@ class Req extends Model
         'student_email',
         'presentation_letter',
         'idPlacement',
+        'path_curriculum',
     ];
 
     protected function setKeysForSaveQuery($query)

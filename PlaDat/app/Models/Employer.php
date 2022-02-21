@@ -19,6 +19,7 @@ class Employer extends Model
         'email',
         'address',
         'description',
+        'path_photo',
     ];
 
     protected $hidden = [

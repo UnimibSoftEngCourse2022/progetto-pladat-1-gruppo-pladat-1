@@ -20,10 +20,14 @@ return new class extends Migration
 
             $table->foreign('category_name')
                 ->references('name')
-                ->on('category');
+                ->on('category')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreign('student_email')
                 ->references('email')
-                ->on('student');
+                ->on('student')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
 
             $table->engine = 'InnoDB';

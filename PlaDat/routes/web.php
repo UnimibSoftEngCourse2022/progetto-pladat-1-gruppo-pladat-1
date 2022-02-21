@@ -15,57 +15,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*
- * ENDPOINT INDEX
- *
- * Alla richiesta GET all'endpoint '/', viene eseguito il metodo loginPage che torna
- * la pagina di login.
+ * Endpoint delle operazioni dello studente
  */
-Route::get('/', function(){
-    return view('home');
-})->name('home');
-
-Route::get('/login', function(){
-    return view('login');
-})->name('login');
-
-Route::get('/registration', function(){
-    return view('registration');
-});
-
-Route::get('/profile', function(){
-    return view('profile');
-})->name('profile');
+Route::resource('student', \App\Http\Controllers\StudentController::class);
 
 /*
- * Endpoint per la registrazione di un employer e di uno student
+ * Endpoint delle operazioni di employer
  */
-Route::post('/registration/student', [\App\Http\Controllers\RegistrationController::class, 'StudentRegistration']);
-
-Route::post('/registration/employer', [\App\Http\Controllers\RegistrationController::class, 'EmployerRegistration']);
+Route::resource('employer', \App\Http\Controllers\EmployerController::class);
 
 /*
- * Endpoint per la verifica delle credenziali in fase di login
- */
-Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck'])->name('loginCheck');
-
-/*
- * Endpoint student
- */
-Route::post('student/update', [\App\Http\Controllers\StudentController::class, 'update']);
-
-Route::post('student/delete', [\App\Http\Controllers\StudentController::class, 'delete']);
-
-Route::post('student/request/create', [\App\Http\Controllers\StudentController::class, 'createRequest']);
-
-Route::post('student/request/update', [\App\Http\Controllers\StudentController::class, 'updateRequest']);
-
-Route::post('student/request/delete', [\App\Http\Controllers\StudentController::class, 'deleteRequest']);
-
-Route::get('student/request/list', [\App\Http\Controllers\StudentController::class, 'requestList']);
-
-/*
- * Endpoint Employer
+ * Endpoint per le operazioni dell'employer sulla creazion/iterazione dei placement
  */
 Route::resource('employer.placement', \App\Http\Controllers\PlacementController::class);
+
+/*
+ * Endpoint per le operazioni dello studente sulla creazion/iterazione delle richieste
+ */
 Route::resource('student.request', \App\Http\Controllers\RequestController::class);
+
 

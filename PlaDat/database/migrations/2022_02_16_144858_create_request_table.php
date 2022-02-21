@@ -16,12 +16,17 @@ return new class extends Migration
         Schema::create('request', function (Blueprint $table) {
             $table->string('student_email', 100);
             $table->string('presentation_letter', 10000)->nullable()->default(null);
+            $table->string('path_curriculum')->nullable()->default(null);
 
             $table->foreign('student_email')
                 ->references('email')
-                ->on('student');
+                ->on('student')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('idPlacement')
-                ->on('placement');
+                ->constrained('placement', 'id')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->index('idPlacement');
 
             $table->primary(['student_email', 'idPlacement']);

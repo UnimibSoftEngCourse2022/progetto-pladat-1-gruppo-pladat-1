@@ -4,72 +4,154 @@ namespace App\Http\Controllers;
 
 use App\Models\Employer;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use mysql_xdevapi\Exception;
 
 class EmployerController extends Controller
 {
-    /*
-         * Modifica del profilo eccetto la email.
-         *
-         */
-    function update(Request $request){
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $employers = Employer::all();
+        return response($employers->jsonSerialize(), 200);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return response("success Create")->view('');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function store(Request $request)
+    {
         /*
-        * Appena ho la sessione funzionante la prendo da quella la email da modificare
+        * Possibile che sia all'interno della registrazione
+         * La sessione non c'è al momento della registrazione.
         */
-        $email = $request->session()->get('email');
-        $name = $request->input('name');
-        $description = $request->input('description');
-        $address = $request->input('address');
-
-        DB::table('employer')->where('email', $email)->update([
-            'name' => $name,
-            'description'=>$description,
-            'address'=>$address,
-        ]);
-
-        return redirect()->route('profile')->with(['message'=> 'Updated Account']);
-    }
-
-    function delete(Request $request){
-
-        /*
-         * Prelevo la email dalla sessione
-         * Successivamente elimino le chiavi esterne e poi l'elemento.
-         */
-        try {
-            $email = $request->session()->get('email');
-            DB::table('placement')->where('employer_email', $email)->delete();
-            DB::table('employer')->where('email', $email)->delete();
-        }catch(ModelNotFoundException){
-            return redirect()->route('profile');
+        try{
+            DB::table('employer')
+                ->insert([
+                    'email'=>$request->input('email'),
+                    'name'=>$request->input('name'),
+                    'description'=>$request->input('description'),
+                    'address'=>$request->input('address'),
+                    'password'=>$request->input('password'),
+                    'path_photo'=>$request->input('path_photo'),
+                ]);
+        }catch(QueryException){
+            return response("Error", 500);
         }
-        return redirect()->route('home');
+        return response("Success", 200);
+
+
     }
 
-    /*
-     * Questo metodo si occupa della modifica del placement.
-     * Preleva i dati dal form e va a modificare il db.
+    /**
+     * Display the specified resource.
+     *
+     * @param  Employer  $employer
+     * @return \Illuminate\Http\Response
      */
-    function updatePlacement(Request $request){
-
-        $email = $request->session()->get('email');
-        DB::table('placement')->where('email', $email)->update([
-           'title'=>$request->get('title'),
-            'description'=>$request->get('description'),
-            'duration'=>$request->get('duration'),
-            'start_date'=>$request->get('start_date'),
-            'expiration_date'=>$request->get('expiration_date'),
-            'start_placement'=>$request->get('start_placement'),
-            'salary'=>$request->get('salary'),
-        ]);
-
-        return redirect()->route('profile');
+    public function show(Employer $employer)
+    {
+        try{
+            if(Employer::findOrFail($employer->email)) {
+                $placements = DB::table('employer')
+                    ->where('email', $employer->email)
+                    ->get();
+            }
+        }catch(ModelNotFoundException){
+            return response("show Error", 500);
+        }
+        return response($placements->jsonSerialize(), 200)->view();
     }
 
-    /*
-     * Questo metodo si occuperà di eliminare il placement
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  Employer  $employer
+     * @return \Illuminate\Http\Response
      */
+    public function edit(Employer $employer)
+    {
+        try{
+            if(Employer::findOrFail($employer->email)) {
+                $placements = DB::table('employer')
+                    ->where('email', $employer->email)
+                    ->get();
+            }
+        }catch(ModelNotFoundException){
+            return response("show Error", 500);
+        }
+        return response($placements->jsonSerialize(), 200);
 
+
+           }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Employer $employer
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Employer $employer)
+    {
+        try{
+            if(Employer::findOrFail($employer->email)) {
+                DB::table('employer')
+                    ->where('email', $employer->email)
+                    ->update([
+                        'name' => $request->input('name'),
+                        'description' => $request->input('description'),
+                        'address' => $request->input('address'),
+                        'path_photo'=>$request->input('path_photo'),
+                    ]);
+            }
+        }catch(ModelNotFoundException){
+            return response("Update Error", 500);
+        }
+        return response("update Success", 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Employer $employer
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Employer $employer)
+    {
+
+        try{
+            if(Employer::findOrFail($employer->email)){
+                DB::table('employer')
+                    ->where('email', $employer->email)
+                    ->delete();
+            }
+        }catch(ModelNotFoundException){
+            return response("update Error", 500);
+        }
+        return response("destroy Success", 200);
+    }
 
 }
+

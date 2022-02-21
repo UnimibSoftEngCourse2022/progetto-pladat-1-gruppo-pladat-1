@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Placement;
+use App\Models\Req;
+use App\Models\Student;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use mysql_xdevapi\Exception;
 
 class RequestController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of the resource for Student
+     * @param Student $student
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Student $student)
     {
-        $email = Session::get('email');
-        $requestes = DB::table('request')
-            ->where('student_email', $email)
-            ->get();
-
-        return response("index Success", 200, $requestes->jsonSerialize());
+        $requestes = Request::all()
+            ->where('student_email', $student->email);
+        return response($requestes->jsonSerialize(), 200);
     }
 
     /**
@@ -37,93 +39,107 @@ class RequestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param Student $student
+     * @param Placement $placement
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Student $student, Placement $placement)
     {
-        $student_email = $request->session()->get('email');
-        $idPlacement = $request->input('idPlacement');
-        $letter = $request->input('presentation_letter');
-
-        DB::table('request')->insert([
-            'idPlacement'=>$idPlacement,
-            'presentation_letter'=>$letter,
-            'student_email'=>$student_email,
-            ]);
-
+        try {
+            DB::table('request')
+                ->insert([
+                    'idPlacement'=>$placement->id,
+                    'presentation_letter'=>$request->input('presentation_letter'),
+                    'path_curriculum'=>$request->input('path_curriculum'),
+                    'student_email'=>$student->email,
+                ]);
+        }catch(QueryException) {
+            return response("store Error", 500);
+        }
         return response("store Success", 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Req $request
+     * @param Placement $placement
+     * @param Student $student
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Student $student, Req $request)
     {
-        $email = Session::get('email');
-        $requestes = DB::table('request')
-            ->where('student_email', $email)
-            ->where('id', $id)
-            ->get();
-        return response("show Success", 200, $requestes->jsonSerialize())->view('');
+        try {
+            $requestes = Request::all()
+                ->where('student_email', $student->email)
+                ->where('idPlacement', $request->idPlacement);
+        }catch(QueryException){
+            return response("show Error", 500);
+        }
+        return response($requestes->jsonSerialize(), 200);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Req $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student, Req $request)
     {
-        $email = Session::get('email');
-
-        $requestes = DB::table('request')
-            ->where('student_email', $email)
-            ->where('id', $id)
-            ->get();
-
-        return response("edit Success", 200, $requestes->jsonSerialize())->view('');
+        try{
+            $requestes = DB::table('request')
+                ->join('curriculum', 'request_student_email', '=', 'student_email')
+                ->where('student_email', $student->email)
+                ->where('idPlacement', $request->idPlacement)
+                ->get();
+        }catch(QueryException){
+            return response("edit Error", 500);
+        }
+        return response($requestes->jsonSerialize(), 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Req $request
+     * @param Student $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, Req $request, Student $student)
     {
-        $email = Session::get('email');
-
-        DB::table('request')
-            ->where('student_email', $email)
-            ->where('id', $id)
-            ->update([
-                'presentation_letter'=>$request->input('presentation_letter'),
-            ]);
-
+        try{
+            DB::table('request')
+                ->where('student_email', $student->email)
+                ->where('idPlacement', $request->idPlacement)
+                ->update([
+                    'presentation_letter'=>$req->input('presentation_letter'),
+                ]);
+        }catch(QueryException){
+            return response("error Success", 500);
+        }
         return response("update Success", 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Req $request
+     * @param Student $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Req $request, Student $student)
     {
-        $email = Session::get('email');
-
-        DB::table('request')
-            ->where('student_email', $email)
-            ->where('id', $id)
-            ->delete();
-
+        try{
+            DB::table('request')
+                ->where('student_email', $student->email)
+                ->where('idPlacement', $request->idPlacement)
+                ->delete();
+        }catch(QueryException){
+            return response("destroy Error", 500);
+        }
         return response("destroy Success", 200);
+
     }
 }

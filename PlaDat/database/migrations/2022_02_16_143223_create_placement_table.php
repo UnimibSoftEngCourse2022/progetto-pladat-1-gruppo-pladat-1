@@ -26,7 +26,9 @@ return new class extends Migration
 
             $table->foreign('employer_email')
                 ->references('email')
-                ->on('employer');
+                ->on('employer')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
 
             $table->timestamps();

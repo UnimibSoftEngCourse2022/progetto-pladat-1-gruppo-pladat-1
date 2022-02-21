@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description', 10000);
             $table->string('address', 100);
             $table->string('password');
+            $table->string('path_photo');
             $table->rememberToken();
             $table->primary('email');
             $table->timestamps();

@@ -2,146 +2,147 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Req;
 use App\Models\Student;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
-    /*
-     * Modifica del profilo eccetto la email.
+    /**
+     * Display a listing of the resource.
      *
+     * @return \Illuminate\Http\Response
      */
-    function update(Request $request){
-         /*
+    public function index()
+    {
+        /*
+         * Se non c'è nessun elemento nella tabella student non è un errore
+         */
+        $student = Student::all();
+        return response($student->jsonSerialize(), 200);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create($request)
+    {
+        /*
+         * Questo metodo sarebbe la registrazione
+         */
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        try {
+            DB::table('student')
+                ->insert([
+                    'email'=>$request->input('email'),
+                    'name'=>$request->input('name'),
+                    'surname'=>$request->input('surname'),
+                    'password'=>$request->input('password'),
+                    'birth_date'=>$request->input('birth_date'),
+                    'presentation'=>$request->input('presentation'),
+                ]);
+
+            /*
+             * Inserisco nella tabella student_has_category la categoria associata
+             * all'utente.
+             */
+            DB::table('student_has_category')
+                ->insert([
+                    'student_email'=>$request->input('email'),
+                    'category_name'=>$request->input('category'),
+                ]);
+            return response("failed", 200);
+        }catch(\Exception){
+            return response("success", 200);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Student $student
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, Student $student)
+    {
+        try{
+            $tmp = Student::where('email', $student->email);
+        }catch(QueryException){
+            return response("Error", 500);
+        }
+        return response($tmp->jsonSerialize(), 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Student  $student
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Student $student)
+    {
+        $element = DB::table('student')
+            ->where('email', $student->email);
+
+        return response("edit Success", 200, $element->jsonSerialize())->view('profile');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param Student $student
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Student $student)
+    {
+
+        /*
          * Appena ho la sessione funzionante la prendo da quella la email da modificare
         */
-        $email = $request->session()->get('email');
+
         $name = $request->input('name');
         $surname = $request->input('surname');
         $presentation = $request->input('presentation');
         $birth_date = $request->input('birth_date');
-        $idPhoto = $request->input('idPhoto');
 
-        Student::where('email', $email)
-            ->update(['name' => $name,
-                'surname'=>$surname,
-                'presentation'=>$presentation,
-                'birth_date'=>$birth_date,
-                'idPhoto'=>$idPhoto]);
+        $student->update([
+            'name'=>$name,
+            'surname'=>$surname,
+            'presentation'=>$presentation,
+            'birth_date'=>$birth_date,
+        ]);
 
-        return redirect()->route('profile')->with(['message'=> 'Updated Account']);
+        return response("update Success", 200);
     }
 
-    function delete(Request $request){
 
-        /*
-         * Viene prelevata la email dalla sessione.
-         * In base ad esssa vengono eliminate tutte le chiavi esterne e poi effettivamente lo studente.
-         */
-        try {
-            $email = $request->session()->get('email');
-            DB::table('curriculum')->where('request_student_email', $email)->delete();
-            DB::table('request')->where('student_email', $email)->delete();
-            DB::table('student')->where('email', $email)->delete();
-        }catch(ModelNotFoundException){
-            return redirect()->route('profile')->with(['message'=> 'Error']);
-        }
-        return redirect()->route('home')->with(['message'=> 'Eliminated Account']);
-    }
-
-    /*
-     * Questo metodo prende i parametri per la creazione della richiesta
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Student  $student
+     * @return \Illuminate\Http\Response
      */
-    function createRequest(Request $request){
-
-        /*
-         * Non posso farlo perchè Models non supporta le chiavi esterne
-         */
+    public function destroy(Request $request, Student $student)
+    {
         try {
-            $student_email = $request->session()->get('email');
-            $idPlacement = $request->input('idPlacement');
-            $letter = $request->input('presentation_letter');
-
-            DB::table('request')->insert([
-                'idPlacement'=>$idPlacement,
-                'presentation_letter'=>$letter,
-                'student_email'=>$student_email,
-            ]);
-            return redirect()->route('home');
+            $student->delete();
         }catch(\Exception){
-            return redirect()->route('profile');
+            return response("destroy Error", 500);
         }
+        return response("destroy Success", 200);
     }
-
-    /*
-     * Questo metodo prende i parametri per la modifica della richiesta
-     */
-    function updateRequest(Request $request){
-
-        /*
-         * Non posso farlo perchè Models non supporta le chiavi esterne
-         */
-        try {
-            $student_email = $request->session()->get('email');
-            $idPlacement = $request->input('idPlacement');
-            $letter = $request->input('presentation_letter');
-
-            DB::table('request')
-                ->select('presentation_letter')
-                ->where([
-                    'student_email'=>$student_email,
-                    'idPlacement'=>$idPlacement,
-                ])->update([
-                    'presentation_letter'=>$letter,
-                ]);
-            return redirect()->route('home')->with(['message'=> 'Created Request']);
-        }catch(\Exception){
-            return redirect()->route('profile')->with(['message'=> 'Somethings was wrong']);
-        }
-    }
-    /*
-     * Questo metodo preleva i parametri per l'eliminazione della richiesta
-    */
-    function deleteRequest(Request $request){
-        try {
-            $student_email = $request->input('student_email');
-            $idPlacement = $request->input('idPlacement');
-
-            DB::table('request')
-                ->select('student_email', 'idPlacement')
-                ->where([
-                    'student_email'=>$student_email,
-                    'idPlacement'=>$idPlacement,
-                ])->delete([
-                    'student_email'=>$student_email,
-                    'idPlacement'=>$idPlacement,
-                ]);
-            return redirect()->route('home')->with(['message'=> 'Created Request']);
-        }catch(\Exception){
-            return redirect()->route('profile')->with(['message'=> 'Somethings was wrong']);
-        }
-    }
-
-    /*
-     * Questo metodo ritorna una lista delle richieste fatte da un determinato studente
-     */
-    function requestList(Request $request){
-
-        $student_email = $request->input('student_email');
-
-        $req = DB::table('request')
-            ->select('student_email')
-            ->where([
-                'student_email'=>$student_email,
-            ])->get();
-
-        return response($req->jsonSerialize());
-    }
-
-    /*
-     * Questo metodo serve per aggiungere una photo al DB.
-     */
 }

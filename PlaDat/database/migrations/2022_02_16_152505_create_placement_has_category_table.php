@@ -15,10 +15,16 @@ return new class extends Migration
     {
         Schema::create('placement_has_category', function (Blueprint $table) {
 
-            $table->foreignId('idCategory')
-                ->on('category');
+            $table->string('idCategory', 50);
+            $table->foreign('idCategory')
+                ->references('name')
+                ->on('category')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreignId('idPlacement')
-                ->on('placement');
+                ->constrained('placement')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->primary(['idCategory', 'idPlacement']);
             $table->timestamps();
 
