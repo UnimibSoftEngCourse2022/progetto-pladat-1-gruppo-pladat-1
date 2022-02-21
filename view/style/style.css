@@ -263,7 +263,6 @@ nav {
 	margin: 0 auto;
 	display: block;
 	color: white;
-	border: 0px;
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 10px;
@@ -521,7 +520,6 @@ nav {
 .bottone-invio {
 	background-color: #1a73e8;
 	color: white;
-	border: 0px;
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-top: 5px;
@@ -532,7 +530,6 @@ nav {
 .bottone-chiusura {
 	background-color: #ea4335;
 	color: white;
-	border: 0px;
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-top: 5px;
@@ -635,7 +632,6 @@ hr {
 
 .elencoOfferte>div {
 	width: 100%;
-	padding: 20px;
 	display: flex;
 	align-content: space-between;
 	padding: 20px;
