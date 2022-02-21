@@ -51,14 +51,14 @@ function caricaRicerca() {
 	$('#elencoRicerca').hover(function () {
 		$('#ricercona').focus();
 	});
-	for (let i = 0; i < lista.length; i++) {
-		$('#elencoRicerca').append("<li onclick='scriviricerca(this)'>" + lista[i] + "</li>");
+	for (let row of lista) {
+		$('#elencoRicerca').append("<li onclick='scriviricerca(this)'>" + row + "</li>");
 	}
 	$("#ricercona").keyup(function () {
 		$('#elencoRicerca').text("");
-		for (let i = 0; i < lista.length; i++) {
-			if (lista[i].toUpperCase().indexOf($("#ricercona").val().toUpperCase()) > -1) {
-				$('#elencoRicerca').append("<li onclick='scriviricerca(this)'>" + lista[i] + "</li>");
+		for (let row of lista) {
+			if (row.toUpperCase().indexOf($("#ricercona").val().toUpperCase()) > -1) {
+				$('#elencoRicerca').append("<li onclick='scriviricerca(this)'>" + row + "</li>");
 			}
 		}
 	});

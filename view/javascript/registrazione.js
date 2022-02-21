@@ -11,8 +11,8 @@ $(document).ready(function () {
 let listaCat = ["prima", "seconda", "terza", "quarta"];
 
 function riempiCategoria() {
-	for (let i = 0; i < listaCat.length; i++) {
-		$("#categoria").append("<option value=" + listaCat[i] + ">" + listaCat[i] + "</option>");
+	for (let row of listaCat) {
+		$("#categoria").append("<option value=" + row + ">" + row + "</option>");
 	}
 }
 
@@ -74,7 +74,9 @@ function loadMapScenario() {
 		manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
 	}
 
-	function onError(message) {}
+	function onError(message) {
+		console.log(message.message)
+	}
 
 	function selectedSuggestion(suggestionResult) {
 		$('#searchBox').val(suggestionResult.formattedSuggestion);
