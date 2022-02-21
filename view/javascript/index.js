@@ -17,4 +17,4 @@ function myfunct() {
 	$("#motivatore").removeClass("fadeIn");
 	$("#motivatore").width();
 	$("#motivatore").addClass("fadeIn");
-}
+} 

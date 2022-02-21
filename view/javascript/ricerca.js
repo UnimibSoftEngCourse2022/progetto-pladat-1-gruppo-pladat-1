@@ -50,7 +50,7 @@ function caricaRicerca() {
 	})
 	$('#elencoRicerca').hover(function () {
 		$('#ricercona').focus();
-	});
+	}); 
 	for (let row of lista) {
 		$('#elencoRicerca').append("<li onclick='scriviricerca(this)'>" + row + "</li>");
 	}
