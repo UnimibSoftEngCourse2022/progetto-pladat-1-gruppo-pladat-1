@@ -23,8 +23,7 @@ function invioDati() {
 			$('.gutente').removeClass("nascondi");
 			checkStudent("#invioDatiPrivato");
 		}
-        $(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
-        startModifica(who);
+		startModifica(who);
 	} else {
 		console.log("errore");
 	}
@@ -100,8 +99,8 @@ function change() {
 		$('.gutente').addClass("nascondi");
 	}
 	$("input[type='radio']").change(function () {
-        $(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
-	    $(".gruppo>input[type=date]").val("");
+		$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
+		$(".gruppo>input[type=date]").val("");
 		if ($('#studente').is(':checked')) {
 			$('.gazienda').addClass("nascondi");
 			$('.gutente').removeClass("nascondi");
@@ -115,19 +114,23 @@ function change() {
 
 function startModifica(chi) {
 	$("#invioDatiPrivato").css("display", "none");
+	$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
 	$("#modificaPrivato").click(function () {
 		if ($(this).text() === "Modifica") {
 			if (chi === "azienda") {
 				$(".gazienda").children().prop("disabled", false);
+				$(".gazienda").children("#searchBoxContainer").children("input").prop("disabled", false);
 			}
 			if (chi === "utente") {
-				$(".gutente").children().prop("disabled", false);	
+				$(".gutente").children("input").prop("disabled", false);
+				$(".gutente").children("input").prop("disabled", false);
 			}
 			$("#invioDatiPrivato").css("display", "block");
 			$("#modificaPrivato").text("Annulla");
 		} else {
-				location.reload();
+			location.reload();
 		}
+		$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
 	});
 }
 
@@ -188,9 +191,7 @@ function checkAzienda(id) {
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='descrizione1']").css("border-color", "#1a73e8");
 		}
-        if (document.URL.includes("private.html")) {
-		    location.reload();
-        }
+		/*location.reload();*/
 	});
 }
 
@@ -202,11 +203,11 @@ function checkStudent(id) {
 	$(id).parent().children(".gruppo").children("input[name='data']").get(0).setCustomValidity("La data è obbligatoria");
 	$(id).parent().children(".gruppo").children("select").get(0).setCustomValidity("Seleziona almeno una categoria");
 	$(id).click(function () {
-        let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
-        let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
-        let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
-        let cognome = $(this).parent().children(".gruppo").children("input[name='cognome']").val().trim().toLowerCase();
-        let data = $(this).parent().children(".gruppo").children("input[name='data']").val();
+		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
+		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
+		let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
+		let cognome = $(this).parent().children(".gruppo").children("input[name='cognome']").val().trim().toLowerCase();
+		let data = $(this).parent().children(".gruppo").children("input[name='data']").val();
 		if (!isEmail(email)) {
 			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#ea4335");
 		} else {
@@ -237,9 +238,7 @@ function checkStudent(id) {
 		} else {
 			$("#categoria").css("border-color", "#1a73e8");
 		}
-        if (document.URL.includes("private.html")) {
-		location.reload();
-        }
+		/*location.reload();*/
 	});
 }
 

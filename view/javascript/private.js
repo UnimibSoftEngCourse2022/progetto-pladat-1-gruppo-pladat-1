@@ -1,7 +1,8 @@
 $(document).ready(function () {
 	infoOfferte();
 	riempiCategoria();
-	$(".gruppo").children().prop("disabled", true);
+	$(".gazienda").children().prop("disabled", true);
+	$(".utente").children().prop("disabled", true);
 	sceltaAccetazione();
 })
 
