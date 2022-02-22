@@ -19,7 +19,9 @@ Per un'installazione semplice e veloce seguire i seguenti passaggi (per Windows)
 ```sh
 composer update --ignore-platform-reqs
 ```
-9) Esegurire il server tramite CMD
+
+### Esegure il server HTTP e il server MySQL
+- Esegurire il server HTTP tramite CMD
 ```sh
 php artisan serve
 ```
