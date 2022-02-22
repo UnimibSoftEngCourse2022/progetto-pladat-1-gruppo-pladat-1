@@ -5,7 +5,9 @@ PlaDat è una **piattaforma online** nata come luogo di incontro tra studenti ed
 
 ## Installazione
 Per un'installazione semplice e veloce seguire i seguenti passaggi (per Windows).
+
 ### Installazione MySQL Server
+Prova
 
 ### Installazione PHP
 1) Scaricare [PHP](https://dw.uptodown.com/dwn/lr6MdfDpgQOJwLIiAihdAT0QcDAq6vG21T1GsTCeAjD1juqBUnsEe1IzQjiBTH404RvVOCoEEiPMVuOuurHx3_ifFSS_jufPAtMyrPolh4JUhjDsIotuXhQnsuR7JhBm/6bf1icuXVkw5vrHP9p_4kEhGNtIbZ5ykHSznddVtFXrV-Y5kXOvm8bRzPAL-o1j84WT2VmAhmVh7iYU_qVVG7u_f7Nvh1npJfc7QyUCKSfT2457_wLoXZVSbYQTh3o_L/EK892T7oJZGCRQqSdpRDIBBZsxn7CU-XCg1bbD4eld6G09CpjqjFXTXFR1zh1qC3/);
