@@ -11,23 +11,14 @@
    </head>
    <body>
       <nav class="navbar navbar-expand-lg navbar-light">
-         <a href="index.html" class="nome-sito"><img src="/image/logo.png" alt="logo" class="navbar-brand">PlaDat</a>
+         <a href="/" class="nome-sito"><img src="/image/logo.png" alt="logo" class="navbar-brand">PlaDat</a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
          </button>
          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul id="naviga" class="navbar-nav">
                <li class="nav-item">
-                  <a class="nav-link" href="page1">Primapagina</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="page2">SecondaPagina</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="page3">Terzapagina</a>
-               </li>
-               <li class="nav-item">
-                  <button class="nav-link login-button">Andreinetto</button>
+                  <a href="/login" class="nav-link login-button">Login</a>
                </li>
             </ul>
          </div>

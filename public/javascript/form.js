@@ -5,13 +5,13 @@ $(document).ready(function () {
 })
 
 function invioDati() {
-	if (document.URL.includes("login.html")) {
+	if (document.URL.includes("/login")) {
 		invioDatiLogin();
-	} else if (document.URL.includes("registrazione.html")) {
+	} else if (document.URL.includes("registrazione.blade.php")) {
 		change();
 		checkStudent("#invioDatiRegistrazione");
 		checkAzienda("#invioDatiRegistrazione");
-	} else if (document.URL.includes("private.html")) {
+	} else if (document.URL.includes("private.blade.php")) {
 		let who = "azienda";
 		if (who === "azienda") {
 			$('.gazienda').removeClass("nascondi");
@@ -149,6 +149,14 @@ function invioDatiLogin() {
 			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#ea4335");
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#1a73e8");
+		}
+		if(isEmail(email)&&isPasswordLogin(password))
+		{
+			$.post("/loginCheck",
+  			{
+				email:email,
+				password:password
+  			},(callback)=>{alert("errore")});
 		}
 	});
 }

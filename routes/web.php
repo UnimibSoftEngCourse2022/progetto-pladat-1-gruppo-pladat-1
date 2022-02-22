@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [\App\Http\Controllers\LoginController::class, 'homepage']);
+
+Route::get('/login',[\App\Http\Controllers\LoginController::class, 'loginForm']);
+
+Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
+
 /*
  * Endpoint delle operazioni dello studente
  */

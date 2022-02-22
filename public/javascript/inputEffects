@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 function blurr() {
 	$(".gruppo > input[type=date]").focus(function () {
-		if (document.URL.includes("private.html")) {
+		if (document.URL.includes("private.blade.php")) {
 			if (!$(this).is(':disabled')) {
 				$(this).css("color", "#3c4043");
 			}
@@ -20,7 +20,7 @@ function blurr() {
 		}
 	});
 	$(".gruppo > input, .gruppo>textarea").focus(function () {
-		if (document.URL.includes("private.html")) {
+		if (document.URL.includes("private.blade.php")) {
 			if (!$(this).is(':disabled')) {
 				$(this).parent().addClass("gruppo-evidenziato");
 			}
@@ -35,7 +35,7 @@ function blurr() {
 		}
 	});
 	$(".gruppo > div>input").focus(function () {
-		if (document.URL.includes("private.html")) {
+		if (document.URL.includes("private.blade.php")) {
 			$(this).parent().parent().addClass("gruppo-evidenziato");
 		} else {
 			if (!$(this).is(':disabled')) {
@@ -50,7 +50,7 @@ function blurr() {
 		}
 	});
 	$(".gruppo > label").click(function () {
-		if (!document.URL.includes("private.html")) {
+		if (!document.URL.includes("private.blade.php")) {
 			$(this).parent().addClass("gruppo-evidenziato");
 			$(this).parent().children("input").focus();
 		} else {

@@ -86,8 +86,11 @@ nav {
 }
 
 .login-button {
+	display: block;
 	background-color: #fff;
 	border: 3px solid #1a73e8;
+	padding-left:30px !important;
+	padding-right:30px !important;
 }
 
 .login-button:hover {
@@ -103,6 +106,7 @@ nav {
 	color: #3c4043;
 	font-weight: 600;
 	display: flex;
+	min-height: 62.8px;
 	align-items: center;
 }
 

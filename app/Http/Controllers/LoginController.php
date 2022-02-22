@@ -14,6 +14,10 @@ class LoginController extends Controller
         return response()->view('index');
     }
 
+    public function loginForm(){
+        return response()->view('login');
+    }
+
     public function loginCheck(Request $request){
 
         $credentials = $request->validate([
@@ -23,14 +27,14 @@ class LoginController extends Controller
 
         $data = $request->input('email');
 
-        if(DB::table('student')->join('employer')->where($credentials)->exists()){
+
+        if(DB::table('student')->join('employer', 'student.email', '=', 'employer.email')->where($credentials)->exists()){
             $request->session()->regenerate();
             $request->session()->put('email', $data);
             $request->session()->save();
-            return redirect()->route('profile')->with(['message' => 'Login']);
+            return response()->view('private');
         }
-
-        return redirect()->route('login')->with(['message'=> 'Login']);
-
+        return response()->view('index');
+        
     }
 }
