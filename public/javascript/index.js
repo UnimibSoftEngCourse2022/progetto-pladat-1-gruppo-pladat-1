@@ -8,7 +8,7 @@ function myfunct() {
 	if (count == 0) {
 		$("#motivatore").html("Semplice");
 	} else if (count == 1) {
-		$("#motivatore").html("Porfessionale");
+		$("#motivatore").html("Professionale");
 	} else {
 		$("#motivatore").html("Adatto a te");
 	}

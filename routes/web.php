@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', [\App\Http\Controllers\LoginController::class, 'homepage']);
 /*
  * Endpoint delle operazioni dello studente
  */
