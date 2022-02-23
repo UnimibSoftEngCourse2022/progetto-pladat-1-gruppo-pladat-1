@@ -12,7 +12,8 @@ function invioDati() {
 		change();
 		checkStudent("#invioDatiRegistrazione");
 		checkAzienda("#invioDatiRegistrazione");
-	} else if (document.URL.includes("/private")) {
+	} else if (document.URL.includes("/profile")) {
+		alert('<%=Session["email"] %>');
 		if (who === "azienda") {
 			$('.gazienda').removeClass("nascondi");
 			$('.gutente').addClass("nascondi");
@@ -236,15 +237,23 @@ function checkAzienda(id) {
 		}
 		if(isEmail(email1)&&isPassword(password1)&&isNomeCompagnia(nomeCompagnia)&&isVia(via)&&isDescrizione(descrizione1)&&isCaptcha())
 		{
-			if(document.URL.includes("/registrazione"))
-			{
-				/*$.post("/loginCheck",
+			$.post("/registrazioneStudent",
 				{
-				  email:email,
-				  password:password
-				}).done((mess)=>{alert(mess)})*/
-				
-			}
+				  name:nomeCompagnia,
+				  surname:cognome,
+				  via:via,
+				  description:descrizione,
+				  email:email1,
+				  password:password1,
+				}).done((mess)=>{
+					if(mess==="1")
+					{
+						window.location.href = "/login";
+					}
+					else{
+						alert("Email già presente");
+					}
+				})
 		}
 	}
 	});

@@ -3,26 +3,25 @@
 ## Cosa è Pladat
 PlaDat è una **piattaforma online** nata come luogo di incontro tra studenti ed aziende. Il **tirocinio** è un'esperienza formativa importante nella crescita professionale di uno **studente** e PlaDat fornisce gli strumenti essenziali per trovare uno stage adatto alle sue esigenze. Per le **aziende**, invece, ci impegniamo ad offrire tutte le funzionalità per un recruiting semplice ed efficace!
 
-## Installazione
-Per un'installazione semplice e veloce seguire i seguenti passaggi (per Windows).
+## Installazione (Windows)
+Per un'installazione semplice e veloce seguire i seguenti passaggi.
 
 ### Installazione MySQL Developer
 1) Scaricare [MySQL](https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.28.0.msi);
-2) Installare MySQL appena scaricato;
-3) Selezionare "Developer Default" e next;
-4) Cliccare su next/execute fino a la pagina indicata nel passo 5;
-5) Una volta giunti su "Authenication Method" lasciare le impostazioni raccomandate, cliccare su Next e scegliere una password;
-6) Cliccare su next fino all'ultima schermata e poi "finish".
-7) Click su next (n-volte) e dove richiesta la password reinserire la scelta;
-8) Verificare e cliccare successivamente su execute;
-9) Continuare a effettuare click su "next" fino alla fine;
-10) Cambiare utilizzando la **password scelta** in .env DB_PASSWORD;
+2) Installare l'eseguibile appena scaricato (punto 1);
+3) Selezionare "Developer Default" e cliccare su "Next";
+4) Cliccare su "Next"/"Execute" fino a la pagina indicata nel passo successivo (punto 5);
+5) Una volta giunti nella sezione "Authenication Method" lasciare le impostazioni raccomandate, cliccare su Next e scegliere una Password (attento che ti servirà successivamente);
+6) Cliccare su "Next" fino all'ultima schermata e poi click su "Finish".
+7) Click su "Next" n-volte fino a che verrà richiesto l'inserimento di una password: inserire la password scelta (punto 5);
+8) Verificare e, successivamente, effettuar click su "Execute";
+9) Continuare aD effettuare click su "Next" fino alla fine dell'installazione;
 
 ### Installazione PHP
 1) Scaricare [PHP](https://dw.uptodown.com/dwn/lr6MdfDpgQOJwLIiAihdAT0QcDAq6vG21T1GsTCeAjD1juqBUnsEe1IzQjiBTH404RvVOCoEEiPMVuOuurHx3_ifFSS_jufPAtMyrPolh4JUhjDsIotuXhQnsuR7JhBm/6bf1icuXVkw5vrHP9p_4kEhGNtIbZ5ykHSznddVtFXrV-Y5kXOvm8bRzPAL-o1j84WT2VmAhmVh7iYU_qVVG7u_f7Nvh1npJfc7QyUCKSfT2457_wLoXZVSbYQTh3o_L/EK892T7oJZGCRQqSdpRDIBBZsxn7CU-XCg1bbD4eld6G09CpjqjFXTXFR1zh1qC3/);
 2) Estrarre la cartella e spostarla in C://;
 3) Accedere alle varibili d'ambiente (E' possibile farlo cercando "modifica le variabili d'ambiente relative al sistema");
-4) Recarsi su path ed incollare il nostro percorso (C:\php-8-1-3);
+4) Recarsi su "Path" ed incollare il nostro percorso (C:\php-8-1-3);
 5) Salvare (in caso di problemi seguire le istruzioni in questo video [Video](https://www.youtube.com/watch?v=QMWb_Wn2g5k));
 6) Cercare il file php.ini e decommentare ;extension=pdo_mysql (rimuovere ;)
 7) Scaricare [Composer](https://getcomposer.org/Composer-Setup.exe);
@@ -31,14 +30,31 @@ Per un'installazione semplice e veloce seguire i seguenti passaggi (per Windows)
 ```sh
 composer install
 ```
+10) Utilizzare la **password scelta** nell'installazione di MySql nel file .env, modificando DB_PASSWORD (se la password utilizza i caratteri speciali utilizzare gli apici 'password');
 
-### Esegure il server HTTP e il server MySQL
+## Esecuzione (Windows)
+
+### Eseguire il server MySWL
+1) Eseguire MySQL Workbeanch;
+2) Creare una nuova connessione cliccando su "+";
+3) Dare un nome alla connessione, lasciare tutto invariato e profeguire fino alla fine della creazione;
+4) File -> New Model; QUIII IMPORTARE
+5) Verificare che il nome del database sia "mydb"; QUIII IMPORTARE
+5) Database -> Syncronize Model;
+6) Scegliere in nome la connessione creata (punto 3);
+7) Proseguire fino alla fine senza modificare altro.
+
+### Esegure il server HTTP
 - Esegurire il server HTTP tramite CMD
 ```sh
 php artisan serve
 ```
+
 ## Utilizzo
 Per utilizzare la piattaforma digitare http://localhost:8000
+
+## Problemi
+In caso di problemi contattare m.piazzalunga2@campus.unimib.it
 
 ## Contributo
 Il contributo per la realizzazione di questo progetto è stato dato da:

@@ -1,3 +1,4 @@
+@if (Session::has('email'))
 <!DOCTYPE html>
 <html lang="it">
    <head>
@@ -227,3 +228,5 @@
       <script src="/javascript/inputEffects"></script>
    </body>
 </html>
+@else
+@endif
