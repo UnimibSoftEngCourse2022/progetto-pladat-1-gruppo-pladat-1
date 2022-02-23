@@ -2,9 +2,14 @@ $(document).ready(function () {
 	$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 	$(".gruppo>input[type=date]").val("");
 	invioDati();
+	
 })
+$(window).on('load', function () {
+    $(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
+});
 
 let who="";
+let email="";
 function invioDati() {
 	if (document.URL.includes("/login")) {
 		invioDatiLogin();
@@ -15,16 +20,40 @@ function invioDati() {
 	} else if (document.URL.includes("/profile")) {
 		$.get("/session").done((mess)=>{
 			who=mess['type'];
+			email=mess['email'];
 			if (who === "Employer") {
 				$('.gazienda').removeClass("nascondi");
 				$('.gutente').addClass("nascondi");
 				checkAzienda("#invioDatiPrivato");
 				invioDati2();
-				
+
+				$.get("/employer/"+email).done((mess)=>{
+					
+				});
+
 			} else {
 				$('.gazienda').addClass("nascondi");
 				$('.gutente').removeClass("nascondi");
 				checkStudent("#invioDatiPrivato");
+
+				$.get("/student/"+email).done((mess)=>{
+					who=mess['type'];
+					email=mess['email'];
+					if (who === "Employer") {
+						$('.gazienda').removeClass("nascondi");
+						$('.gutente').addClass("nascondi");
+						checkAzienda("#invioDatiPrivato");
+						invioDati2();
+						
+					} else {
+						$('.gazienda').addClass("nascondi");
+						$('.gutente').removeClass("nascondi");
+						checkStudent("#invioDatiPrivato");
+					}
+					startModifica(who);
+					$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
+				});
+
 			}
 			startModifica(who);
 			$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
