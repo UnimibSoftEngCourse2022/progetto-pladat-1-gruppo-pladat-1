@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,14 +14,29 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [\App\Http\Controllers\LoginController::class, 'homepage']);
 
-Route::get('/login',[\App\Http\Controllers\LoginController::class, 'loginForm']);
+Route::get('/', function () {
+    return response()->view('index');
+});
 
-Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
+Route::get('/login', function () {
+    return response()->view('login');
+});
 
 Route::get('/registrazione', function () {
     return response()->view('registrazione');
+});
+
+Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
+
+Route::post('/registrazioneStudent', [\App\Http\Controllers\RegistrationController::class, 'StudentRegistration']);
+
+Route::post('/registrazioneEmployer', [\App\Http\Controllers\RegistrationController::class, 'EmployerRegistration']);
+
+Route::get('/getCategory', [\App\Http\Controllers\RegistrationController::class, 'getCategory']);
+
+Route::get('/user', function () {
+    return response(User::all()->jsonSerialize(), 200);
 });
 
 /*

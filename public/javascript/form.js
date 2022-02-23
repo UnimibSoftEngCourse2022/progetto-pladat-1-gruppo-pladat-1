@@ -1,9 +1,10 @@
-$(document).ready(function () {
+R$(document).ready(function () {
 	$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 	$(".gruppo>input[type=date]").val("");
 	invioDati();
 })
 
+let who="studente";
 function invioDati() {
 	if (document.URL.includes("/login")) {
 		invioDatiLogin();
@@ -12,7 +13,6 @@ function invioDati() {
 		checkStudent("#invioDatiRegistrazione");
 		checkAzienda("#invioDatiRegistrazione");
 	} else if (document.URL.includes("/private")) {
-		let who = "azienda";
 		if (who === "azienda") {
 			$('.gazienda').removeClass("nascondi");
 			$('.gutente').addClass("nascondi");
@@ -65,7 +65,7 @@ function isNomeCompagnia(nomeCompagnia) {
 }
 
 function isVia(via) {
-	let regex = /^.{3,50}$/;
+	let regex = /^.{3,100}$/;
 	return regex.test(via);
 }
 
@@ -79,6 +79,14 @@ function isTitolo(titolo) {
 	return regex.test(titolo);
 }
 
+function isCaptcha()
+{
+	$.get( "https://2captcha.com/in.php?key=0x73a360F4881E1C8B9250A49423b213C38896b2Bd&method=hcaptcha&sitekey=AoT-Xgbyi-r8h5HmJWJZhXdEkbL2UYOluU7LDUsdwu8zKUyj51W7oO4p5hJxqWuG&pageurl=https://2captcha.com/demo/hcaptcha", function( data ) {
+		alert(data);
+	  }).then(()=>{
+		  alert("ciao");
+	  });
+} 
 function isDurata(durata) {
 	let regex = /^.{1,40}$/;
 	return regex.test(durata);
@@ -93,10 +101,12 @@ function change() {
 	if ($('#studente').is(':checked')) {
 		$('.gazienda').addClass("nascondi");
 		$('.gutente').removeClass("nascondi");
+		who="studente";
 	}
 	if ($('#azienda').is(':checked')) {
 		$('.gazienda').removeClass("nascondi");
 		$('.gutente').addClass("nascondi");
+		who="azienda";
 	}
 	$("input[type='radio']").change(function () {
 		$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
@@ -104,10 +114,14 @@ function change() {
 		if ($('#studente').is(':checked')) {
 			$('.gazienda').addClass("nascondi");
 			$('.gutente').removeClass("nascondi");
+			who="studente";
+			location.reload();
 		}
 		if ($('#azienda').is(':checked')) {
 			$('.gazienda').removeClass("nascondi");
 			$('.gutente').addClass("nascondi");
+			who="azienda";
+			location.reload();
 		}
 	});
 }
@@ -165,10 +179,12 @@ function checkAzienda(id) {
 	$(id).parent().children(".gruppo").children("input[name='email1']").get(0).setCustomValidity("L'email deve avere il formato corretto");
 	$(id).parent().children(".gruppo").children("input[name='password1']").get(0).setCustomValidity("La password deve avere tra i 6 ed i 20 caratteri, contenere almento una lettera maiuscola, almeno una lettera minuscola ed almeno un numero. NON sono concessi caratteri speciali");
 	$(id).parent().children(".gruppo").children("input[name='nomeCompagnia']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
-	$(id).parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").get(0).setCustomValidity("La vai deve avere dai 3 ai 50 caratteri. CONSIGLIATO usare quela proposta da BING maps.");
+	$(id).parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").get(0).setCustomValidity("La vai deve avere dai 3 ai 100 caratteri. CONSIGLIATO usare quela proposta da BING maps.");
 	$(id).parent().children(".gruppo").children("textarea[name='descrizione1']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
 	$(id).parent().children(".gruppo").children("input[name='data']").val("");
 	$(id).click(function () {
+	if(who==="azienda")
+	{
 		let email1 = $(this).parent().children(".gruppo").children("input[name='email1']").val().trim().toLowerCase();
 		let password1 = $(this).parent().children(".gruppo").children("input[name='password1']").val().trim();
 		let nomeCompagnia = $(this).parent().children(".gruppo").children("input[name='nomeCompagnia']").val().trim().toLowerCase();
@@ -199,10 +215,25 @@ function checkAzienda(id) {
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='descrizione1']").css("border-color", "#1a73e8");
 		}
+		if(isEmail(email1)&&isPassword(password1)&&isNomeCompagnia(nomeCompagnia)&&isVia(via)&&isDescrizione(descrizione1))
+		{
+			isCaptcha();
+			if(document.URL.includes("/registrazione"))
+			{
+				/*$.post("/loginCheck",
+				{
+				  email:email,
+				  password:password
+				}).done((mess)=>{alert(mess)})*/
+				
+			}
+		}
+	}
 	});
 }
 
 function checkStudent(id) {
+	
 	$(id).parent().children(".gruppo").children("input[name='email']").get(0).setCustomValidity("L'email deve avere il formato corretto");
 	$(id).parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password deve avere tra i 6 ed i 20 caratteri, contenere almento una lettera maiuscola, almeno una lettera minuscola ed almeno un numero. NON sono concessi caratteri speciali");
 	$(id).parent().children(".gruppo").children("input[name='nome']").get(0).setCustomValidity("Il nome deve avere dai 3 ai 20 caratteri");
@@ -210,6 +241,8 @@ function checkStudent(id) {
 	$(id).parent().children(".gruppo").children("input[name='data']").get(0).setCustomValidity("La data è obbligatoria");
 	$(id).parent().children(".gruppo").children("select").get(0).setCustomValidity("Seleziona almeno una categoria");
 	$(id).click(function () {
+		if(who==="studente")
+	{
 		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
 		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
 		let nome = $(this).parent().children(".gruppo").children("input[name='nome']").val().trim().toLowerCase();
@@ -245,6 +278,26 @@ function checkStudent(id) {
 		} else {
 			$("#categoria").css("border-color", "#1a73e8");
 		}
+		if(isEmail(email)&&isPassword(password)&&isNome(nome)&&isCognome(cognome)&&isData(data)&&$("#categoria").val().length !== 0)
+		{
+			if(document.URL.includes("/registrazione"))
+			{
+				$.post("/registrazioneStudent",
+				{
+				  name:nome,
+				  surname:cognome,
+				  birth_date:data,
+				  email:email,
+				  password:password,
+				  category:[$("#categoria").val()],
+				}).done((mess)=>{alert(mess)})
+			}
+			else
+			{
+
+			}
+		}
+	}
 	});
 }
 

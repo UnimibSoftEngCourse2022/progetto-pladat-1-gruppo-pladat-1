@@ -19,7 +19,7 @@
             <div class="col-12 col-lg-6">
                <form id="login1">
                   <div class="button-modifica3">
-                     <div><span>Non sei registrato?</span><a>Registrati</a></div>
+                     <div><span>Non sei registrato?</span><a href="/registrazione">Registrati</a></div>
                   </div>
                   <h3>Torna da noi!</h3>
                   <div class="gruppo">

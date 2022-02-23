@@ -64,7 +64,7 @@ class StudentController extends Controller
                     'student_email'=>$request->input('email'),
                     'category_name'=>$request->input('category'),
                 ]);
-            return response("failed", 200);
+            return response("failed", 500);
         }catch(\Exception){
             return response("success", 200);
         }

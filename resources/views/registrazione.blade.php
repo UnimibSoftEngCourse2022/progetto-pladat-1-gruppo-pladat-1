@@ -102,7 +102,7 @@
                      <label class="input-modificato">Descrizione</label>
                      <textarea name="descrizione1" rows="1"  ></textarea>
                   </div>
-                  <div class="h-captcha" data-sitekey="10000000-ffff-ffff-ffff-000000000001"></div>
+                  <div id="h-captcha" class="h-captcha" data-sitekey="8f68a3f1-adf6-4004-a827-33a037bbeacc"></div>
                   <input id="invioDatiRegistrazione" type="button" value="Iscriviti" class="bottone"/>
                </form>
             </div>
