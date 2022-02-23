@@ -1,4 +1,4 @@
-R$(document).ready(function () {
+$(document).ready(function () {
 	$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 	$(".gruppo>input[type=date]").val("");
 	invioDati();
@@ -81,11 +81,14 @@ function isTitolo(titolo) {
 
 function isCaptcha()
 {
-	$.get( "https://2captcha.com/in.php?key=0x73a360F4881E1C8B9250A49423b213C38896b2Bd&method=hcaptcha&sitekey=AoT-Xgbyi-r8h5HmJWJZhXdEkbL2UYOluU7LDUsdwu8zKUyj51W7oO4p5hJxqWuG&pageurl=https://2captcha.com/demo/hcaptcha", function( data ) {
-		alert(data);
-	  }).then(()=>{
-		  alert("ciao");
-	  });
+	if($('[name=h-captcha-response]').val()!=="") //Non è possibile controllare altro da localhost
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 } 
 function isDurata(durata) {
 	let regex = /^.{1,40}$/;
@@ -215,9 +218,8 @@ function checkAzienda(id) {
 		} else {
 			$(this).parent().children(".gruppo").children("input[name='descrizione1']").css("border-color", "#1a73e8");
 		}
-		if(isEmail(email1)&&isPassword(password1)&&isNomeCompagnia(nomeCompagnia)&&isVia(via)&&isDescrizione(descrizione1))
+		if(isEmail(email1)&&isPassword(password1)&&isNomeCompagnia(nomeCompagnia)&&isVia(via)&&isDescrizione(descrizione1)&&isCaptcha())
 		{
-			isCaptcha();
 			if(document.URL.includes("/registrazione"))
 			{
 				/*$.post("/loginCheck",
@@ -278,7 +280,7 @@ function checkStudent(id) {
 		} else {
 			$("#categoria").css("border-color", "#1a73e8");
 		}
-		if(isEmail(email)&&isPassword(password)&&isNome(nome)&&isCognome(cognome)&&isData(data)&&$("#categoria").val().length !== 0)
+		if(isEmail(email)&&isPassword(password)&&isNome(nome)&&isCognome(cognome)&&isData(data)&&$("#categoria").val().length !== 0&&isCaptcha())
 		{
 			if(document.URL.includes("/registrazione"))
 			{

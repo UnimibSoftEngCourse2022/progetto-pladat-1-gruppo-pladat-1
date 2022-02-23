@@ -29,7 +29,7 @@ Per un'installazione semplice e veloce seguire i seguenti passaggi (per Windows)
 8) Installare Composer non selezionando la modalità di developer e verificando che il percorso di installazione sia quello della cartella PHP appena creata (sarà necessario confermare con una spunta);
 9) Eseguire la linea di comando nella cartella di progetto e digitare (questo comando, in caso di problemi di compatibilità, li risolve)
 ```sh
-composer update --ignore-platform-reqs
+composer install
 ```
 
 ### Esegure il server HTTP e il server MySQL

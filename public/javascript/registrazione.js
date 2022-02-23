@@ -6,9 +6,11 @@ $(document).ready(function () {
 let listaCat = ["prima", "seconda", "terza", "quarta"];
 
 function riempiCategoria() {
-	for (let row of listaCat) {
-		$("#categoria").append("<option value=" + row + ">" + row + "</option>");
-	} 
+	$.get("/getCategory").done((lista)=>{
+		for (let row of lista) {
+				$("#categoria").append("<option value=" + row.name + ">" + row.name + "</option>");
+		} 
+	})
 }
 
 function scrittura() {
