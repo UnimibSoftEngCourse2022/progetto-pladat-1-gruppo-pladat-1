@@ -7,6 +7,7 @@ use App\Models\Employer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use \Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
@@ -25,29 +26,11 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        $email = $request->input('email');
-        $password = $request->input('password');
-
-
-        if(DB::table('student')->join('employer', 'student.email', '=', 'employer.email')->where($credentials)->exists()){
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $request->session()->put('email', $data);
-            $request->session()->save();
-            return response()->view('private');
+            $request->put('email', $request->input('email'));
+            return response()->view('index');
         }
-        
-
-        $countStud = Student::all()->where('email', $data)->count();
-        $countEmpl = Employer::all()->where('email', $data)->count();
-
-        if($countStud != 0){
-            if(Student::all()->where('password', $password)->exist()){
-
-            }
-        }
-
-
-        
-        
+        return response('Non sei registrato'); 
     }
 }

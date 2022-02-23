@@ -14,17 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('employer', function (Blueprint $table) {
-            $table->string('email', 100);
-            $table->string('name', 100);
+            $table->string('name');
             $table->string('description', 10000);
             $table->string('address', 100);
-            $table->string('password');
+            $table->string('email');
             $table->foreignId('idPhoto')
                 ->nullable()
-                ->default('null')
-                ->constrained('photo', 'id')
+                ->constrained('photo')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreign('email')
+                ->references('email')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->rememberToken();
             $table->primary('email');
             $table->timestamps();

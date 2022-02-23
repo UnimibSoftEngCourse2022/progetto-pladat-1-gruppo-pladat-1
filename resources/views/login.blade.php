@@ -17,7 +17,7 @@
       <div class="container">
          <div class="row  flex-2-colonne">
             <div class="col-12 col-lg-6">
-               <form id="login1" action="/loginCheck" method="POST">
+               <form id="login1">
                   <div class="button-modifica3">
                      <div><span>Non sei registrato?</span><a>Registrati</a></div>
                   </div>
@@ -30,7 +30,7 @@
                      <label class="input-modificato">Password</label>
                      <input type="password" name="password"/>
                   </div>
-                  <input type="submit" id="invioDatiLogin" value="Accedi" class="bottone"/>
+                  <input type="button" id="invioDatiLogin" value="Accedi" class="bottone"/>
                </form>
             </div>
          </div>

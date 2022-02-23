@@ -19,6 +19,7 @@ class RegistrationController extends Controller
          */
 
         $student = Student::create($request->all());
+        
         $student->save();
         return redirect()->route('home')->with(['message'=> 'Created Student Account']);
     }

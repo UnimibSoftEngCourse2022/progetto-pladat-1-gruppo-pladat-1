@@ -7,11 +7,11 @@ $(document).ready(function () {
 function invioDati() {
 	if (document.URL.includes("/login")) {
 		invioDatiLogin();
-	} else if (document.URL.includes("registrazione.blade.php")) {
+	} else if (document.URL.includes("/registrazione")) {
 		change();
 		checkStudent("#invioDatiRegistrazione");
 		checkAzienda("#invioDatiRegistrazione");
-	} else if (document.URL.includes("private.blade.php")) {
+	} else if (document.URL.includes("/private")) {
 		let who = "azienda";
 		if (who === "azienda") {
 			$('.gazienda').removeClass("nascondi");
@@ -156,7 +156,7 @@ function invioDatiLogin() {
   			{
 				email:email,
 				password:password
-  			},(callback)=>{alert("errore")});
+  			}).done((mess)=>{alert(mess)})
 		}
 	});
 }

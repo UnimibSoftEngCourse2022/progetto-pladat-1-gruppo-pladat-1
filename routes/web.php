@@ -19,6 +19,10 @@ Route::get('/login',[\App\Http\Controllers\LoginController::class, 'loginForm'])
 
 Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
 
+Route::get('/registrazione', function () {
+    return response()->view('registrazione');
+});
+
 /*
  * Endpoint delle operazioni dello studente
  */
