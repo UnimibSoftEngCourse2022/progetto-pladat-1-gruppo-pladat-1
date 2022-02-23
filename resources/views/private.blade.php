@@ -19,13 +19,7 @@
          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul id="naviga" class="navbar-nav">
                <li class="nav-item">
-                  <a class="nav-link" href="page1">Primapagina</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="page2">SecondaPagina</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="page3">Terzapagina</a>
+                  <a class="nav-link" href="/Search">Ricerca un tirocinio</a>
                </li>
                <li class="nav-item">
                   <button class="nav-link login-button">Andreinetto</button>
@@ -224,8 +218,8 @@
       <script src='https://www.bing.com/api/maps/mapcontrol?key=AoT-Xgbyi-r8h5HmJWJZhXdEkbL2UYOluU7LDUsdwu8zKUyj51W7oO4p5hJxqWuG&callback=loadMapScenario' async defer></script>
       <script src="/javascript/private.js"></script>
       <script src="/javascript/bingMaps.js"></script>
-      <script src="/javascript/form.js"></script>
       <script src="/javascript/inputEffects"></script>
+      <script src="/javascript/form.js"></script>
    </body>
 </html>
 @else

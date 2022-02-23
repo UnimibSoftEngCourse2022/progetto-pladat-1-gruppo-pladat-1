@@ -50,12 +50,12 @@ Route::get('/user', function () {
 /*
  * Endpoint delle operazioni dello studente
  */
-Route::resource('student', \App\Http\Controllers\StudentController::class);
+Route::resource('student', \App\Http\Controllers\StudentController::class, ['except'=>['index']]);
 
 /*
  * Endpoint delle operazioni di employer
  */
-Route::resource('employer', \App\Http\Controllers\EmployerController::class);
+Route::resource('employer', \App\Http\Controllers\EmployerController::class, ['except'=>['index']]);
 
 /*
  * Endpoint per le operazioni dell'employer sulla creazion/iterazione dei placement
@@ -66,5 +66,6 @@ Route::resource('employer.placement', \App\Http\Controllers\PlacementController:
  * Endpoint per le operazioni dello studente sulla creazion/iterazione delle richieste
  */
 Route::resource('student.request', \App\Http\Controllers\RequestController::class);
+
 
 Route::get('/session',[\App\Http\Controllers\SessionController::class, 'dataSession'])->middleware('auth');

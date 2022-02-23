@@ -1,67 +1,15 @@
+let who="";
+let email="";
+
 $(document).ready(function () {
 	$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 	$(".gruppo>input[type=date]").val("");
 	invioDati();
-	
 })
+
 $(window).on('load', function () {
     $(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
 });
-
-let who="";
-let email="";
-function invioDati() {
-	if (document.URL.includes("/login")) {
-		invioDatiLogin();
-	} else if (document.URL.includes("/registrazione")) {
-		change();
-		checkStudent("#invioDatiRegistrazione");
-		checkAzienda("#invioDatiRegistrazione");
-	} else if (document.URL.includes("/profile")) {
-		$.get("/session").done((mess)=>{
-			who=mess['type'];
-			email=mess['email'];
-			if (who === "Employer") {
-				$('.gazienda').removeClass("nascondi");
-				$('.gutente').addClass("nascondi");
-				checkAzienda("#invioDatiPrivato");
-				invioDati2();
-
-				$.get("/employer/"+email).done((mess)=>{
-					
-				});
-
-			} else {
-				$('.gazienda').addClass("nascondi");
-				$('.gutente').removeClass("nascondi");
-				checkStudent("#invioDatiPrivato");
-
-				$.get("/student/"+email).done((mess)=>{
-					who=mess['type'];
-					email=mess['email'];
-					if (who === "Employer") {
-						$('.gazienda').removeClass("nascondi");
-						$('.gutente').addClass("nascondi");
-						checkAzienda("#invioDatiPrivato");
-						invioDati2();
-						
-					} else {
-						$('.gazienda').addClass("nascondi");
-						$('.gutente').removeClass("nascondi");
-						checkStudent("#invioDatiPrivato");
-					}
-					startModifica(who);
-					$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
-				});
-
-			}
-			startModifica(who);
-			$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
-		});
-	} else {
-		console.log("errore");
-	}
-}
 
 function isEmail(email) {
 	let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -132,99 +80,6 @@ function isDurata(durata) {
 function isSalario(salario) {
 	let regex = /^\d+.{0,10}$/;
 	return regex.test(salario);
-}
-
-function change() {
-	if ($('#studente').is(':checked')) {
-		$('.gazienda').addClass("nascondi");
-		$('.gutente').removeClass("nascondi");
-		who="Student";
-	}
-	if ($('#azienda').is(':checked')) {
-		$('.gazienda').removeClass("nascondi");
-		$('.gutente').addClass("nascondi");
-		who="Employer";
-	}
-	$("input[type='radio']").change(function () {
-		$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
-		$(".gruppo>input[type=date]").val("");
-		if ($('#studente').is(':checked')) {
-			$('.gazienda').addClass("nascondi");
-			$('.gutente').removeClass("nascondi");
-			who="Student";
-			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
-			$(".gruppo>input[type=date]").val("");
-			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focusout();
-			$(".gruppo>input[type=date]").focusout();
-
-		}
-		if ($('#azienda').is(':checked')) {
-			$('.gazienda').removeClass("nascondi");
-			$('.gutente').addClass("nascondi");
-			who="Employer";
-			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focusout();
-			$(".gruppo>input[type=date]").focusout();
-		}
-	});
-}
-
-function startModifica(chi) {
-	$("#invioDatiPrivato").css("display", "none");
-	$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
-	$("#modificaPrivato").click(function () {
-		if ($(this).text() === "Modifica") {
-			if (chi === "Employer") {
-				$(".gazienda").children().prop("disabled", false);
-				$(".gazienda").children("#searchBoxContainer").children("input").prop("disabled", false);
-			}
-			if (chi === "Student") {
-				$(".gutente").children("input").prop("disabled", false);
-				$(".gutente").children("input").prop("disabled", false);
-			}
-			$("#invioDatiPrivato").css("display", "block");
-			$("#modificaPrivato").text("Annulla");
-		} else {
-			location.reload();
-		}
-		$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
-	});
-}
-
-function invioDatiLogin() {
-	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='email']").get(0).setCustomValidity("L'email deve avere il formato corretto");
-	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password non può essere nulla");
-	$("#invioDatiLogin").click(function () {
-		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
-		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
-		if (!isEmail(email)) {
-			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#ea4335");
-		} else {
-			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#1a73e8");
-		}
-		if (!isPasswordLogin(password)) {
-			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#ea4335");
-		} else {
-			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#1a73e8");
-		}
-		if(isEmail(email)&&isPasswordLogin(password))
-		{
-			$.post("/loginCheck",
-  			{
-				email:email,
-				password:password
-  			}).done((mess)=>
-			  {
-				if(mess==="1")
-				{
-					window.location.href = "/profile";
-				}
-				else
-				{
-					alert("Ci dispiace, non sei registrato.");
-				}
-			  });
-		}
-	});
 }
 
 function checkAzienda(id) {
@@ -367,7 +222,94 @@ function checkStudent(id) {
 	});
 }
 
-function invioDati2() {
+function invioDati() {
+	if (document.URL.includes("/login")) {
+		invioDatiLogin();
+	} else if (document.URL.includes("/registrazione")) {
+		change();
+		checkStudent("#invioDatiRegistrazione");
+		checkAzienda("#invioDatiRegistrazione");
+	} else if (document.URL.includes("/profile")) {
+		$(".gazienda label").css("top","-13px");
+		$(".gazienda label").css("top","-13px");
+		$.get("/session").done((mess)=>{
+			who=mess['type'];
+			email=mess['email'];
+			if (who === "Employer") {
+				$('.gazienda').removeClass("nascondi");
+				$('.gutente').addClass("nascondi");
+				checkAzienda("#invioDatiPrivato");
+				invioDatiCreazioneTirocinio();
+				$.get("/employer/"+mess['email']).done((mess1)=>{
+				mess1=mess1[0];
+				$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='email1']").val(mess1['email']);
+				$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='password1']").val(mess1['password']);
+				$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='nomeCompagnia']").val(mess1['name']);
+				$('#invioDatiPrivato').parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").val(mess1['address']);
+				$('#invioDatiPrivato').parent().children(".gruppo").children("textarea[name='descrizione1']").val(mess1['description']);
+			});
+			} else {
+				$('.gazienda').addClass("nascondi");
+				$('.gutente').removeClass("nascondi");
+				checkStudent("#invioDatiPrivato");
+				$.get("/student/"+mess['email']).done((mess1)=>{
+					mess1=mess1[0];
+				  category
+					$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='email']").val(mess1['email']);
+					$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='password']").val(mess1['password']);
+					$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='nome']").val(mess1['name']);
+					$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='cognome']").val(mess1['surname']);
+					$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='data']").val(mess1['birth_date']);
+					$('#invioDatiPrivato').parent().children(".gruppo").children("select").val(mess1['category']);
+				});
+
+			}
+			startModifica(who);
+			$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
+		});
+	} else {
+		console.log("errore");
+	}
+}
+
+function invioDatiLogin() {
+	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='email']").get(0).setCustomValidity("L'email deve avere il formato corretto");
+	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password non può essere nulla");
+	$("#invioDatiLogin").click(function () {
+		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
+		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
+		if (!isEmail(email)) {
+			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#ea4335");
+		} else {
+			$(this).parent().children(".gruppo").children("input[name='email']").css("border-color", "#1a73e8");
+		}
+		if (!isPasswordLogin(password)) {
+			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#ea4335");
+		} else {
+			$(this).parent().children(".gruppo").children("input[name='password']").css("border-color", "#1a73e8");
+		}
+		if(isEmail(email)&&isPasswordLogin(password))
+		{
+			$.post("/loginCheck",
+  			{
+				email:email,
+				password:password
+  			}).done((mess)=>
+			  {
+				if(mess==="1")
+				{
+					window.location.href = "/profile";
+				}
+				else
+				{
+					alert("Ci dispiace, non sei registrato.");
+				}
+			  });
+		}
+	});
+}
+
+function invioDatiCreazioneTirocinio() {
 	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='titolo']").get(0).setCustomValidity("Il titolo deve avere da 1 a 40 caratteri");
 	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='durata']").get(0).setCustomValidity("La durata è obbligatoria (es: 3 settimane)");
 	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='dataInizio']").get(0).setCustomValidity("La data è obbligatoria");
@@ -419,5 +361,65 @@ function invioDati2() {
 		} else {
 			$("#categoria1").css("border-color", "#1a73e8");
 		}
+	});
+}
+
+function change() {
+	if ($('#studente').is(':checked')) {
+		$('.gazienda').addClass("nascondi");
+		$('.gutente').removeClass("nascondi");
+		who="Student";
+	}
+	if ($('#azienda').is(':checked')) {
+		$('.gazienda').removeClass("nascondi");
+		$('.gutente').addClass("nascondi");
+		who="Employer";
+	}
+	$("input[type='radio']").change(function () {
+		$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
+		$(".gruppo>input[type=date]").val("");
+		if ($('#studente').is(':checked')) {
+			$('.gazienda').addClass("nascondi");
+			$('.gutente').removeClass("nascondi");
+			who="Student";
+			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
+			$(".gruppo>input[type=date]").val("");
+			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focusout();
+			$(".gruppo>input[type=date]").focusout();
+
+		}
+		if ($('#azienda').is(':checked')) {
+			$('.gazienda').removeClass("nascondi");
+			$('.gutente').addClass("nascondi");
+			who="Employer";
+			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focusout();
+			$(".gruppo>input[type=date]").focusout();
+		}
+	});
+}
+
+function startModifica(chi) {
+	$("#invioDatiPrivato").css("display", "none");
+	$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
+	$("#modificaPrivato").click(function () {
+		if ($(this).text() === "Modifica") {
+			if (chi === "Employer") {
+				$(".gazienda").children().prop("disabled", false);
+				$(".gazienda").children("#searchBoxContainer").children("input").prop("disabled", false);
+				$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focus();
+				$(".gruppo>input[type=date]").focus();
+			}
+			if (chi === "Student") {
+				$(".gutente").children("input").prop("disabled", false);
+				$(".gutente").children("input").prop("disabled", false);
+				$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focus();
+				$(".gruppo>input[type=date]").focus();
+			}
+			$("#invioDatiPrivato").css("display", "block");
+			$("#modificaPrivato").text("Annulla");
+		} else {
+			location.reload();
+		}
+		$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
 	});
 }

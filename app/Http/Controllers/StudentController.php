@@ -79,11 +79,16 @@ class StudentController extends Controller
     public function show(Request $request, Student $student)
     {
         try{
-            $tmp = Student::where('email', $student->email);
+            if(Student::findOrFail($student->email)) {
+                $stud = DB::table('student')
+                    ->join('users', 'student.email', '=', 'users.email')
+                    ->where('employer.email', $student->email)
+                    ->get();
+            }        
         }catch(QueryException){
             return response("Error", 500);
         }
-        return response($tmp->jsonSerialize(), 200);
+        return response($stud);
     }
 
     /**

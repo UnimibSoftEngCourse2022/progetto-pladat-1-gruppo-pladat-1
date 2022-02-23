@@ -34,37 +34,6 @@ class EmployerController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    public function store(Request $request)
-    {
-        /*
-        * Possibile che sia all'interno della registrazione
-         * La sessione non c'è al momento della registrazione.
-        */
-        try{
-            DB::table('employer')
-                ->insert([
-                    'email'=>$request->input('email'),
-                    'name'=>$request->input('name'),
-                    'description'=>$request->input('description'),
-                    'address'=>$request->input('address'),
-                    'password'=>$request->input('password'),
-                    'path_photo'=>$request->input('path_photo'),
-                ]);
-        }catch(QueryException){
-            return response("Error", 500);
-        }
-        return response("Success", 200);
-
-
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  Employer  $employer
@@ -74,14 +43,15 @@ class EmployerController extends Controller
     {
         try{
             if(Employer::findOrFail($employer->email)) {
-                $placements = DB::table('employer')
-                    ->where('email', $employer->email)
+                $plac = DB::table('employer')
+                    ->join('users', 'employer.email', '=', 'users.email')
+                    ->where('employer.email', $employer->email)
                     ->get();
             }
         }catch(ModelNotFoundException){
             return response("show Error", 500);
         }
-        return response($placements->jsonSerialize(), 200)->view();
+        return response($placements);
     }
 
     /**
@@ -101,10 +71,8 @@ class EmployerController extends Controller
         }catch(ModelNotFoundException){
             return response("show Error", 500);
         }
-        return response($placements->jsonSerialize(), 200);
-
-
-           }
+        return response($placements->jsonSerialize());
+    }
 
     /**
      * Update the specified resource in storage.
@@ -127,9 +95,9 @@ class EmployerController extends Controller
                     ]);
             }
         }catch(ModelNotFoundException){
-            return response("Update Error", 500);
+            return response(0);
         }
-        return response("update Success", 200);
+        return response(1);
     }
 
     /**
@@ -148,9 +116,9 @@ class EmployerController extends Controller
                     ->delete();
             }
         }catch(ModelNotFoundException){
-            return response("update Error", 500);
+            return response(0);
         }
-        return response("destroy Success", 200);
+        return response(1);
     }
 
 }
