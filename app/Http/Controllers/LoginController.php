@@ -25,7 +25,8 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        $data = $request->input('email');
+        $email = $request->input('email');
+        $password = $request->input('password');
 
 
         if(DB::table('student')->join('employer', 'student.email', '=', 'employer.email')->where($credentials)->exists()){
@@ -34,7 +35,19 @@ class LoginController extends Controller
             $request->session()->save();
             return response()->view('private');
         }
-        return response()->view('index');
+        
+
+        $countStud = Student::all()->where('email', $data)->count();
+        $countEmpl = Employer::all()->where('email', $data)->count();
+
+        if($countStud != 0){
+            if(Student::all()->where('password', $password)->exist()){
+
+            }
+        }
+
+
+        
         
     }
 }

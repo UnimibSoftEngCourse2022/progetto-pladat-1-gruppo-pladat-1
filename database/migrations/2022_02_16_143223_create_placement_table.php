@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('duration');
             $table->date('start_date');
             $table->date('expiration_date');
-            $table->date('start_placement');
             $table->integer('salary')->nullable()->default(null);
             $table->string('employer_email', 100);
 

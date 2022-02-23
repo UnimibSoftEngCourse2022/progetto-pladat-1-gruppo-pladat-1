@@ -18,9 +18,14 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('surname', 100);
             $table->date('birth_date');
-            $table->string('presentation', 10000)->default('')->nullable();
             $table->string('password');
             $table->string('path_photo');
+            $table->foreignId('idPhoto')
+                ->nullable()
+                ->default('null')
+                ->constrained('photo', 'id')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->rememberToken();
             $table->primary('email');
             $table->timestamps();
