@@ -27,6 +27,10 @@ Route::get('/registrazione', function () {
     return response()->view('registrazione');
 });
 
+Route::get('/profile', function () {
+    return response()->view('private');
+});
+
 Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
 
 Route::post('/registrazioneStudent', [\App\Http\Controllers\RegistrationController::class, 'StudentRegistration']);

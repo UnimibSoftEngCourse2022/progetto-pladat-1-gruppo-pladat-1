@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Hash;
 
 class RegistrationController extends Controller
 {
@@ -34,40 +35,33 @@ class RegistrationController extends Controller
                 DB::table('users')
                     ->insert([
                         'email' => $request->input('email'),
-                        'password' => $request->input('password'),
+                        'password' => Hash::make($request->input('password')),
+                        'name' => $request->input('name'),
                     ]);
 
                  DB::table('student')
                     ->insert([
                         'email' => $request->input('email'),
-                        'name' => $request->input('name'),
                         'surname' => $request->input('surname'),
                         'birth_date' => $request->input('birth_date')
                     ]); 
                 
                     
                 $categories = $request->input('category');
-                if($categories->isEmpty()){
-                    return response("Nessuna categorie selezionata");
-                }
-                else{
-                    $categories->toArray();
-                    foreach( $categories as $item){
-                        DB::table('student_has_category')
-                            ->insert([
-                                'category_name' => $item->name,
-                                'student_email' => $request->input('email'),
-                            ]);
-                    }
-                }
-
-                
+                foreach($categories as $item){
+                    DB::table('student_has_category')
+                        ->insert([
+                            'category_name' => $item,
+                            'student_email' => $request->input('email'),
+                        ]);
+                }    
+                       
             }else{
-                    return response("Email già esistente");
-                }
-            return response('Registrato con successo')->view('login'); 
+                    return response(0);
+               }
+               return response(1); 
         } catch (QueryException) {
-            return response('Registrazione fallita')->view('registrazione');
+            return response(0);
         } 
     }
 
@@ -103,7 +97,7 @@ class RegistrationController extends Controller
             else{
                 return response("Email già esistente");
             }
-                return response()->view('login'); 
+            return response()->view('login'); 
         } catch (QueryException) {
             return response()->view('registrazione');
         } 

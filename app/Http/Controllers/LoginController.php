@@ -14,30 +14,18 @@ class LoginController extends Controller
 {
     public function loginCheck(Request $request){
 
-        $credentials = $request->validate([
+        $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
     
         $email = $request->input('email');
         $password = $request->input('password');
-        /*
+        
         if(Auth::attempt(['email' => $email, 'password' => $password])){
                 $request->session()->regenerate();
-                $request->put('email', $request->input('email'));
-                return response()->view('login');
+                return response(1);
         }
-        */
-
-        $counter = User::all()
-            ->where('email', $email)
-            ->where('password', $password)
-            ->count();
-        if($counter == 0){
-            $request->session()->regenerate();
-                $request->put('email', $request->input('email'));
-                return response("Login Success");
-        }
-        return response('Non sei registrato'); 
+        return response(0); 
     }
 }

@@ -18,6 +18,7 @@ function invioDati() {
 			$('.gutente').addClass("nascondi");
 			checkAzienda("#invioDatiPrivato");
 			invioDati2();
+			
 		} else {
 			$('.gazienda').addClass("nascondi");
 			$('.gutente').removeClass("nascondi");
@@ -118,13 +119,18 @@ function change() {
 			$('.gazienda').addClass("nascondi");
 			$('.gutente').removeClass("nascondi");
 			who="studente";
-			location.reload();
+			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
+			$(".gruppo>input[type=date]").val("");
+			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focusout();
+			$(".gruppo>input[type=date]").focusout();
+
 		}
 		if ($('#azienda').is(':checked')) {
 			$('.gazienda').removeClass("nascondi");
 			$('.gutente').addClass("nascondi");
 			who="azienda";
-			location.reload();
+			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focusout();
+			$(".gruppo>input[type=date]").focusout();
 		}
 	});
 }
@@ -173,7 +179,17 @@ function invioDatiLogin() {
   			{
 				email:email,
 				password:password
-  			}).done((mess)=>{alert(mess)})
+  			}).done((mess)=>
+			  {
+				if(mess==="1")
+				{
+					window.location.href = "/profile";
+				}
+				else
+				{
+					alert("Ci dispiace, non sei registrato.");
+				}
+			  });
 		}
 	});
 }
@@ -291,8 +307,16 @@ function checkStudent(id) {
 				  birth_date:data,
 				  email:email,
 				  password:password,
-				  category:[$("#categoria").val()],
-				}).done((mess)=>{alert(mess)})
+				  category:$("#categoria").val(),
+				}).done((mess)=>{
+					if(mess==="1")
+					{
+						window.location.href = "/login";
+					}
+					else{
+						alert("Email già presente");
+					}
+				})
 			}
 			else
 			{

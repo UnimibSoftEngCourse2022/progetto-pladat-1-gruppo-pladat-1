@@ -76,7 +76,6 @@ modules.xml
 # Sonarlint plugin
 .idea/sonarlint
 
-### Laravel ###
 /vendor/
 node_modules/
 npm-debug.log

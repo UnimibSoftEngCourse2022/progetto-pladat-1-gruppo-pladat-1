@@ -8,7 +8,7 @@ let listaCat = ["prima", "seconda", "terza", "quarta"];
 function riempiCategoria() {
 	$.get("/getCategory").done((lista)=>{
 		for (let row of lista) {
-				$("#categoria").append("<option value=" + row.name + ">" + row.name + "</option>");
+				$("#categoria").append("<option value='" + row.name + "'>" + row.name + "</option>");
 		} 
 	})
 }
