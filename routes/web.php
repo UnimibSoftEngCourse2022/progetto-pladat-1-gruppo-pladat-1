@@ -17,19 +17,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return response()->view('index');
-});
+})->name('home');
 
 Route::get('/login', function () {
     return response()->view('login');
-});
+})->name('login')
+->middleware('guest');
 
 Route::get('/registrazione', function () {
     return response()->view('registrazione');
-});
+})->middleware('guest');
 
 Route::get('/profile', function () {
     return response()->view('private');
-});
+})->middleware('auth');
 
 Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
 
@@ -39,6 +40,9 @@ Route::post('/registrazioneEmployer', [\App\Http\Controllers\RegistrationControl
 
 Route::get('/getCategory', [\App\Http\Controllers\RegistrationController::class, 'getCategory']);
 
+/*
+Metodo di appoggio
+*/
 Route::get('/user', function () {
     return response(User::all()->jsonSerialize(), 200);
 });
@@ -63,4 +67,4 @@ Route::resource('employer.placement', \App\Http\Controllers\PlacementController:
  */
 Route::resource('student.request', \App\Http\Controllers\RequestController::class);
 
-
+Route::get('/session',[\App\Http\Controllers\SessionController::class, 'dataSession'])->middleware('auth');

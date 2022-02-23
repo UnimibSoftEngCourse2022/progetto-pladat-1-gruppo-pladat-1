@@ -82,24 +82,24 @@ class RegistrationController extends Controller
             if(User::all()->where('email', $request->input('email'))->count()==0){
                 DB::table('users')
                     ->insert([
+                        'name' => $request->input('name'),
                         'email' => $request->input('email'),
-                        'password' => $request->input('password'),
+                        'password' => Hash::make($request->input('password')),
                     ]);
 
                  DB::table('employer')
                     ->insert([
                         'email' => $request->input('email'),
-                        'name' => $request->input('name'),
                         'description' => $request->input('description'),
                         'address' => $request->input('address'),
                     ]); 
             }
             else{
-                return response("Email già esistente");
+                return response(0);
             }
-            return response()->view('login'); 
+            return response(1); 
         } catch (QueryException) {
-            return response()->view('registrazione');
+            return response(0);
         } 
     }
 
@@ -107,5 +107,4 @@ class RegistrationController extends Controller
         $cat = Category::all();
         return response($cat->jsonSerialize(), 200);
     }
-
 }

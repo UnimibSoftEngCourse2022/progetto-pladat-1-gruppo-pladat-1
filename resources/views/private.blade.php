@@ -229,4 +229,5 @@
    </body>
 </html>
 @else
+header("Location: /login");
 @endif

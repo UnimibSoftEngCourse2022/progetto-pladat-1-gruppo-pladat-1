@@ -4,7 +4,7 @@ $(document).ready(function () {
 	invioDati();
 })
 
-let who="studente";
+let who="";
 function invioDati() {
 	if (document.URL.includes("/login")) {
 		invioDatiLogin();
@@ -13,19 +13,22 @@ function invioDati() {
 		checkStudent("#invioDatiRegistrazione");
 		checkAzienda("#invioDatiRegistrazione");
 	} else if (document.URL.includes("/profile")) {
-		alert('<%=Session["email"] %>');
-		if (who === "azienda") {
-			$('.gazienda').removeClass("nascondi");
-			$('.gutente').addClass("nascondi");
-			checkAzienda("#invioDatiPrivato");
-			invioDati2();
-			
-		} else {
-			$('.gazienda').addClass("nascondi");
-			$('.gutente').removeClass("nascondi");
-			checkStudent("#invioDatiPrivato");
-		}
-		startModifica(who);
+		$.get("/session").done((mess)=>{
+			who=mess['type'];
+			if (who === "Employer") {
+				$('.gazienda').removeClass("nascondi");
+				$('.gutente').addClass("nascondi");
+				checkAzienda("#invioDatiPrivato");
+				invioDati2();
+				
+			} else {
+				$('.gazienda').addClass("nascondi");
+				$('.gutente').removeClass("nascondi");
+				checkStudent("#invioDatiPrivato");
+			}
+			startModifica(who);
+			$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
+		});
 	} else {
 		console.log("errore");
 	}
@@ -106,12 +109,12 @@ function change() {
 	if ($('#studente').is(':checked')) {
 		$('.gazienda').addClass("nascondi");
 		$('.gutente').removeClass("nascondi");
-		who="studente";
+		who="Student";
 	}
 	if ($('#azienda').is(':checked')) {
 		$('.gazienda').removeClass("nascondi");
 		$('.gutente').addClass("nascondi");
-		who="azienda";
+		who="Employer";
 	}
 	$("input[type='radio']").change(function () {
 		$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
@@ -119,7 +122,7 @@ function change() {
 		if ($('#studente').is(':checked')) {
 			$('.gazienda').addClass("nascondi");
 			$('.gutente').removeClass("nascondi");
-			who="studente";
+			who="Student";
 			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 			$(".gruppo>input[type=date]").val("");
 			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focusout();
@@ -129,7 +132,7 @@ function change() {
 		if ($('#azienda').is(':checked')) {
 			$('.gazienda').removeClass("nascondi");
 			$('.gutente').addClass("nascondi");
-			who="azienda";
+			who="Employer";
 			$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focusout();
 			$(".gruppo>input[type=date]").focusout();
 		}
@@ -141,11 +144,11 @@ function startModifica(chi) {
 	$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
 	$("#modificaPrivato").click(function () {
 		if ($(this).text() === "Modifica") {
-			if (chi === "azienda") {
+			if (chi === "Employer") {
 				$(".gazienda").children().prop("disabled", false);
 				$(".gazienda").children("#searchBoxContainer").children("input").prop("disabled", false);
 			}
-			if (chi === "utente") {
+			if (chi === "Student") {
 				$(".gutente").children("input").prop("disabled", false);
 				$(".gutente").children("input").prop("disabled", false);
 			}
@@ -203,7 +206,7 @@ function checkAzienda(id) {
 	$(id).parent().children(".gruppo").children("textarea[name='descrizione1']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
 	$(id).parent().children(".gruppo").children("input[name='data']").val("");
 	$(id).click(function () {
-	if(who==="azienda")
+	if(who==="Employer")
 	{
 		let email1 = $(this).parent().children(".gruppo").children("input[name='email1']").val().trim().toLowerCase();
 		let password1 = $(this).parent().children(".gruppo").children("input[name='password1']").val().trim();
@@ -237,12 +240,11 @@ function checkAzienda(id) {
 		}
 		if(isEmail(email1)&&isPassword(password1)&&isNomeCompagnia(nomeCompagnia)&&isVia(via)&&isDescrizione(descrizione1)&&isCaptcha())
 		{
-			$.post("/registrazioneStudent",
+			$.post("/registrazioneEmployer",
 				{
 				  name:nomeCompagnia,
-				  surname:cognome,
-				  via:via,
-				  description:descrizione,
+				  address:via,
+				  description:descrizione1,
 				  email:email1,
 				  password:password1,
 				}).done((mess)=>{
@@ -268,7 +270,7 @@ function checkStudent(id) {
 	$(id).parent().children(".gruppo").children("input[name='data']").get(0).setCustomValidity("La data è obbligatoria");
 	$(id).parent().children(".gruppo").children("select").get(0).setCustomValidity("Seleziona almeno una categoria");
 	$(id).click(function () {
-		if(who==="studente")
+		if(who==="Student")
 	{
 		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
 		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();

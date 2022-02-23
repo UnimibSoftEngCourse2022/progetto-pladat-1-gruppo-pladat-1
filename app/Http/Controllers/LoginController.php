@@ -26,7 +26,7 @@ class LoginController extends Controller
         if(Auth::attempt(['email' => $email, 'password' => $password])){
                 $request->session()->regenerate();
                 $request->session()->put('email', $email);
-                if(Student::all()->where('email', $email)){
+                if(Student::all()->where('email', $email)->count()!=0){
                     $request->session()->put('type', "Student");
                 }
                 else{
@@ -35,5 +35,16 @@ class LoginController extends Controller
                 return response(1);
         }
         return response(0); 
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+    
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect('/');
     }
 }
