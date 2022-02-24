@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employer;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use mysql_xdevapi\Exception;
+use Illuminate\Support\Facades\Auth;
+
 
 class EmployerController extends Controller
 {
@@ -107,15 +110,19 @@ class EmployerController extends Controller
      * @param  Employer $employer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employer $employer)
+    public function destroy(Request $request, Employer $employer)
     {
+        try {
+            Auth::logout();
+    
+            $request->session()->invalidate();
+    
+            $request->session()->regenerateToken();
+    
+            DB::table('users')
+                ->where('email', $employer->email)
+                ->delete();
 
-        try{
-            if(Employer::findOrFail($employer->email)){
-                DB::table('employer')
-                    ->where('email', $employer->email)
-                    ->delete();
-            }
         }catch(QueryException){
             return response(0);
         }

@@ -30,7 +30,7 @@ Route::get('/registrazione', function () {
 
 Route::get('/profile', function () {
     return response()->view('private');
-})->middleware('auth');
+})->name('private')->middleware('auth');
 
 Route::get('/search', function () {
     return response()->view('ricerca');
@@ -63,6 +63,7 @@ Route::get('student/{student}/category', [\App\Http\Controllers\StudentControlle
 
 Route::post('student/{student}/edit', [\App\Http\Controllers\StudentController::class, 'update']);
 
+Route::get('student/{student}/delete', [\App\Http\Controllers\StudentController::class, 'destroy']);
 /*
  * EMPLOYER
  */
@@ -70,6 +71,7 @@ Route::resource('employer', \App\Http\Controllers\EmployerController::class, ['e
 
 Route::post('employer/{employer}/edit', [\App\Http\Controllers\EmployerController::class, 'update']);
 
+Route::get('employer/{employer}/delete', [\App\Http\Controllers\EmployerController::class, 'destroy']);
 
 
 /*

@@ -7,6 +7,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -159,12 +160,14 @@ class StudentController extends Controller
     
             $request->session()->regenerateToken();
     
-            $student->delete();
+            DB::table('users')
+                ->where('email', $student->email)
+                ->delete();
 
         }catch(QueryException){
             return response(0);
         }
-        return redirect()->route('home');
+        return response(1);
     }
 
     public function getCategory(Request $request, Student $student){

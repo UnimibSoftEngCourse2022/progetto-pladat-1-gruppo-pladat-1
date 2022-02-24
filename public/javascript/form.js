@@ -75,7 +75,40 @@ function caricaInformazioniPlacement()
 	}
 }
 
-
+function elimina()
+{
+	$(document).on("click",".button-modifica > div:nth-child(1)",function()
+	{
+		if(who==="Employer")
+		{
+			$.get("/employer/"+email+"/delete").done((mess)=>
+			{
+				if(mess==="1")
+				{
+					window.location.href = "/login";
+				}
+				else
+				{
+					console.log("Errore");
+				}
+			});
+		}
+		else
+		{
+			$.get("/student/"+email+"/delete").done((mess)=>
+			{
+				if(mess==="1")
+				{
+					window.location.href = "/login";
+				}
+				else
+				{
+					console.log("Errore");
+				}
+			});
+		}
+	});	
+}
 function caricaInformazioniAzienda()
 {
 	
@@ -347,6 +380,7 @@ function invioDati() {
 		checkAzienda("#invioDatiRegistrazione");
 	} else if (document.URL.includes("/profile")) {
 		logout();
+		elimina();
 		$(".gazienda label").css("top","-13px");
 		$(".gutente label").css("top","-13px");
 		$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='password']").parent().css("display","none");
