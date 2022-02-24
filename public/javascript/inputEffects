@@ -32,22 +32,30 @@ function blurr() {
 		}
 	});
 	$(document).on('click', '.gruppo > label',function () {
-		if (!document.URL.includes("/private")) {
-			$(this).parent().addClass("gruppo-evidenziato");
-			$(this).parent().children("input").focus();
-		} else {
-			if ($(this).parent().children().get(1).tagName === "input") {
+		if($(this).text()!=="Via")
+		{
+			if ($(this).parent().children("input").prop("tagName") === "INPUT") {
 				if (!$(this).parent().children("input").is(':disabled')) {
 					$(this).parent().addClass("gruppo-evidenziato");
 					$(this).parent().children("input").focus();
 				}
 			}
-			if ($(this).parent().children().get(1).tagName === "textarea") {
+			if ($(this).parent().children("textarea").prop("tagName") === "TEXTAREA") {
 				if (!$(this).parent().children("textarea").is(':disabled')) {
 					$(this).parent().addClass("gruppo-evidenziato");
 					$(this).parent().children("textarea").focus();
 				}
 			}
 		}
-	});
+		else
+		{
+			if ($(this).parent().children("div").children("input").prop("tagName") === "INPUT") 
+			{
+				if (!$(this).parent().children("div").children("input").is(':disabled')) {
+					$(this).parent().addClass("gruppo-evidenziato");
+					$(this).parent().children("div").children("input").focus();
+				}
+			}
+		}
+		});
 }

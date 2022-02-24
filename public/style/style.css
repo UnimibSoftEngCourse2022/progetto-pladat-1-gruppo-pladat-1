@@ -100,7 +100,11 @@ nav {
 	padding-left:30px !important;
 	padding-right:30px !important;
 }
-
+.login-button:hover {
+	color: #fff !important;
+	background-color: #1a73e8;
+	transition: .5s;
+}
 .logout-button:hover {
 	color: #fff !important;
 	background-color: #ea4335;

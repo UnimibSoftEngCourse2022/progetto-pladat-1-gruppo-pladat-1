@@ -132,7 +132,6 @@ class StudentController extends Controller
 
             foreach($categories as $item){
                 DB::table('student_has_category')
-                    ->where('student_email', $student->email)
                     ->insert([
                         'student_email'=>$student->email,
                         'category_name'=>$item,
@@ -154,11 +153,18 @@ class StudentController extends Controller
     public function destroy(Request $request, Student $student)
     {
         try {
+            Auth::logout();
+    
+            $request->session()->invalidate();
+    
+            $request->session()->regenerateToken();
+    
             $student->delete();
+
         }catch(QueryException){
-            return response("destroy Error", 500);
+            return response(0);
         }
-        return response("destroy Success", 200);
+        return redirect()->route('home');
     }
 
     public function getCategory(Request $request, Student $student){

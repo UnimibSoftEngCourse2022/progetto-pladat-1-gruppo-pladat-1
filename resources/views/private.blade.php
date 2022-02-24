@@ -18,7 +18,7 @@
          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul id="naviga" class="navbar-nav">
                <li class="nav-item">
-                  <a id="ricercaTirocinio" class="nav-link" href="/Search">Ricerca un tirocinio</a>
+                  <a id="ricercaTirocinio" class="nav-link" href="/search">Ricerca un tirocinio</a>
                </li>
                <li class="nav-item">
                   <button class="nav-link logout-button">Logout</button>
@@ -118,10 +118,12 @@
                      <h5 class="modal-title">Qualche informazione sulla tua offerta</h5>
                      <button type="button" class="chiusurax" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
                   </div>
-                  <div class="modal-body offerta">
-                     <p>Il tirocinio da te proposto è un tirocinio <span class="mTitolo">Titolo</span>
-                        cerca una figura come <span class="mCategoria">Developer</span> con uno stipendio di <span class="mStipendio">non definito</span>
-                        e una durata di <span class="mDurata">6 mesi</span>. Data di apertura: <span class="mInizio">12/01/2000</span>, data di chiusura: <span class="mFine">12/01/2020</span>.
+                  <div class="modal-body tirocinio">
+                  <p>Il tirocinio fornito da voi (<span class="mCompagnia">Oracle</span>) 
+                     (email: <span  class="mEmail">oracle@gmail.com</span>). Il tirocinio <span class="mTitolo">Titolo</span>
+                     cerca una figura con uno stipendio di <span class="mStipendio">non definito</span> euro
+                     e una durata di <span class="mDurata">6 mesi</span> settimane.
+                Data di apertura: <span class="mInizio">12/01/2000</span>, data di chiusura: <span class="mFine">12/01/2020</span>.
                      </p>
                   </div>
                   <div class="modal-footer">

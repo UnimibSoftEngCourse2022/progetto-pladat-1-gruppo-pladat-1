@@ -38,10 +38,8 @@ class PlacementController extends Controller
             $placements = DB::table('placement')
                 ->where('employer_email', $employer->email)
                 ->having('start_date', '<', $today->format('Y-m-d'))
-                ->having('expiration_date', '>', $today->format('Y-m-d'))->get();
-            
-            
-
+                ->having('expiration_date', '>', $today->format('Y-m-d'))
+                ->get();
         }catch(QueryException){
             return response(0);   
         }
@@ -71,7 +69,7 @@ class PlacementController extends Controller
      */
     public function create(Employer $employer)
     {
-        return response($employer->jsonSerialize(), 200);
+        return response($employer);
     }
 
     /**
@@ -113,12 +111,12 @@ class PlacementController extends Controller
     {
         try {
             $placements = Placement::all()
-                ->where('id', $placement->id);
+                ->where('id', $placement->id)
+                ->get();
         }catch(QueryException){
-            return response("error", 500);
+            return response(0);
         }
-        return response($placements->jsonSerialize(), 200)->view('');
-
+        return response($placements);
     }
 
     /**
@@ -133,9 +131,9 @@ class PlacementController extends Controller
             $placements = Placement::all()
                 ->where('id', $placement->id);
         }catch(QueryException){
-            return response("error", 500);
+            return response(0);
         }
-        return response($placements->jsonSerialize(), 200);
+        return response($placements);
     }
 
     /**
@@ -161,24 +159,23 @@ class PlacementController extends Controller
                     'salary'=>$request->get('salary'),
                 ]);
 
-            DB::table('student_has_category')
-                ->where('student_email', $student->email)
+            DB::table('placement_has_category')
+                ->where('idPlacement', $placement->id)
                 ->delete();
 
             $categories = $request->input('category');
 
             foreach($categories as $item){
                 DB::table('placement_has_category')
-                    ->where('idPlacement', $placement->id)
                     ->insert([
                         'idPlacement'=>$placement->id,
                         'category_name'=>$item,
                     ]);
             }
         }catch(QueryException){
-            return response("update Error", 500);
+            return response(0);
         }
-        return response("update Success", 200);
+        return response(1);
     }
 
     /**

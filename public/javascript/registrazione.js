@@ -3,8 +3,6 @@ $(document).ready(function () {
 	riempiCategoria();
 })
 
-let listaCat = ["prima", "seconda", "terza", "quarta"];
-
 function riempiCategoria() {
 	$.get("/getCategory").done((lista)=>{
 		for (let row of lista) {

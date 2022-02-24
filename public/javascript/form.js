@@ -43,12 +43,38 @@ function caricaPlacement()
 
 function caricaInformazioniPlacement()
 {
-	$(document).on("click","#privato-placement",function() {
-		$.get("/employer/"+email+"/placement/"+$(this).children("p:nth-child(1)").attr('id')).done((mess)=>{
-			
+	if(document.URL.includes("/profile"))
+	{
+		$(document).on("click",".privato-placement > p:nth-child(1)",function() {
+			$.get("/placement/"+$(this).parent().attr('id')+"/byid").done((mess)=>{
+				mess=mess[0];
+				$(".tirocinio >p> .mCompagnia").text(mess['name']);
+				$(".tirocinio >p> .mEmail").text(mess['email']);
+				$(".tirocinio >p> .mTitolo").text(mess['title']);
+				$(".tirocinio >p> .mStipendio").text(mess['salary']);
+				$(".tirocinio >p> .mDurata").text(mess['duration']);
+				$(".tirocinio >p> .mInizio").text(mess['start_date']);
+				$(".tirocinio >p> .mFine").text(mess['expiration_date']);
+			})
 		})
-	})
+	}
+	else
+	{
+		$(document).on("click",".privato-placement > p:nth-child(1)",function() {
+			$.get("/placement/"+$(this).parent().attr('id')+"/byid").done((mess)=>{
+				mess=mess[0];
+				$(".tirocinio mCompagnia").text(mess['name']);
+				$(".tirocinio mEmail").text(mess['employer_email']);
+				$(".tirocinio mTitolo").text(mess['title']);
+				$(".tirocinio mStipendio").text(mess['salary']);
+				$(".tirocinio mDurata").text(mess['duration']);
+				$(".tirocinio mInizio").text(mess['start_date']);
+				$(".tirocinio mFine").text(mess['expiration_date']);
+			})
+		})		
+	}
 }
+
 
 function caricaInformazioniAzienda()
 {
@@ -345,6 +371,7 @@ function invioDati() {
 				$('#invioDatiPrivato').parent().children(".gruppo").children("textarea[name='descrizione1']").val(mess1['description']);
 			});
 			caricaPlacement();
+			caricaInformazioniPlacement()
 			} else {
 				$("#cosaDire").text("Elenco offerte");
 				$("#aggiungiPlacement").css("display","none");

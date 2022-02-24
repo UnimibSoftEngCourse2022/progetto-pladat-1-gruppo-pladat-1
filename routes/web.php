@@ -32,6 +32,10 @@ Route::get('/profile', function () {
     return response()->view('private');
 })->middleware('auth');
 
+Route::get('/search', function () {
+    return response()->view('ricerca');
+})->middleware('auth');
+
 Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
 
 Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'logout']);
@@ -77,13 +81,15 @@ Route::get('employer/{employer}/placementopen', [\App\Http\Controllers\Placement
 
 Route::get('employer/{employer}/placementclosed', [\App\Http\Controllers\PlacementController::class, 'indexClosedPlacement']);
 
-
 Route::get('placement/{category}', [\App\Http\Controllers\SearchController::class, 'searchCategory']);
+
+Route::get('placement/{placement}/byid', [\App\Http\Controllers\SearchController::class, 'searchById']);
+
+
 
 /*
 *   REQUEST
 */
 Route::resource('student.request', \App\Http\Controllers\RequestController::class);
-
 
 Route::get('/session',[\App\Http\Controllers\SessionController::class, 'dataSession'])->middleware('auth');

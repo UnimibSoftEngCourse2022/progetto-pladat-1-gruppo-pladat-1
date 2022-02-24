@@ -18,7 +18,7 @@
          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul id="naviga" class="navbar-nav">
                <li class="nav-item">
-                  <a href="/login" class="nav-link login-button">Login</a>
+                  <a href="/login" class="nav-link login-button">Privato</a>
                </li>
             </ul>
          </div>

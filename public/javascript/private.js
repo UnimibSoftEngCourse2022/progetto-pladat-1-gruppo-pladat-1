@@ -10,7 +10,6 @@ $(window).on('resize', function () {
 	$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
 });
 
-let listaCat = ["prima", "seconda", "terza", "quarta"];
 function riempiCategoria() {
 	$.get("/getCategory").done((lista)=>{
 		for (let row of lista) {

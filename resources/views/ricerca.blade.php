@@ -18,16 +18,7 @@
          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul id="naviga" class="navbar-nav">
                <li class="nav-item">
-                  <a class="nav-link" href="page1">Primapagina</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="page2">SecondaPagina</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="page3">Terzapagina</a>
-               </li>
-               <li class="nav-item">
-                  <button class="nav-link login-button">Andreinetto</button>
+                  <a href="/profile" class="nav-link login-button">Privato</a>
                </li>
             </ul>
          </div>
@@ -42,11 +33,6 @@
                </div>
                <div class="elencoOfferte">
                   <hr>
-                  <div id="********">
-                     <p>L'azienda di Luca</p>
-                     <p>Front-end developer</p>
-                     <p>Salario non definito</p>
-                  </div>
                </div>
             </div>
          </div>
@@ -59,13 +45,14 @@
                   <button type="button" class="chiusurax" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
                </div>
                <div class="modal-body tirocinio">
-                  <p>Il tirocinio da te selezionato è fornito dalla compagnia <span class="mCompagnia">Oracle</span>
-                     (email: <span  class="mEmail">oracle@gmail.com</span>). Il tirocinio <span class="mTitolo">Titolo</span>
-                     cerca una figura come <span class="mCategoria">Developer</span> con uno stipendio di <span class="mStipendio">non definito</span>
-                     e una durata di <span class="mDurata">6 mesi</span>.
-                  </p>
+               <p>Il tirocinio è fornito da <span class="mCompagnia">Oracle</span> 
+                     email: <span  class="mEmail">oracle@gmail.com</span>. Il tirocinio <span class="mTitolo">Titolo</span>
+                     cerca una figura con uno stipendio di <span class="mStipendio">non definito</span> euro
+                     e una durata di <span class="mDurata">6 mesi</span> settimane.
+                Data di apertura: <span class="mInizio">12/01/2000</span>, data di chiusura: <span class="mFine">12/01/2020</span>.
+                     </p>
                   <p>Descrizione azienda</p>
-                  <p>............. bla bla bla ..............</p>
+                  <p class="mDescription">............. bla bla bla ..............</p>
                </div>
             </div>
          </div>

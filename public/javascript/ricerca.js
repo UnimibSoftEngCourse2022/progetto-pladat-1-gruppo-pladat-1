@@ -1,9 +1,11 @@
 $(document).ready(function () {
 	$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").val("");
 	$(".gruppo>input[type=date]").val(new Date().toISOString().split('T')[0]);
+	riempiCategoria()
 	animazioneRicerca();
 	caricaRicerca();
 	elencoOfferte();
+	caricaInformazioniPlacement();
 })
 
 function animazioneRicerca() {
@@ -26,7 +28,14 @@ function animazioneRicerca() {
 		}
 	})
 }
-let lista = ["ciao", "pippo"];
+let lista = [];
+function riempiCategoria() {
+	$.get("/getCategory").done((lis)=>{
+		for (let row of lis) {
+			lista.push(row['name']);
+		}
+	});
+}
 
 function caricaRicerca() {
 	$('#elencoRicerca').css("display", "none");
@@ -44,6 +53,17 @@ function caricaRicerca() {
 		$('#ricercona').css("border-right", "0");
 		if ($('#ricercona').val().trim() !== "") {
 			$('#ricercona').css("border-bottom", "2px solid #1a73e8");
+			if(lista.includes($('#ricercona').val().trim()))
+			{
+				let tmp="";
+				$.get("/pacemant/"+$('#ricercona').val().trim()).done((mess1)=>{
+					for(let row of mess1)
+					{
+						tmp="<div id='"+row['id']+"'><p>'"+row['id']+"'</p><p>Front-end developer</p><p>Salario non definito</p></div>";
+						$(".elenco-privato").children("div").eq(1).append(tmp);
+					}
+				});
+			}
 		} else {
 			$('#ricercona').css("border-bottom", "2px solid #f2f2f2");
 		}
