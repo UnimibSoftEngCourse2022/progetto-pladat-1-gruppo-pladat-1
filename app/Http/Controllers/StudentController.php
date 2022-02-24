@@ -82,7 +82,7 @@ class StudentController extends Controller
             if(Student::findOrFail($student->email)) {
                 $stud = DB::table('student')
                     ->join('users', 'student.email', '=', 'users.email')
-                    ->where('employer.email', $student->email)
+                    ->where('student.email', $student->email)
                     ->get();
             }        
         }catch(QueryException){
@@ -114,24 +114,34 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
+        try{
+            DB::table('student')    
+            ->join('users', 'users.email', '=', 'student.email')
+            ->where('student.email', $student->email)
+            ->update([
+                'name' => $request->input('name'),
+                'surname'=>$request->input('surname'),
+                'birth_date'=>$request->input('birth_date'),
+            ]);
+        
+            $categories = $request->input('category');
 
-        /*
-         * Appena ho la sessione funzionante la prendo da quella la email da modificare
-        */
+            DB::table('student_has_category')
+                ->where('student_email', $student->email)
+                ->delete();
 
-        $name = $request->input('name');
-        $surname = $request->input('surname');
-        $presentation = $request->input('presentation');
-        $birth_date = $request->input('birth_date');
-
-        $student->update([
-            'name'=>$name,
-            'surname'=>$surname,
-            'presentation'=>$presentation,
-            'birth_date'=>$birth_date,
-        ]);
-
-        return response("update Success", 200);
+            foreach($categories as $item){
+                DB::table('student_has_category')
+                    ->where('student_email', $student->email)
+                    ->insert([
+                        'student_email'=>$student->email,
+                        'category_name'=>$item,
+                    ]);
+            }
+        }catch(QueryException){
+            return response(0);
+        }
+        return response(1);
     }
 
 
@@ -145,9 +155,20 @@ class StudentController extends Controller
     {
         try {
             $student->delete();
-        }catch(\Exception){
+        }catch(QueryException){
             return response("destroy Error", 500);
         }
         return response("destroy Success", 200);
+    }
+
+    public function getCategory(Request $request, Student $student){
+        try{
+            $category = DB::table('student_has_category')
+                ->where('student_email', $student->email)
+                ->get();
+            return response($category);
+        }catch(QueryException){
+            return response("Error");
+        }
     }
 }

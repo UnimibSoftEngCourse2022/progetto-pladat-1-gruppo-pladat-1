@@ -1,4 +1,3 @@
-@if (Session::has('email'))
 <!DOCTYPE html>
 <html lang="it">
    <head>
@@ -19,10 +18,10 @@
          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul id="naviga" class="navbar-nav">
                <li class="nav-item">
-                  <a class="nav-link" href="/Search">Ricerca un tirocinio</a>
+                  <a id="ricercaTirocinio" class="nav-link" href="/Search">Ricerca un tirocinio</a>
                </li>
                <li class="nav-item">
-                  <button class="nav-link login-button">Andreinetto</button>
+                  <button class="nav-link logout-button">Logout</button>
                </li>
             </ul>
          </div>
@@ -88,8 +87,8 @@
             <div class="col-12 col-lg-6">
                <div class="elenco-privato">
                   <div>
-                     <h3>Elenco placement</h3>
-                     <h3 data-bs-toggle="modal" data-bs-target="#aggiungiOfferta" >&#43;</h3>
+                     <h3 id="cosaDire">Elenco placement</h3>
+                     <h3 id="aggiungiPlacement" data-bs-toggle="modal" data-bs-target="#aggiungiOfferta" >&#43;</h3>
                   </div>
                   <div>
                      <div class="privato-richiesta">
@@ -222,6 +221,3 @@
       <script src="/javascript/form.js"></script>
    </body>
 </html>
-@else
-header("Location: /login");
-@endif

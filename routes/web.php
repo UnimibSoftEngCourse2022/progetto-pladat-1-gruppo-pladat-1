@@ -52,6 +52,10 @@ Route::get('/user', function () {
  */
 Route::resource('student', \App\Http\Controllers\StudentController::class, ['except'=>['index']]);
 
+Route::get('student/{student}/category', [\App\Http\Controllers\StudentController::class, 'getCategory']);
+
+Route::post('student/{student}/edit', [\App\Http\Controllers\StudentController::class, 'update']);
+
 /*
  * Endpoint delle operazioni di employer
  */

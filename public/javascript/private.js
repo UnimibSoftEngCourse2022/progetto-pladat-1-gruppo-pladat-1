@@ -14,12 +14,19 @@ let listaCat = ["prima", "seconda", "terza", "quarta"];
 function riempiCategoria() {
 	$.get("/getCategory").done((lista)=>{
 		for (let row of lista) {
-				$("#categoria").append("<option value=" + row.name + ">" + row.name + "</option>");
-				$("#categoria1").append("<option value=" + row.name + ">" + row.name + "</option>");
+				$("#categoria").append("<option value='" + row.name + "'>" + row.name + "</option>");
+				$("#categoria1").append("<option value='" + row.name + "'>" + row.name + "</option>");
 		} 
 	})
 }
 
+function logout()
+{
+	$(".logout-button").click(()=>
+	{
+		
+	})
+}
 function infoOfferte() {
 	let ilMioHtml = "";
 	$(".privato-placement").hover(

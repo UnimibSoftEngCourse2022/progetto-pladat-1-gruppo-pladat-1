@@ -1,0 +1,17 @@
+[33m4ef6fa8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33ma99aa41[m HEAD@{1}: reset: moving to HEAD@{8}
+[33m4ef6fa8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{2}: reset: moving to HEAD@{8}
+[33ma99aa41[m HEAD@{3}: reset: moving to HEAD@{6}
+[33m2f99115[m HEAD@{4}: reset: moving to HEAD@{3}
+[33m739f89b[m HEAD@{5}: reset: moving to HEAD@{1}
+[33m2f99115[m HEAD@{6}: reset: moving to HEAD@{1}
+[33m739f89b[m HEAD@{7}: reset: moving to HEAD^
+[33m2f99115[m HEAD@{8}: reset: moving to HEAD^
+[33m4ef6fa8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{9}: reset: moving to HEAD~1
+[33ma99aa41[m HEAD@{10}: commit: gestione login
+[33m4ef6fa8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{11}: commit: gestione ogin e iniziazione registrazione con Matteo (Live Share MS)
+[33m2f99115[m HEAD@{12}: commit: aggiornamenti vari e sistemazione readme con Matteo (Live Share MS)
+[33m739f89b[m HEAD@{13}: commit: prima sistemazione login Matteo (Live Share MS)
+[33m5d092a8[m HEAD@{14}: commit: sistemazione direrectories con Matteo (Live Share MS)
+[33m97b4c4d[m HEAD@{15}: commit: sistemazione view nel path corretto
+[33m7c6d74b[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{16}: clone: from https://github.com/UnimibSoftEngCourse2022/progetto-pladat-1-gruppo-pladat-1
