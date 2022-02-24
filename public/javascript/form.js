@@ -1,3 +1,4 @@
+/*<p class="attendo">&#10140;</p>*/
 let who="";
 let email="";
 
@@ -13,8 +14,7 @@ $(window).on('load', function () {
 
 function logout()
 {
-	$(".logout-button").click(()=>
-	{
+	$(document).on("click",".logout-button",function() {
 		$.get("/logout").done((mess)=>{
 			window.location.href = "/";
 		})
@@ -24,12 +24,45 @@ function logout()
 
 function caricaPlacement()
 {
-	$.get("/employer/"+email+"/placement").done((mess)=>{
-		for(let row of mess)
+	let tmp="";
+	$.get("/employer/"+email+"/placementopen").done((mess1)=>{
+		for(let row of mess1)
 		{
-			
+			tmp="<div id='"+row['id']+"' class='privato-placement'><p>'"+row['title']+"'</p><p></p><p class='accetto'>&#10004;</p></div>"
+			$(".elenco-privato").children("div").eq(1).append(tmp);
+		}
+	});
+	$.get("/employer/"+email+"/placementclosed").done((mess1)=>{
+		for(let row of mess1)
+		{
+			tmp="<div id='"+row['id']+"' class='privato-placement'><p>'"+row['title']+"'</p><p></p><p class='rifiuto'>&#10006;</p></div>";
+			$(".elenco-privato").children("div").eq(1).append(tmp);
 		}
 	})
+}
+
+function caricaInformazioniPlacement()
+{
+	$(document).on("click","#privato-placement",function() {
+		$.get("/employer/"+email+"/placement/"+$(this).children("p:nth-child(1)").attr('id')).done((mess)=>{
+			
+		})
+	})
+}
+
+function caricaInformazioniAzienda()
+{
+	
+}
+
+function caricaApplicanti()
+{
+	
+}
+
+function applica()
+{
+	
 }
 
 function isEmail(email) {
@@ -110,7 +143,7 @@ function checkAzienda(id) {
 	$(id).parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").get(0).setCustomValidity("La vai deve avere dai 3 ai 100 caratteri. CONSIGLIATO usare quela proposta da BING maps.");
 	$(id).parent().children(".gruppo").children("textarea[name='descrizione1']").get(0).setCustomValidity("Non è richiesta una descrizione (massimo 200 caratteri)");
 	$(id).parent().children(".gruppo").children("input[name='data']").val("");
-	$(id).click(function () {
+	$(document).on("click",id,function() {
 	if(who==="Employer")
 	{
 		let email1 = $(this).parent().children(".gruppo").children("input[name='email1']").val().trim().toLowerCase();
@@ -192,7 +225,7 @@ function checkStudent(id) {
 	$(id).parent().children(".gruppo").children("input[name='cognome']").get(0).setCustomValidity("Il cognome deve avere dai 3 ai 30 caratteri");
 	$(id).parent().children(".gruppo").children("input[name='data']").get(0).setCustomValidity("La data è obbligatoria");
 	$(id).parent().children(".gruppo").children("select").get(0).setCustomValidity("Seleziona almeno una categoria");
-	$(id).click(function () {
+	$(document).on("click",id,function() {
 		if(who==="Student")
 	{
 		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
@@ -311,6 +344,7 @@ function invioDati() {
 				$('#invioDatiPrivato').parent().children(".gruppo").children("#searchBoxContainer").children("input[name='via']").val(mess1['address']);
 				$('#invioDatiPrivato').parent().children(".gruppo").children("textarea[name='descrizione1']").val(mess1['description']);
 			});
+			caricaPlacement();
 			} else {
 				$("#cosaDire").text("Elenco offerte");
 				$("#aggiungiPlacement").css("display","none");
@@ -330,7 +364,6 @@ function invioDati() {
 						}
 						});
 				});
-
 			}
 			startModifica(who);
 			$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
@@ -343,7 +376,7 @@ function invioDati() {
 function invioDatiLogin() {
 	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='email']").get(0).setCustomValidity("L'email deve avere il formato corretto");
 	$("#invioDatiLogin").parent().children(".gruppo").children("input[name='password']").get(0).setCustomValidity("La password non può essere nulla");
-	$("#invioDatiLogin").click(function () {
+	$(document).on("click","#invioDatiLogin",function() {
 		let email = $(this).parent().children(".gruppo").children("input[name='email']").val().trim().toLowerCase();
 		let password = $(this).parent().children(".gruppo").children("input[name='password']").val().trim();
 		if (!isEmail(email)) {
@@ -387,7 +420,7 @@ function invioDatiCreazioneTirocinio() {
 	$("#invioDatiOfferta").parent().children(".gruppo").children("select").get(0).setCustomValidity("Seleziona almeno una categoria");
 	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='dataFine']").val("");
 	$("#invioDatiOfferta").parent().children(".gruppo").children("input[name='dataInizio']").val("");
-	$("#invioDatiOfferta").click(function () {
+	$(document).on("click","#invioDatiOfferta",function() {
 		let titolo = $(this).parent().children(".gruppo").children("input[name='titolo']").val().trim().toLowerCase();
 		let durata = $(this).parent().children(".gruppo").children("input[name='durata']").val().trim().toLowerCase();
 		let dataInizio = $(this).parent().children(".gruppo").children("input[name='dataInizio']").val();
@@ -432,7 +465,6 @@ function invioDatiCreazioneTirocinio() {
 
 		if(isTitolo(titolo)&&isDurata(durata)&&isData(dataInizio)&&isData(dataFine)&&isDescrizione(descrizione2)&&isSalario(salario))
 		{
-			alert();
 			$.post("/employer/"+email+"/placement",{
 				title:titolo,
 				description:descrizione2,
@@ -490,7 +522,7 @@ function change() {
 function startModifica(chi) {
 	$("#invioDatiPrivato").css("display", "none");
 	$(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
-	$("#modificaPrivato").click(function () {
+	$(document).on("click","#modificaPrivato",function() {
 		if ($(this).text() === "Modifica") {
 			if (chi === "Employer") {
 				$(".gazienda").children().prop("disabled", false);

@@ -51,8 +51,8 @@ Route::get('/user', function () {
 });
 
 /*
- * Endpoint delle operazioni dello studente
- */
+*   STUDENT
+*/
 Route::resource('student', \App\Http\Controllers\StudentController::class, ['except'=>['index']]);
 
 Route::get('student/{student}/category', [\App\Http\Controllers\StudentController::class, 'getCategory']);
@@ -60,20 +60,29 @@ Route::get('student/{student}/category', [\App\Http\Controllers\StudentControlle
 Route::post('student/{student}/edit', [\App\Http\Controllers\StudentController::class, 'update']);
 
 /*
- * Endpoint delle operazioni di employer
+ * EMPLOYER
  */
 Route::resource('employer', \App\Http\Controllers\EmployerController::class, ['except'=>['index']]);
 
 Route::post('employer/{employer}/edit', [\App\Http\Controllers\EmployerController::class, 'update']);
 
-/*
- * Endpoint per le operazioni dell'employer sulla creazion/iterazione dei placement
- */
-Route::resource('employer.placement', \App\Http\Controllers\PlacementController::class);
+
 
 /*
- * Endpoint per le operazioni dello studente sulla creazion/iterazione delle richieste
- */
+* PLACEMENT
+*/
+Route::resource('employer.placement', \App\Http\Controllers\PlacementController::class);
+
+Route::get('employer/{employer}/placementopen', [\App\Http\Controllers\PlacementController::class, 'indexActivePlacement']);
+
+Route::get('employer/{employer}/placementclosed', [\App\Http\Controllers\PlacementController::class, 'indexClosedPlacement']);
+
+
+Route::get('placement/{category}', [\App\Http\Controllers\SearchController::class, 'searchCategory']);
+
+/*
+*   REQUEST
+*/
 Route::resource('student.request', \App\Http\Controllers\RequestController::class);
 
 

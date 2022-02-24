@@ -22,25 +22,23 @@ function riempiCategoria() {
 
 function infoOfferte() {
 	let ilMioHtml = "";
-	$(".privato-placement").hover(
-		function () {
+	$(document).on("mouseenter", ".privato-placement", function () {
 			ilMioHtml = $(this).html();
 			$(this).html("<p data-bs-toggle='modal' data-bs-target='#informazioni'>Informazioni</p><p data-bs-toggle='modal' data-bs-target='#applicanti'>Applicanti</p>");
-		},
-		function () {
+		});
+	$(document).on("mouseleave", ".privato-placement", function () {
 			$(this).html(ilMioHtml);
-		});
-	$(".bloccoelencoapplicanti").hover(
-		function () {
+	});
+	$(document).on("mouseenter", ".bloccoelencoapplicanti", function () {
 			$(this).children().eq(1).removeClass("nascondi");
-		},
-		function () {
-			$(this).children().eq(1).addClass("nascondi");
 		});
+	$(document).on("mouseleave", ".bloccoelencoapplicanti", function () {
+		$(this).children().eq(1).addClass("nascondi");
+	});
 }
 
 function sceltaAccetazione() {
-	$(".sceltaAccettazione").click(function () {
+	$(document).on("click", ".sceltaAccettazione", function () {
 		if ($(this).text().charCodeAt(0) == "10140") {
 			$(this).html("✔");
 			$(this).removeClass("attendo");

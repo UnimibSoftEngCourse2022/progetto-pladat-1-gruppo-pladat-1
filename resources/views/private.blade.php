@@ -91,21 +91,6 @@
                      <h3 id="aggiungiPlacement" data-bs-toggle="modal" data-bs-target="#aggiungiOfferta" >&#43;</h3>
                   </div>
                   <div>
-                     <div class="privato-richiesta">
-                        <p>Per utente</p>
-                        <p>Front-end 22</p>
-                        <p class="rifiuto">&#10006;</p>
-                     </div>
-                     <div class="privato-placement">
-                        <p>Per azienda</p>
-                        <p>Front-end ww</p>
-                        <p class="accetto">&#10004;</p>
-                     </div>
-                     <div class="privato-placement">
-                        <p>Google com</p>
-                        <p>Front-end eee</p>
-                        <p class="attendo">&#10140;</p>
-                     </div>
                   </div>
                </div>
             </div>
@@ -136,7 +121,7 @@
                   <div class="modal-body offerta">
                      <p>Il tirocinio da te proposto è un tirocinio <span class="mTitolo">Titolo</span>
                         cerca una figura come <span class="mCategoria">Developer</span> con uno stipendio di <span class="mStipendio">non definito</span>
-                        e una durata di <span class="mDurata">6 mesi</span>. Aperta il <span class="mInizio">12/01/2000</span>, termina il <span class="mFine">12/01/2020</span>.
+                        e una durata di <span class="mDurata">6 mesi</span>. Data di apertura: <span class="mInizio">12/01/2000</span>, data di chiusura: <span class="mFine">12/01/2020</span>.
                      </p>
                   </div>
                   <div class="modal-footer">

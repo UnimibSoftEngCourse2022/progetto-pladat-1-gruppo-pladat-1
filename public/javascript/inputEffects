@@ -3,35 +3,35 @@ $(document).ready(function () {
 })
 
 function blurr() {
-	$(".gruppo > input[type=date]").focus(function () {
+	$(document).on('focus', '.gruppo > input[type=date]',function () {
 			$(this).css("color", "#3c4043");
 	});
-	$(".gruppo > input[type=date]").focusout(function () {
+	$(document).on('focusout', '.gruppo > input[type=date]',function () {
 		if ($(this).val().trim() === "") {
 			$(this).parent().removeClass("gruppo-evidenziato");
 			$(this).val("");
 			$(this).css("color", "white");
 		}
 	});
-	$(".gruppo > input, .gruppo>textarea").focus(function () {
+	$(document).on('focus', '.gruppo > input, .gruppo>textarea',function () {
 		$(this).parent().addClass("gruppo-evidenziato");
 	});
-	$(".gruppo > input, .gruppo>textarea").focusout(function () {
+	$(document).on('focusout', '.gruppo > input, .gruppo>textarea',function () {
 		if ($(this).val().trim() === "") {
 			$(this).parent().removeClass("gruppo-evidenziato");
 			$(this).val("");
 		}
 	});
-	$(".gruppo > div>input").focus(function () {
+	$(document).on('focus', '.gruppo > div>input',function () {
 		$(this).parent().parent().addClass("gruppo-evidenziato");
 	});
-	$(".gruppo > div>input").focusout(function () {
+	$(document).on('focusout', '.gruppo > div>input',function () {
 		if ($(this).val().trim() === "") {
 			$(this).parent().parent().removeClass("gruppo-evidenziato");
 			$(this).val("");
 		}
 	});
-	$(".gruppo > label").click(function () {
+	$(document).on('click', '.gruppo > label',function () {
 		if (!document.URL.includes("/private")) {
 			$(this).parent().addClass("gruppo-evidenziato");
 			$(this).parent().children("input").focus();

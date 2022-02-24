@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Employer;
 use App\Models\Placement;
 use Illuminate\Database\QueryException;
@@ -25,12 +26,42 @@ class PlacementController extends Controller
         }catch(QueryException){   
             return response(0);
         }
-        return response(1);
+        return response($placements);
         
     }
 
     public function indexActivePlacement(Request $request, Employer $employer){
+        try{
         
+            $today = Carbon::today();
+
+            $placements = DB::table('placement')
+                ->where('employer_email', $employer->email)
+                ->having('start_date', '<', $today->format('Y-m-d'))
+                ->having('expiration_date', '>', $today->format('Y-m-d'))->get();
+            
+            
+
+        }catch(QueryException){
+            return response(0);   
+        }
+        return response($placements);
+    }
+
+    public function indexClosedPlacement(Request $request, Employer $employer){
+        try{
+        
+            $today = Carbon::today();
+
+            $placements = DB::table('placement')
+                ->where('employer_email', $employer->email)
+                ->where('start_date', '>', $today)
+                ->orWhere('expiration_date', '<', $today)
+                ->get();
+        }catch(QueryException){
+            return response(0);   
+        }
+        return response($placements);
     }
 
     /**

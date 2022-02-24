@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Placement extends Model
 {
-    protected $table = 'Placement';
+    protected $table = 'placement';
     protected $primaryKey = 'idPlacement';
     protected $keyType = 'integer';
     protected $connection = 'mysql';

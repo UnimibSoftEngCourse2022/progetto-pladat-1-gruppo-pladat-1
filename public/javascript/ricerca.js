@@ -15,11 +15,11 @@ function animazioneRicerca() {
 		loop: true,
 		loopDelay: 5000,
 	}).go();
-	$("#ricercona").focus(function () {
+	$(document).on("focus", "#ricercona", function () {
 		istanza.freeze();
 		$('#scrittaRicerconaAuto').addClass("nascondi");
 	})
-	$("#ricercona").focusout(function () {
+	$(document).on("focusout", "#ricercona", function () {
 		if ($("#ricercona").val().trim() === "") {
 			istanza.unfreeze()
 			$('#scrittaRicerconaAuto').removeClass("nascondi");
@@ -30,14 +30,14 @@ let lista = ["ciao", "pippo"];
 
 function caricaRicerca() {
 	$('#elencoRicerca').css("display", "none");
-	$('#ricercona').focus(function () {
+	$(document).on("focus", "#ricercona", function () {
 		$('#elencoRicerca').css("display", "block");
 		$('#ricercona').css("border-top", "2px solid #f2f2f2");
 		$('#ricercona').css("border-left", "2px solid #f2f2f2");
 		$('#ricercona').css("border-right", "2px solid #f2f2f2");
 		$('#ricercona').css("border-bottom", "0");
 	})
-	$('#ricercona').focusout(function () {
+	$(document).on("focusout", "#ricercona", function () {
 		$('#elencoRicerca').css("display", "none");
 		$('#ricercona').css("border-top", "0");
 		$('#ricercona').css("border-left", "0");
