@@ -182,8 +182,8 @@
                            <input type="text" name="titolo"  />
                         </div>
                         <div class="gruppo">
-                           <label class="input-modificato">Durata tirocinio</label>
-                           <input type="text" name="durata" />
+                           <label class="input-modificato">Durata tirocinio (settimane)</label>
+                           <input type="number" name="durata" />
                         </div>
                         <div class="gruppo">
                            <label class="input-modificato">Data inizio prenotazioni</label>
@@ -199,7 +199,7 @@
                         </div>
                         <div class="gruppo">
                            <label class="input-modificato">Salario</label>
-                           <input type="text" name="salario"/>
+                           <input type="number" name="salario"/>
                         </div>
                         <div class="gruppo">
                            <select name="categoria1" id="categoria1" size="3" multiple>

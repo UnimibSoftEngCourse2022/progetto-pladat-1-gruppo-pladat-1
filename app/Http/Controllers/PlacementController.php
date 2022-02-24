@@ -18,10 +18,19 @@ class PlacementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Employer $employer)
-    {
-        $placements = Placement::all()
-            ->where('employer_email', $employer->email);
-        return response($placements->jsonSerialize(), 200);
+    {   
+        try{
+            $placements = Placement::all()
+                ->where('employer_email', $employer->email);
+        }catch(QueryException){   
+            return response(0);
+        }
+        return response(1);
+        
+    }
+
+    public function indexActivePlacement(Request $request, Employer $employer){
+        
     }
 
     /**
@@ -54,14 +63,13 @@ class PlacementController extends Controller
                     'duration'=>$request->input('duration'),
                     'start_date'=>$request->input('start_date'),
                     'expiration_date'=>$request->input('expiration_date'),
-                    'start_placement'=>$request->input('start_placement'),
                     'salary'=>$request->input('salary'),
                     'employer_email'=>$employer->email,
                 ]);
         }catch(QueryException){
-            return response("Error", 500);
+            return response(0);
         }
-        return response("Success", 200);
+        return response(1);
     }
 
     /**
@@ -121,6 +129,21 @@ class PlacementController extends Controller
                     'start_placement'=>$request->get('start_placement'),
                     'salary'=>$request->get('salary'),
                 ]);
+
+            DB::table('student_has_category')
+                ->where('student_email', $student->email)
+                ->delete();
+
+            $categories = $request->input('category');
+
+            foreach($categories as $item){
+                DB::table('placement_has_category')
+                    ->where('idPlacement', $placement->id)
+                    ->insert([
+                        'idPlacement'=>$placement->id,
+                        'category_name'=>$item,
+                    ]);
+            }
         }catch(QueryException){
             return response("update Error", 500);
         }

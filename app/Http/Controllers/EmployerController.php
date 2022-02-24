@@ -48,7 +48,7 @@ class EmployerController extends Controller
                     ->where('employer.email', $employer->email)
                     ->get();
             }
-        }catch(ModelNotFoundException){
+        }catch(QueryException){
             return response("show Error", 500);
         }
         return response($plac);
@@ -68,7 +68,7 @@ class EmployerController extends Controller
                     ->where('email', $employer->email)
                     ->get();
             }
-        }catch(ModelNotFoundException){
+        }catch(QueryException){
             return response("show Error", 500);
         }
         return response($placements->jsonSerialize());
@@ -116,7 +116,7 @@ class EmployerController extends Controller
                     ->where('email', $employer->email)
                     ->delete();
             }
-        }catch(ModelNotFoundException){
+        }catch(QueryException){
             return response(0);
         }
         return response(1);

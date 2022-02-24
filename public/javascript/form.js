@@ -21,6 +21,17 @@ function logout()
 	})
 }
 
+
+function caricaPlacement()
+{
+	$.get("/employer/"+email+"/placement").done((mess)=>{
+		for(let row of mess)
+		{
+			
+		}
+	})
+}
+
 function isEmail(email) {
 	let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	return regex.test(email);
@@ -83,7 +94,7 @@ function isCaptcha()
 	}
 } 
 function isDurata(durata) {
-	let regex = /^.{1,40}$/;
+	let regex = /^.{1,10}$/;
 	return regex.test(durata);
 }
 
@@ -382,7 +393,7 @@ function invioDatiCreazioneTirocinio() {
 		let dataInizio = $(this).parent().children(".gruppo").children("input[name='dataInizio']").val();
 		let dataFine = $(this).parent().children(".gruppo").children("input[name='dataFine']").val();
 		let descrizione2 = $(this).parent().children(".gruppo").children("textarea[name='descrizione2']").val().trim().toLowerCase();
-		let salario = $(this).parent().children(".gruppo").children("input[name='salario']").val().toLowerCase();
+		let salario = $(this).parent().children(".gruppo").children("input[name='salario']").val();
 		if (!isTitolo(titolo)) {
 			$(this).parent().children(".gruppo").children("input[name='titolo']").css("border-color", "#ea4335");
 		} else {
@@ -417,6 +428,27 @@ function invioDatiCreazioneTirocinio() {
 			$("#categoria1").css("border-color", "#ea4335");
 		} else {
 			$("#categoria1").css("border-color", "#1a73e8");
+		}
+
+		if(isTitolo(titolo)&&isDurata(durata)&&isData(dataInizio)&&isData(dataFine)&&isDescrizione(descrizione2)&&isSalario(salario))
+		{
+			alert();
+			$.post("/employer/"+email+"/placement",{
+				title:titolo,
+				description:descrizione2,
+				duration:durata,
+				start_date:dataInizio,
+				expiration_date:dataFine,
+				salary:salario,
+			  }).done((mess)=>{
+				if(mess==="1")
+				{
+					location.reload();
+				}
+				else{
+					alert("Qualcosa è andato storto, riprova!");
+				}
+			  });
 		}
 	});
 }
