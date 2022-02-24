@@ -20,13 +20,6 @@ function riempiCategoria() {
 	})
 }
 
-function logout()
-{
-	$(".logout-button").click(()=>
-	{
-		
-	})
-}
 function infoOfferte() {
 	let ilMioHtml = "";
 	$(".privato-placement").hover(

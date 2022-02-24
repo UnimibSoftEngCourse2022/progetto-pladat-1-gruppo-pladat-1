@@ -34,6 +34,9 @@ Route::get('/profile', function () {
 
 Route::post('/loginCheck', [\App\Http\Controllers\LoginController::class, 'loginCheck']);
 
+Route::get('/logout', [\App\Http\Controllers\LoginController::class, 'logout']);
+
+
 Route::post('/registrazioneStudent', [\App\Http\Controllers\RegistrationController::class, 'StudentRegistration']);
 
 Route::post('/registrazioneEmployer', [\App\Http\Controllers\RegistrationController::class, 'EmployerRegistration']);
@@ -60,6 +63,8 @@ Route::post('student/{student}/edit', [\App\Http\Controllers\StudentController::
  * Endpoint delle operazioni di employer
  */
 Route::resource('employer', \App\Http\Controllers\EmployerController::class, ['except'=>['index']]);
+
+Route::post('employer/{employer}/edit', [\App\Http\Controllers\EmployerController::class, 'update']);
 
 /*
  * Endpoint per le operazioni dell'employer sulla creazion/iterazione dei placement

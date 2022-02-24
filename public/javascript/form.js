@@ -11,6 +11,16 @@ $(window).on('load', function () {
     $(".elenco-privato").css('height', ($("#modifica").height() + 43.2) + "px");
 });
 
+function logout()
+{
+	$(".logout-button").click(()=>
+	{
+		$.get("/logout").done((mess)=>{
+			window.location.href = "/";
+		})
+	})
+}
+
 function isEmail(email) {
 	let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	return regex.test(email);
@@ -266,6 +276,7 @@ function invioDati() {
 		checkStudent("#invioDatiRegistrazione");
 		checkAzienda("#invioDatiRegistrazione");
 	} else if (document.URL.includes("/profile")) {
+		logout();
 		$(".gazienda label").css("top","-13px");
 		$(".gutente label").css("top","-13px");
 		$('#invioDatiPrivato').parent().children(".gruppo").children("input[name='password']").parent().css("display","none");

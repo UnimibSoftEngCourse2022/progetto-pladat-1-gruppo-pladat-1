@@ -51,7 +51,7 @@ class EmployerController extends Controller
         }catch(ModelNotFoundException){
             return response("show Error", 500);
         }
-        return response($placements);
+        return response($plac);
     }
 
     /**
@@ -86,15 +86,16 @@ class EmployerController extends Controller
         try{
             if(Employer::findOrFail($employer->email)) {
                 DB::table('employer')
-                    ->where('email', $employer->email)
+                    ->join('users', 'users.email', '=', 'employer.email')
+                    ->where('employer.email', $employer->email)
                     ->update([
                         'name' => $request->input('name'),
                         'description' => $request->input('description'),
                         'address' => $request->input('address'),
-                        'path_photo'=>$request->input('path_photo'),
+                        'idPhoto'=>$request->input('path_photo'),
                     ]);
             }
-        }catch(ModelNotFoundException){
+        }catch(QueryException){
             return response(0);
         }
         return response(1);
