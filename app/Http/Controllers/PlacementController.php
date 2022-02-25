@@ -27,7 +27,6 @@ class PlacementController extends Controller
             return response(0);
         }
         return response($placements);
-        
     }
 
     public function indexActivePlacement(Request $request, Employer $employer){
@@ -37,8 +36,8 @@ class PlacementController extends Controller
 
             $placements = DB::table('placement')
                 ->where('employer_email', $employer->email)
-                ->having('start_date', '<', $today->format('Y-m-d'))
-                ->having('expiration_date', '>', $today->format('Y-m-d'))
+                ->having('start_date', '<=', $today->format('Y-m-d'))
+                ->having('expiration_date', '>=', $today->format('Y-m-d'))
                 ->get();
         }catch(QueryException){
             return response(0);   

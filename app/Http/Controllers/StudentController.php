@@ -164,6 +164,14 @@ class StudentController extends Controller
                 ->where('email', $student->email)
                 ->delete();
 
+            $id = Student::where('email', $student->email)
+                ->select('idPhoto')
+                ->get();
+
+            $path = Photo::all()->where('id', $id)->get();
+
+            File::delete($path);
+
         }catch(QueryException){
             return response(0);
         }

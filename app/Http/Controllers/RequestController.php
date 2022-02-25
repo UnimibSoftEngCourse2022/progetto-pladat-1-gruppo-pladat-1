@@ -19,11 +19,18 @@ class RequestController extends Controller
      * @param Student $student
      * @return \Illuminate\Http\Response
      */
-    public function index(Student $student)
+    public function indexByStudent(Student $student)
     {
-        $requestes = Request::all()
+        $requestes = Req::all()
             ->where('student_email', $student->email);
-        return response($requestes->jsonSerialize(), 200);
+        return response($requestes);
+    }
+
+    public function indexByPlacement(Placement $placement)
+    {
+        $requestes = Req::all()
+            ->where('idPlacement', $placement->id);
+        return response($requestes);
     }
 
     /**
@@ -47,19 +54,15 @@ class RequestController extends Controller
     public function store(Request $request, Student $student)
     {
         try {
-            /*
+            
             $file = $request->file('curriculum');
-            $file->move('local/curriculum',$student->email.'.pdf');
-            */
-
-            $file = $request->file('curriculum');
-            Storage::disk('curriculum')->put('example.txt', $file);
+            $file->move('local/curriculum',$request->input('idPlacement').$student->email);
 
             DB::table('request')
                 ->insert([
                     'idPlacement'=>$request->input('idPlacement'),
                     'presentation_letter'=>$request->input('presentation_letter'),
-                    'path_curriculum'=>'local/curriculum',
+                    'path_curriculum'=>'local/curriculum'.'/'.$request->input('idPlacement').$student->email,
                     'student_email'=>$student->email,
                 ]);
         }catch(QueryException) {
@@ -85,7 +88,7 @@ class RequestController extends Controller
         }catch(QueryException){
             return response("show Error", 500);
         }
-        return response($requestes->jsonSerialize(), 200);
+        return response($requestes);
     }
 
     /**

@@ -53,12 +53,13 @@ function inviaDati()
 {
 	$( "#inviaMiPresento" ).on("click", function(e) {
 		e.preventDefault();
-		let file = $( ".applicazione  input").prop('files');
+		let files = $( ".applicazione  input")[0].files;
 		let formData = new FormData();
-		if(file.length > 0 ){
-			formData.append("curriculum", file );
-			formData.append("presentation_letter", $( ".applicazione  textarea" ).text());
+		if(files.length > 0 ){
+			formData.append("curriculum", files[0]);
+			formData.append("presentation_letter", $( ".applicazione  textarea" ).val());
 			formData.append("idPlacement", chiVoglio);
+			formData.append("student_email",email)
 			$.ajax({
 				url: "/student/"+email+"/request",
 				type: "POST",
@@ -66,11 +67,12 @@ function inviaDati()
 				processData: false,
 				contentType: false,
 				success: function( response ) {
-					if( response.code === "1" ) {
-						//...
+					if( response === "1" ) {
+						alert("La procedura è andata a buon fine! In bocca al lupo!")
+						location.reload();
 					}
 					else {
-
+						alert("C'è stato un errore. Ti ricordiamo che non è possibile applicare due volte per la stessa offerta purtroppo. Nel caso contatta l'azienda via email e buona fortuna!")
 					}
 				}
 			});

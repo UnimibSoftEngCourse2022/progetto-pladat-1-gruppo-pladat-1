@@ -46,7 +46,13 @@ class RegistrationController extends Controller
                         'birth_date' => $request->input('birth_date')
                     ]); 
                 
-                    
+                $file = $request->file('curriculum');
+                $file->move('local/images',$request->input('email'));
+                DB::table('photo')
+                    ->insert([
+                        'path'=>'local/images/'.$request->input('email'),
+                    ]);
+                     
                 $categories = $request->input('category');
                 foreach($categories as $item){
                     DB::table('student_has_category')

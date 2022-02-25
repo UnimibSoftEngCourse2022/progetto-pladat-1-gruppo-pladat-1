@@ -97,6 +97,13 @@ class EmployerController extends Controller
                         'address' => $request->input('address'),
                         'idPhoto'=>$request->input('path_photo'),
                     ]);
+                $id = Student::where('email', $employer->email)
+                ->select('idPhoto')
+                ->get();
+    
+                $path = Photo::all()->where('id', $id)->get();
+    
+                File::delete($path);
             }
         }catch(QueryException){
             return response(0);

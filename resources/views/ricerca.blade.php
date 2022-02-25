@@ -68,7 +68,7 @@
                   <p>Presentati</p>
                   <textarea></textarea>
                   <p>Allega il CV</p>
-                  <input type="file" multiple>
+                  <input type="file" accept=".doc,.docx,.pdf">
                </div>
                <div class="modal-footer">
                   <button type="button" class="bottone-invio" id="inviaMiPresento"  data-bs-dismiss="modal">Mi presento</button>

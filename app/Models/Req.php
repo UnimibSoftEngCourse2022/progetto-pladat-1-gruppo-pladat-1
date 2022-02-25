@@ -21,15 +21,4 @@ class Req extends Model
         'idPlacement',
         'path_curriculum',
     ];
-
-    protected function setKeysForSaveQuery($query)
-    {
-        $query
-            ->where('student_email', '=', $this->getAttribute('student_email'))
-            ->where('idPlacement', '=', $this->getAttribute('idPlacement'));
-
-        return $query;
-    }
-
-
 }

@@ -163,7 +163,7 @@ function isEmail(email) {
 function isDate(prima, seconda)
 {
 	let today = new Date();
-	if((new Date(prima))>today&&prima<seconda)
+	if((new Date(prima).setHours(0,0,0,0))>=today.setHours(0,0,0,0)&&prima<=seconda)
 	{
 		return true;
 	}
@@ -573,7 +573,6 @@ function invioDatiCreazioneTirocinio() {
 		}
 		if(isTitolo(titolo)&&isDurata(durata)&&isData(dataInizio)&&isData(dataFine)&&isDescrizione(descrizione2)&&isSalario(salario)&&isDate(dataInizio, dataFine)&&$("#categoria1").val().length !== 0)
 		{
-			alert(email);
 			$.post("/employer/"+email+"/placement",{
 				title:titolo,
 				description:descrizione2,

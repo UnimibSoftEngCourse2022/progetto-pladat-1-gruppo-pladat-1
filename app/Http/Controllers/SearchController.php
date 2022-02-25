@@ -23,8 +23,8 @@ class SearchController extends Controller
                 ->join('users', 'users.email', '=', 'employer.email')
                 ->where('placement_has_category.idCategory', $cat)
                 ->select('placement.title', 'placement.start_date', 'placement.expiration_date', 'placement_has_category.idPlacement', 'placement_has_category.idCategory', 'users.name')
-                ->having('placement.start_date', '<', $today->format('Y-m-d'))
-                ->having('placement.expiration_date', '>', $today->format('Y-m-d'))
+                ->having('placement.start_date', '<=', $today->format('Y-m-d'))
+                ->having('placement.expiration_date', '>=', $today->format('Y-m-d'))
                 ->get();
 
         }catch(QueryException){
