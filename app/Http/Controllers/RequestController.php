@@ -19,17 +19,44 @@ class RequestController extends Controller
      * @param Student $student
      * @return \Illuminate\Http\Response
      */
-    public function indexByStudent(Student $student)
-    {
-        $requestes = Req::all()
-            ->where('student_email', $student->email);
+    public function index(Student $student)
+    {   
+        try{
+            $requestes = DB::table('request')
+                ->join('placement', 'placement.id', '=', 'request.idPlacement')
+                ->join('employer', 'employer.email', '=', 'placement.employer_email')
+                ->join('users', 'users.email', '=', 'employer.email')
+                ->where('request.student_email', $student->email)
+                ->select('users.name', 'employer.email')
+                ->get();
+        }catch(QueryException){
+            return response(0);
+        }
         return response($requestes);
     }
 
     public function indexByPlacement(Placement $placement)
     {
         $requestes = Req::all()
-            ->where('idPlacement', $placement->id);
+            -join('student', 'student.email', '=', 'request.student_email')
+            ->join('users', 'users.email', '=', 'student.email')
+            ->where('idPlacement', $placement->id)
+            ->select('request.presentation_letter', 'request.path_curriculum', 'users.name');
+        return response($requestes);
+    }
+
+    public function requestActive(Student $student){
+        try{
+            $today = Carbon::today();
+
+            $requestes = DB::table('request')
+                ->join('placement', 'placement.id', '=', 'request.idPlacement')
+                ->having('placement.start_date', '<=', $today->format('Y-m-d'))
+                ->having('placement.expiration_date', '>=', $today->format('Y-m-d'))
+                ->get();
+        }catch(QueryException){
+            return response(0);
+        }
         return response($requestes);
     }
 

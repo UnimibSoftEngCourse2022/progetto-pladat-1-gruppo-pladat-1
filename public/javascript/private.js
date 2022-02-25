@@ -3,7 +3,6 @@ $(document).ready(function () {
 	riempiCategoria();
 	$(".gazienda").children().prop("disabled", true);
 	$(".utente").children().prop("disabled", true);
-	sceltaAccetazione();
 })
 
 $(window).on('resize', function () {
@@ -34,23 +33,4 @@ function infoOfferte() {
 	$(document).on("mouseleave", ".bloccoelencoapplicanti", function () {
 		$(this).children().eq(1).addClass("nascondi");
 	});
-}
-
-function sceltaAccetazione() {
-	$(document).on("click", ".sceltaAccettazione", function () {
-		if ($(this).text().charCodeAt(0) == "10140") {
-			$(this).html("✔");
-			$(this).removeClass("attendo");
-			$(this).addClass("accetto");
-		} else if ($(this).text().charCodeAt(0) == "10004") {
-			$(this).html("✖");
-			$(this).removeClass("accetto");
-			$(this).addClass("rifiuto");
-		} else if ($(this).text().charCodeAt(0) == "10006") {
-			$(this).html("✔");
-			$(this).removeClass("rifiuto");
-			$(this).addClass("accetto");
-		}
-
-	})
 }

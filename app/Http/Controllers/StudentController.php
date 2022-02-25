@@ -138,6 +138,9 @@ class StudentController extends Controller
                         'category_name'=>$item,
                     ]);
             }
+
+            
+
         }catch(QueryException){
             return response(0);
         }
@@ -168,7 +171,9 @@ class StudentController extends Controller
                 ->select('idPhoto')
                 ->get();
 
-            $path = Photo::all()->where('id', $id)->get();
+            $path = Photo::all()
+                ->where('id', $id)
+                ->get();
 
             File::delete($path);
 
@@ -188,4 +193,6 @@ class StudentController extends Controller
             return response("Error");
         }
     }
+
+    
 }

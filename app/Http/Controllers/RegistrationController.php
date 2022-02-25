@@ -45,13 +45,6 @@ class RegistrationController extends Controller
                         'surname' => $request->input('surname'),
                         'birth_date' => $request->input('birth_date')
                     ]); 
-                
-                $file = $request->file('curriculum');
-                $file->move('local/images',$request->input('email'));
-                DB::table('photo')
-                    ->insert([
-                        'path'=>'local/images/'.$request->input('email'),
-                    ]);
                      
                 $categories = $request->input('category');
                 foreach($categories as $item){
@@ -99,18 +92,6 @@ class RegistrationController extends Controller
                         'description' => $request->input('description'),
                         'address' => $request->input('address'),
                     ]); 
-
-                if($request->hasfile('photo')){
-                    //prende il nome del file
-                    $name = $request->file('image')->getClientOriginalName();
-                    //salav
-                    $request->file('photo')->store('app/public/images/');
-                    Photo::create(['path'=>$name]);
-                }
-                
-
-
-
             }
             else{
                 return response(0);

@@ -103,10 +103,10 @@
                      <button type="button" class="chiusurax" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
                   </div>
                   <div class="modal-body">
-                     <input type="file" id="input" multiple>
+                     <input id="immaginetta" type="file" accept=".jpg, .png">
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="bottone-invio"  data-bs-dismiss="modal">Salva</button>
+                     <button id="#inviaImaginetta" type="button" class="bottone-invio"  data-bs-dismiss="modal">Salva</button>
                   </div>
                </div>
             </div>

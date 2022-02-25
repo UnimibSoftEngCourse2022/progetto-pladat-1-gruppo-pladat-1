@@ -94,4 +94,5 @@ Route::get('placement/{placement}/byid', [\App\Http\Controllers\SearchController
 */
 Route::resource('student.request', \App\Http\Controllers\RequestController::class);
 
+
 Route::get('/session',[\App\Http\Controllers\SessionController::class, 'dataSession'])->middleware('auth');

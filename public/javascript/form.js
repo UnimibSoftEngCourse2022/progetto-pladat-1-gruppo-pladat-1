@@ -92,65 +92,66 @@ function elimina()
 		}
 	});	
 }
-function caricaInformazioniAzienda()
+function caricaInformazioniAzienda1()
 {
 	
 }
 
-function caricaApplicanti()
+function caricaApplicanti1()
 {
-	
+	$.get("/student/"+email+"/placementopen").done((mess1)=>{
+		
+	});
 }
 
-function applica()
-{
-	
-}
 
-function inviaCV()
+function caricaOfferte1()
 {
-	$( "#applicazione" ).on( "submit", function( e ) {
-		e.preventDefault();
-		let file = $( "#file" )[0].files[0];
-		var formData = new FormData();
-		if(files.length > 0 ){
-		formData.append( "file", file );
-			$.ajax({
-				url: "/upload",
-				type: "POST",
-				data: formData,
-				processData: false,
-				contentType: false,
-				success: function( response ) {
-					if( response.code === "OK" ) {
-						//...
-					}
-				}
-			});
+	let tmp="";
+	$.get("/student/"+email+"/placementopen").done((mess1)=>{
+		for(let row of mess1)
+		{
+			tmp="<div class='privato-placement'><p>'"+row['title']+"'</p><p></p><p class='accetto'>&#10004;</p></div>"
+			$(".elenco-privato").children("div").eq(1).append(tmp);
+		}
+	});
+	$.get("/student/"+email+"/placementclosed").done((mess1)=>{
+		for(let row of mess1)
+		{
+			tmp="<div class='privato-placement'><p>'"+row['title']+"'</p><p></p><p class='rifiuto'>&#10006;</p></div>";
+			$(".elenco-privato").children("div").eq(1).append(tmp);
 		}
 	});
 }
+
 function inviaFoto()
 {
-	$( "#upload" ).on( "submit", function( e ) {
+	$( "#inviaImaginetta" ).on( "click", function( e ) {
 		e.preventDefault();
-		var file = $( "#file" )[0].files[0];
-		var formData = new FormData();
+		let files = $( "#imaginetta")[0].files;
+		let formData = new FormData();
 		if(files.length > 0 ){
-		formData.append( "file", file );
+			formData.append("curriculum", files[0]);
+			formData.append("presentation_letter", $( ".applicazione  textarea" ).val());
+			formData.append("idPlacement", chiVoglio);
+			formData.append("student_email",email)
 			$.ajax({
-				url: "/upload",
+				url: "/student/"+email+"/request",
 				type: "POST",
 				data: formData,
 				processData: false,
 				contentType: false,
 				success: function( response ) {
-					if( response.code === "OK" ) {
-						//...
+					if( response === "1" ) {
+						alert("La procedura è andata a buon fine! In bocca al lupo!")
+						location.reload();
+					}
+					else {
+						alert("C'è stato un errore. Ti ricordiamo che non è possibile applicare due volte per la stessa offerta purtroppo. Nel caso contatta l'azienda via email e buona fortuna!")
 					}
 				}
-			});
-		}
+	});
+}
 	});
 }
 
@@ -449,6 +450,7 @@ function invioDati() {
 			caricaPlacement();
 			caricaInformazioniPlacement()
 			} else {
+				caricaOfferte1();
 				$("#cosaDire").text("Elenco offerte");
 				$("#aggiungiPlacement").css("display","none");
 				$('.gazienda').addClass("nascondi");

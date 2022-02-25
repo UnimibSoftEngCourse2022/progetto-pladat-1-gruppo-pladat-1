@@ -218,6 +218,8 @@ nav {
 
 #modifica>img {
 	width: 8vw;
+	height: 8vw;
+	border-radius: 50%;
 	display: block;
 	margin: 0 auto;
 }
