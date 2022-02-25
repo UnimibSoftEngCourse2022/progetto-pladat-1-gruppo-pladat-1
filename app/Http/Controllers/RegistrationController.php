@@ -93,11 +93,17 @@ class RegistrationController extends Controller
                         'description' => $request->input('description'),
                         'address' => $request->input('address'),
                     ]); 
-                
-                //prende il nome del file
-                $name = $request->file('image')->getClientOriginalName();
 
+                if($request->hasfile('photo')){
+                    //prende il nome del file
+                    $name = $request->file('image')->getClientOriginalName();
+                    //salav
+                    $request->file('photo')->store('app/public/images/');
+                    Photo::create(['path'=>$name]);
+                }
                 
+
+
 
             }
             else{

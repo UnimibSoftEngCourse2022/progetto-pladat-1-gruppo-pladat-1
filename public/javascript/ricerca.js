@@ -5,6 +5,7 @@ $(document).ready(function () {
 	animazioneRicerca();
 	caricaRicerca();
 	elencoOfferte();
+	caricaInformazioniPlacement();
 })
 
 function animazioneRicerca() {
@@ -35,7 +36,22 @@ function riempiCategoria() {
 		}
 	});
 }
-
+function caricaInformazioniPlacement()
+{
+		$(document).on("click",".ilPlacement > p:nth-child(1)",function() {
+			$.get("/placement/"+$(this).parent().attr('id')+"/byid").done((mess)=>{
+				mess=mess[0];
+				$(".tirocinio >p> .mCompagnia").text(mess['name']);
+				$(".tirocinio >p> .mEmail").text(mess['email']);
+				$(".tirocinio >p> .mTitolo").text(mess['title']);
+				$(".tirocinio >p> .mStipendio").text(mess['salary']);
+				$(".tirocinio >p> .mDurata").text(mess['duration']);
+				$(".tirocinio >p> .mInizio").text(mess['start_date']);
+				$(".tirocinio >p> .mFine").text(mess['expiration_date']);
+				$(".tirocinio .mDescription").text(mess['description']);
+			})
+		})
+}
 function caricaPlacementCategoria()
 {
 	if(lista.includes($('#ricercona').val().trim()))
@@ -46,7 +62,7 @@ function caricaPlacementCategoria()
 			{
 				for(let row of mess1)
 				{
-					tmp="<div id='"+row['idPlacement']+"'><p>"+row['title']+"</p><p>"+row['idCategory']+"</p><p>"+row['name']+"</p></div>";
+					tmp="<div class='ilPlacement' id='"+row['idPlacement']+"'><p>"+row['title']+"</p><p>"+row['idCategory']+"</p><p>"+row['name']+"</p></div>";
 					$(".elencoOfferte").append(tmp);
 				}
 			}
@@ -94,12 +110,11 @@ function caricaRicerca() {
 
 function elencoOfferte() {
 	let ilMioHtml = "";
-	$(".elencoOfferte>div").hover(
-		function () {
+	$(document).on("mouseenter", ".elencoOfferte>div", function () {
 			ilMioHtml = $(this).html();
 			$(this).html("<p data-bs-toggle='modal' data-bs-target='#informazioni'>Informazioni</p><p data-bs-toggle='modal' data-bs-target='#applica'>Applica</p>");
-		},
-		function () {
+		});
+	$(document).on("mouseleave", ".elencoOfferte>div", function () {
 			$(this).html(ilMioHtml);
 		})
 }

@@ -42,7 +42,7 @@ class SearchController extends Controller
                 ->join('employer', 'employer.email', '=', 'placement.employer_email')
                 ->join('users', 'users.email', '=', 'employer.email')
                 ->where('id', $placement->id)
-                ->select('users.name', 'users.email', 'placement.title', 'placement.salary', 'placement.duration', 'placement.start_date', 'placement.expiration_date', 'placement.duration')
+                ->select('users.name', 'users.email', 'placement.title', 'placement.salary', 'placement.duration', 'placement.start_date', 'placement.expiration_date', 'placement.duration', 'employer.description')
                 ->get();
         }catch(QueryException){
             return response(0);

@@ -43,8 +43,6 @@ function caricaPlacement()
 
 function caricaInformazioniPlacement()
 {
-	if(document.URL.includes("/profile"))
-	{
 		$(document).on("click",".privato-placement > p:nth-child(1)",function() {
 			$.get("/placement/"+$(this).parent().attr('id')+"/byid").done((mess)=>{
 				mess=mess[0];
@@ -57,22 +55,6 @@ function caricaInformazioniPlacement()
 				$(".tirocinio >p> .mFine").text(mess['expiration_date']);
 			})
 		})
-	}
-	else
-	{
-		$(document).on("click",".privato-placement > p:nth-child(1)",function() {
-			$.get("/placement/"+$(this).parent().attr('id')+"/byid").done((mess)=>{
-				mess=mess[0];
-				$(".tirocinio mCompagnia").text(mess['name']);
-				$(".tirocinio mEmail").text(mess['employer_email']);
-				$(".tirocinio mTitolo").text(mess['title']);
-				$(".tirocinio mStipendio").text(mess['salary']);
-				$(".tirocinio mDurata").text(mess['duration']);
-				$(".tirocinio mInizio").text(mess['start_date']);
-				$(".tirocinio mFine").text(mess['expiration_date']);
-			})
-		})		
-	}
 }
 
 
