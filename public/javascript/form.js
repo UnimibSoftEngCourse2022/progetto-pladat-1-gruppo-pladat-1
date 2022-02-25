@@ -75,6 +75,7 @@ function caricaInformazioniPlacement()
 	}
 }
 
+
 function elimina()
 {
 	$(document).on("click",".button-modifica > div:nth-child(1)",function()
@@ -123,6 +124,54 @@ function applica()
 {
 	
 }
+
+function inviaCV()
+{
+	$( "#upload" ).on( "submit", function( e ) {
+		e.preventDefault();
+		var file = $( "#file" )[0].files[0];
+		var formData = new FormData();
+		if(files.length > 0 ){
+		formData.append( "file", file );
+			$.ajax({
+				url: "/upload",
+				type: "POST",
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function( response ) {
+					if( response.code === "OK" ) {
+						//...
+					}
+				}
+			});
+		}
+	});
+}
+function inviaFoto()
+{
+	$( "#upload" ).on( "submit", function( e ) {
+		e.preventDefault();
+		var file = $( "#file" )[0].files[0];
+		var formData = new FormData();
+		if(files.length > 0 ){
+		formData.append( "file", file );
+			$.ajax({
+				url: "/upload",
+				type: "POST",
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function( response ) {
+					if( response.code === "OK" ) {
+						//...
+					}
+				}
+			});
+		}
+	});
+}
+
 
 function isEmail(email) {
 	let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -524,8 +573,9 @@ function invioDatiCreazioneTirocinio() {
 			$("#categoria1").css("border-color", "#1a73e8");
 		}
 
-		if(isTitolo(titolo)&&isDurata(durata)&&isData(dataInizio)&&isData(dataFine)&&isDescrizione(descrizione2)&&isSalario(salario))
+		if(isTitolo(titolo)&&isDurata(durata)&&isData(dataInizio)&&isData(dataFine)&&isDescrizione(descrizione2)&&isSalario(salario)&&$("#categoria1").val().length !== 0)
 		{
+			alert(email);
 			$.post("/employer/"+email+"/placement",{
 				title:titolo,
 				description:descrizione2,
@@ -533,6 +583,7 @@ function invioDatiCreazioneTirocinio() {
 				start_date:dataInizio,
 				expiration_date:dataFine,
 				salary:salario,
+				category:$("#categoria1").val(),
 			  }).done((mess)=>{
 				if(mess==="1")
 				{
@@ -587,7 +638,7 @@ function startModifica(chi) {
 		if ($(this).text() === "Modifica") {
 			if (chi === "Employer") {
 				$(".gazienda").children().prop("disabled", false);
-				$(".gutente").children("input[name='email1']").prop("disabled", true);
+				$(".gazienda").children("input[name='email1']").prop("disabled", true);
 				$(".gazienda").children("#searchBoxContainer").children("input").prop("disabled", false);
 				$(".gruppo>input, .gruppo>textarea, .gruppo>div>input").focus();
 				$(".gruppo>input[type=date]").focus();

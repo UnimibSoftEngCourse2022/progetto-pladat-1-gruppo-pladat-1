@@ -5,7 +5,6 @@ $(document).ready(function () {
 	animazioneRicerca();
 	caricaRicerca();
 	elencoOfferte();
-	caricaInformazioniPlacement();
 })
 
 function animazioneRicerca() {
@@ -37,6 +36,26 @@ function riempiCategoria() {
 	});
 }
 
+function caricaPlacementCategoria()
+{
+	if(lista.includes($('#ricercona').val().trim()))
+	{
+		let tmp="";
+		$.get("/placement/"+$('#ricercona').val().trim()).done((mess1)=>{
+			if(mess1!==0)
+			{
+				for(let row of mess1)
+				{
+					tmp="<div id='"+row['idPlacement']+"'><p>"+row['title']+"</p><p>"+row['idCategory']+"</p><p>"+row['name']+"</p></div>";
+					$(".elencoOfferte").append(tmp);
+				}
+			}
+			else {
+				$(".elencoOfferte").append(tmp);
+			}
+		});
+	}
+}
 function caricaRicerca() {
 	$('#elencoRicerca').css("display", "none");
 	$(document).on("focus", "#ricercona", function () {
@@ -53,17 +72,6 @@ function caricaRicerca() {
 		$('#ricercona').css("border-right", "0");
 		if ($('#ricercona').val().trim() !== "") {
 			$('#ricercona').css("border-bottom", "2px solid #1a73e8");
-			if(lista.includes($('#ricercona').val().trim()))
-			{
-				let tmp="";
-				$.get("/pacemant/"+$('#ricercona').val().trim()).done((mess1)=>{
-					for(let row of mess1)
-					{
-						tmp="<div id='"+row['id']+"'><p>'"+row['id']+"'</p><p>Front-end developer</p><p>Salario non definito</p></div>";
-						$(".elenco-privato").children("div").eq(1).append(tmp);
-					}
-				});
-			}
 		} else {
 			$('#ricercona').css("border-bottom", "2px solid #f2f2f2");
 		}
@@ -98,4 +106,5 @@ function elencoOfferte() {
 
 function scriviricerca(event) {
 	document.getElementById('ricercona').value = event.innerHTML;
+	caricaPlacementCategoria();
 }

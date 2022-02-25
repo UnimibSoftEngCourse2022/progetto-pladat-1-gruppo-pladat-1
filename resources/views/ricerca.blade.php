@@ -48,7 +48,7 @@
                <p>Il tirocinio è fornito da <span class="mCompagnia">Oracle</span> 
                      email: <span  class="mEmail">oracle@gmail.com</span>. Il tirocinio <span class="mTitolo">Titolo</span>
                      cerca una figura con uno stipendio di <span class="mStipendio">non definito</span> euro
-                     e una durata di <span class="mDurata">6 mesi</span> settimane.
+                     e una durata di <span class="mDurata">6 mesi</span>.
                 Data di apertura: <span class="mInizio">12/01/2000</span>, data di chiusura: <span class="mFine">12/01/2020</span>.
                      </p>
                   <p>Descrizione azienda</p>

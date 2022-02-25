@@ -93,6 +93,12 @@ class RegistrationController extends Controller
                         'description' => $request->input('description'),
                         'address' => $request->input('address'),
                     ]); 
+                
+                //prende il nome del file
+                $name = $request->file('image')->getClientOriginalName();
+
+                
+
             }
             else{
                 return response(0);

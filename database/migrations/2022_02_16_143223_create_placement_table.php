@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('placement', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->string('description', 1000);
+            $table->string('description', 1000)->nullable()->default("");
             $table->integer('duration');
             $table->date('start_date');
             $table->date('expiration_date');

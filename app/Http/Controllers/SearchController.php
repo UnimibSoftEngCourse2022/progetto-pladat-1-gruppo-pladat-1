@@ -16,17 +16,21 @@ class SearchController extends Controller
             $today = Carbon::today();
 
             $cat = str_replace('-',' ', $category->name);
-
+            
             $placements = DB::table('placement_has_category')
                 ->join('placement', 'placement.id', '=', 'placement_has_category.idPlacement')
-                ->where('idCategory', $cat)
-                ->whereDate('start_date', '<', $today->format('Y-m-d'))
-                ->whereDate('expiration_date', '>', $today->format('Y-m-d'))
+                ->join('employer', 'employer.email', '=', 'placement.employer_email')
+                ->join('users', 'users.email', '=', 'employer.email')
+                ->where('placement_has_category.idCategory', $cat)
+                ->select('placement.title', 'placement.start_date', 'placement.expiration_date', 'placement_has_category.idPlacement', 'placement_has_category.idCategory', 'users.name')
+                ->having('placement.start_date', '<', $today->format('Y-m-d'))
+                ->having('placement.expiration_date', '>', $today->format('Y-m-d'))
                 ->get();
+
         }catch(QueryException){
             return response(0);
         }
-        return response($placements->jsonSerialize());
+        return response($placements);
     }
 
     public function searchById(Request $request, Placement $placement){

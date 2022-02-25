@@ -81,9 +81,6 @@ class PlacementController extends Controller
      */
     public function store(Request $request, Employer $employer)
     {
-        /*
-         * Aggiungo alla tabella placement tutti i valori presenti nel form.
-         */
         try{
             DB::table('placement')
                 ->insert([
@@ -95,6 +92,19 @@ class PlacementController extends Controller
                     'salary'=>$request->input('salary'),
                     'employer_email'=>$employer->email,
                 ]);
+            
+            $idPlacement = DB::table('placement')
+                ->latest('id')
+                ->first();
+            
+            $categories = $request->input('category');
+            foreach($categories as $item){
+                DB::table('placement_has_category')
+                    ->insert([
+                        'idCategory' => $item,
+                        'idPlacement' => $idPlacement->id,
+                    ]);
+            }    
         }catch(QueryException){
             return response(0);
         }
