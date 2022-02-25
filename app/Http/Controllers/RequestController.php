@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use mysql_xdevapi\Exception;
+use Illuminate\Support\Facades\Storage;
 
 class RequestController extends Controller
 {
@@ -43,20 +44,32 @@ class RequestController extends Controller
      * @param Placement $placement
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Student $student, Placement $placement)
+    public function store(Request $request, Student $student)
     {
         try {
-            DB::table('request')
-                ->insert([
-                    'idPlacement'=>$placement->id,
-                    'presentation_letter'=>$request->input('presentation_letter'),
-                    'path_curriculum'=>$request->input('path_curriculum'),
-                    'student_email'=>$student->email,
-                ]);
+            $name = $request->file('curriculum')->getClientOriginalName();
+            Storage::disk('public')->put('ciao', $name);
+            
+            dd(Storage::disk('public')->get($name));
+            
+            if($request->hasfile('curriculum')){
+                //prende il nome del file
+                $name = "banana";
+                //salva
+                $path = $request->file('curriculum')->store('app/public/'.$name);
+                Photo::create(['path'=>$path]);
+                DB::table('request')
+                    ->insert([
+                        'idPlacement'=>$request->input('idPlacement'),
+                        'presentation_letter'=>$request->input('presentation_letter'),
+                        'path_curriculum'=>$path,
+                        'student_email'=>$student->email,
+                    ]);
+                }
         }catch(QueryException) {
-            return response("store Error", 500);
+            return response(0);
         }
-        return response("store Success", 200);
+        return response(1);
     }
 
     /**

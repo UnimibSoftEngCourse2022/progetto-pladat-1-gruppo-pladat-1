@@ -68,10 +68,10 @@
                   <p>Presentati</p>
                   <textarea></textarea>
                   <p>Allega il CV</p>
-                  <input type="file" id="input" multiple>
+                  <input type="file" multiple>
                </div>
                <div class="modal-footer">
-                  <button type="button" class="bottone-invio"  data-bs-dismiss="modal">Mi presento</button>
+                  <button type="button" class="bottone-invio" id="inviaMiPresento"  data-bs-dismiss="modal">Mi presento</button>
                </div>
             </div>
          </div>

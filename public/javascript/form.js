@@ -109,9 +109,9 @@ function applica()
 
 function inviaCV()
 {
-	$( "#upload" ).on( "submit", function( e ) {
+	$( "#applicazione" ).on( "submit", function( e ) {
 		e.preventDefault();
-		var file = $( "#file" )[0].files[0];
+		let file = $( "#file" )[0].files[0];
 		var formData = new FormData();
 		if(files.length > 0 ){
 		formData.append( "file", file );

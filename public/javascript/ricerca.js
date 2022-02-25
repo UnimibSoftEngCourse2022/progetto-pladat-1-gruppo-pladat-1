@@ -6,7 +6,19 @@ $(document).ready(function () {
 	caricaRicerca();
 	elencoOfferte();
 	caricaInformazioniPlacement();
+	inviaDati();
+	getEmail();
 })
+
+let chiVoglio="";
+let email="";
+
+function getEmail()
+{
+	$.get("/session").done((mess)=>{
+		email=mess['email'];
+	});
+}
 
 function animazioneRicerca() {
 	const chi = document.getElementById('scrittaRicerconaAuto');
@@ -36,8 +48,42 @@ function riempiCategoria() {
 		}
 	});
 }
+
+function inviaDati()
+{
+	$( "#inviaMiPresento" ).on("click", function(e) {
+		e.preventDefault();
+		let file = $( ".applicazione  input").prop('files');
+		let formData = new FormData();
+		if(file.length > 0 ){
+			formData.append("curriculum", file );
+			formData.append("presentation_letter", $( ".applicazione  textarea" ).text());
+			formData.append("idPlacement", chiVoglio);
+			$.ajax({
+				url: "/student/"+email+"/request",
+				type: "POST",
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: function( response ) {
+					if( response.code === "1" ) {
+						//...
+					}
+					else {
+
+					}
+				}
+			});
+		}
+	});
+}
+
 function caricaInformazioniPlacement()
 {
+		$(document).on("click",".ilPlacement > p:nth-child(2)",function() {
+			chiVoglio=$(this).parent().attr('id');
+		});
+
 		$(document).on("click",".ilPlacement > p:nth-child(1)",function() {
 			$.get("/placement/"+$(this).parent().attr('id')+"/byid").done((mess)=>{
 				mess=mess[0];
