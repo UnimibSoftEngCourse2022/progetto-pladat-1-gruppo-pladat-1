@@ -74,15 +74,17 @@ nav {
 
 .nav-link {
 	color: #3c4043 !important;
+	display: table !important;
 }
 
 .nav-link:hover {
 	color: #1a73e8 !important;
 }
-
 .nav-item {
 	padding-top: 9px;
 	padding-bottom: 9px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .login-button {
@@ -94,7 +96,7 @@ nav {
 }
 
 .logout-button {
-	display: block;
+	display: table;
 	background-color: #fff;
 	border: 3px solid #ea4335;
 	padding-left:30px !important;
@@ -920,5 +922,10 @@ hr {
 	#iscrizione,
 	#modifica {
 		width: 90%;
+	}
+	.nav-link {
+		margin: 0 auto;
+		padding-left:30px !important;
+		padding-right:30px !important;
 	}
 }

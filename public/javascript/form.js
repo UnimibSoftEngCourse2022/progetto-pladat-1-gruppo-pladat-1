@@ -160,6 +160,17 @@ function isEmail(email) {
 	return regex.test(email);
 }
 
+function isDate(prima, seconda)
+{
+	let today = new Date();
+	if((new Date(prima))>today&&prima<seconda)
+	{
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 function isPassword(password) {
 	let regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 	return regex.test(password);
@@ -554,8 +565,13 @@ function invioDatiCreazioneTirocinio() {
 		} else {
 			$("#categoria1").css("border-color", "#1a73e8");
 		}
-
-		if(isTitolo(titolo)&&isDurata(durata)&&isData(dataInizio)&&isData(dataFine)&&isDescrizione(descrizione2)&&isSalario(salario)&&$("#categoria1").val().length !== 0)
+		if(isData(dataFine)&&isData(dataInizio)&&!isDate(dataInizio, dataFine))
+		{
+			$(this).parent().children(".gruppo").children("input[name='dataInizio']").css("border-color", "#ea4335");
+			$(this).parent().children(".gruppo").children("input[name='dataFine']").css("border-color", "#ea4335");
+			alert("La data di inizio del tirocinio deve venire in termini temporali prima della data di file. Inoltre entrambe le date devono essere successive alla data odierna. Ci dispiace! Ma capiscici, dobbiamo garantire l'integrità dei nostri sistemi!");
+		}
+		if(isTitolo(titolo)&&isDurata(durata)&&isData(dataInizio)&&isData(dataFine)&&isDescrizione(descrizione2)&&isSalario(salario)&&isDate(dataInizio, dataFine)&&$("#categoria1").val().length !== 0)
 		{
 			alert(email);
 			$.post("/employer/"+email+"/placement",{
@@ -619,6 +635,7 @@ function startModifica(chi) {
 	$(document).on("click","#modificaPrivato",function() {
 		if ($(this).text() === "Modifica") {
 			if (chi === "Employer") {
+				$('#modifica>img').attr('data-bs-toggle','modal');
 				$(".gazienda").children().prop("disabled", false);
 				$(".gazienda").children("input[name='email1']").prop("disabled", true);
 				$(".gazienda").children("#searchBoxContainer").children("input").prop("disabled", false);
@@ -626,6 +643,7 @@ function startModifica(chi) {
 				$(".gruppo>input[type=date]").focus();
 			}
 			if (chi === "Student") {
+				$('#modifica>img').attr('data-bs-toggle','modal');
 				$(".gutente").children("input").prop("disabled", false);
 				$(".gutente").children("input[name='email']").prop("disabled", true);
 				$(".gutente").children("select").prop("disabled", false);

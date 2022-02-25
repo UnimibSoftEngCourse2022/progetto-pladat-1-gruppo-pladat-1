@@ -34,7 +34,7 @@
                      <div>Elimina</div>
                      <div id="modificaPrivato">Modifica</div>
                   </div>
-                  <img data-bs-toggle="modal" data-bs-target="#cambiaImmagine" src="image/profilo.png" alt="foto-profilo"/>
+                  <img data-bs-toggle="" data-bs-target="#cambiaImmagine" src="image/profilo.png" alt="foto-profilo"/>
                   <div class="gruppo gutente">
                      <label class="input-modificato">Email</label>
                      <input type="email" name="email" disabled/>

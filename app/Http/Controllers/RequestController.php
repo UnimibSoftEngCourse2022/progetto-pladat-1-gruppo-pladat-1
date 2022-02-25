@@ -47,25 +47,21 @@ class RequestController extends Controller
     public function store(Request $request, Student $student)
     {
         try {
-            $name = $request->file('curriculum')->getClientOriginalName();
-            Storage::disk('public')->put('ciao', $name);
-            
-            dd(Storage::disk('public')->get($name));
-            
-            if($request->hasfile('curriculum')){
-                //prende il nome del file
-                $name = "banana";
-                //salva
-                $path = $request->file('curriculum')->store('app/public/'.$name);
-                Photo::create(['path'=>$path]);
-                DB::table('request')
-                    ->insert([
-                        'idPlacement'=>$request->input('idPlacement'),
-                        'presentation_letter'=>$request->input('presentation_letter'),
-                        'path_curriculum'=>$path,
-                        'student_email'=>$student->email,
-                    ]);
-                }
+            /*
+            $file = $request->file('curriculum');
+            $file->move('local/curriculum',$student->email.'.pdf');
+            */
+
+            $file = $request->file('curriculum');
+            Storage::disk('curriculum')->put('example.txt', $file);
+
+            DB::table('request')
+                ->insert([
+                    'idPlacement'=>$request->input('idPlacement'),
+                    'presentation_letter'=>$request->input('presentation_letter'),
+                    'path_curriculum'=>'local/curriculum',
+                    'student_email'=>$student->email,
+                ]);
         }catch(QueryException) {
             return response(0);
         }
