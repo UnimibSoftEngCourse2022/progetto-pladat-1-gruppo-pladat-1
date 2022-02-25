@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class StudentController extends Controller
 {
@@ -167,7 +168,8 @@ class StudentController extends Controller
                 ->where('email', $student->email)
                 ->delete();
 
-            $id = Student::where('email', $student->email)
+            $id = DB::table('student')
+                ->where('email', $student->email)
                 ->select('idPhoto')
                 ->get();
 
@@ -192,6 +194,63 @@ class StudentController extends Controller
         }catch(QueryException){
             return response("Error");
         }
+    }
+
+    public function addImage(Request $request, Student $student){
+        try{
+            $file = $request->file('image');
+            $extention = $request->file('image')->getClientOriginalExtension();
+            $path = str_replace('.','', $student->email);
+            $file->move('local/images',$path.'.'.$extention);
+
+            if($student->idPhoto != null){
+                $oldPath = DB::table('photo')
+                    ->where('id', $student->idPhoto)
+                    ->get();
+                File::delete($oldPath);
+            }
+            
+            $id = DB::table('photo')
+                ->latest('id')
+                ->first()
+                ->id;
+            
+            DB::table('student')
+                ->where('email', $student->email)
+                ->update([
+                'idPhoto'=>$id,
+                ]);
+
+            DB::table('photo')
+                ->where('id', $student->idPhoto)
+                ->update([
+                    'path'=>$path.'.'.$extention,
+                ]);          
+        
+
+        }catch(QueryException){
+            return response(0);
+        }
+        return response(1);
+    }
+
+    public function getImage(Request $request, Student $student){
+        try{
+
+            if($student->idPhoto != null){
+                $path = DB::table('student')
+                    ->join('photo', 'photo.id', '=', 'student.idPhoto')
+                    ->where('student.email', $student->email)
+                    ->select('photo.path')
+                    ->get();
+            }
+            else{
+                return response(1);
+            } 
+        }catch(QueryException){
+            return response(0);
+        }
+        return response($path);
     }
 
     

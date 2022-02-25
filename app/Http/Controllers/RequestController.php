@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use mysql_xdevapi\Exception;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class RequestController extends Controller
@@ -37,11 +38,13 @@ class RequestController extends Controller
 
     public function indexByPlacement(Placement $placement)
     {
-        $requestes = Req::all()
-            -join('student', 'student.email', '=', 'request.student_email')
+
+        $requestes = DB::table('request')
+            ->join('student', 'student.email', '=', 'request.student_email')
             ->join('users', 'users.email', '=', 'student.email')
             ->where('idPlacement', $placement->id)
-            ->select('request.presentation_letter', 'request.path_curriculum', 'users.name');
+            ->select('request.presentation_letter', 'request.path_curriculum', 'users.name', 'student.email')
+            ->get();
         return response($requestes);
     }
 
@@ -51,8 +54,31 @@ class RequestController extends Controller
 
             $requestes = DB::table('request')
                 ->join('placement', 'placement.id', '=', 'request.idPlacement')
-                ->having('placement.start_date', '<=', $today->format('Y-m-d'))
-                ->having('placement.expiration_date', '>=', $today->format('Y-m-d'))
+                ->join('employer', 'employer.email', '=','placement.employer_email')
+                ->join('users', 'users.email', '=', 'employer.email')
+                ->where('request.student_email', $student->email)
+                ->where('placement.start_date', '<=', $today->format('Y-m-d'))
+                ->where('placement.expiration_date', '>=', $today->format('Y-m-d'))
+                ->select('users.email', 'placement.title')
+                ->get();
+        }catch(QueryException){
+            return response(0);
+        }
+        return response($requestes);
+    }
+
+    public function requestClosed(Student $student){
+        try{
+            $today = Carbon::today();
+
+            $requestes = DB::table('request')
+                ->join('placement', 'placement.id', '=', 'request.idPlacement')
+                ->join('employer', 'employer.email', '=','placement.employer_email')
+                ->join('users', 'users.email', '=', 'employer.email')
+                ->where('request.student_email', $student->email)
+                ->where('placement.start_date', '>', $today->format('Y-m-d'))
+                ->orWhere('placement.expiration_date', '<', $today->format('Y-m-d'))
+                ->select('users.email', 'placement.title')
                 ->get();
         }catch(QueryException){
             return response(0);
@@ -81,15 +107,17 @@ class RequestController extends Controller
     public function store(Request $request, Student $student)
     {
         try {
-            
             $file = $request->file('curriculum');
-            $file->move('local/curriculum',$request->input('idPlacement').$student->email);
+            $extention = $request->file('curriculum')->getClientOriginalExtension();
+            $path = str_replace('.','', $request->input('idPlacement').$student->email);
+
+            $file->move('local/curriculum',$path.'.'.$extention);
 
             DB::table('request')
                 ->insert([
                     'idPlacement'=>$request->input('idPlacement'),
                     'presentation_letter'=>$request->input('presentation_letter'),
-                    'path_curriculum'=>'local/curriculum'.'/'.$request->input('idPlacement').$student->email,
+                    'path_curriculum'=>'local/curriculum'.'/'.$path.'.'.$extention,
                     'student_email'=>$student->email,
                 ]);
         }catch(QueryException) {
@@ -155,10 +183,12 @@ class RequestController extends Controller
                 ->update([
                     'presentation_letter'=>$req->input('presentation_letter'),
                 ]);
+            
+            
         }catch(QueryException){
-            return response("error Success", 500);
+            return response(0);
         }
-        return response("update Success", 200);
+        return response(1);
     }
 
     /**

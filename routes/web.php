@@ -48,13 +48,6 @@ Route::post('/registrazioneEmployer', [\App\Http\Controllers\RegistrationControl
 Route::get('/getCategory', [\App\Http\Controllers\RegistrationController::class, 'getCategory']);
 
 /*
-Metodo di appoggio
-*/
-Route::get('/user', function () {
-    return response(User::all()->jsonSerialize(), 200);
-});
-
-/*
 *   STUDENT
 */
 Route::resource('student', \App\Http\Controllers\StudentController::class, ['except'=>['index']]);
@@ -64,6 +57,11 @@ Route::get('student/{student}/category', [\App\Http\Controllers\StudentControlle
 Route::post('student/{student}/edit', [\App\Http\Controllers\StudentController::class, 'update']);
 
 Route::get('student/{student}/delete', [\App\Http\Controllers\StudentController::class, 'destroy']);
+
+Route::post('student/{student}/addImage', [\App\Http\Controllers\StudentController::class, 'addImage']);
+
+Route::get('student/{student}/getImage', [\App\Http\Controllers\StudentController::class, 'getImage']);
+
 /*
  * EMPLOYER
  */
@@ -73,6 +71,9 @@ Route::post('employer/{employer}/edit', [\App\Http\Controllers\EmployerControlle
 
 Route::get('employer/{employer}/delete', [\App\Http\Controllers\EmployerController::class, 'destroy']);
 
+Route::post('employer/{employer}/addImage', [\App\Http\Controllers\EmployerController::class, 'addImage']);
+
+Route::get('employer/{employer}/getImage', [\App\Http\Controllers\EmployerController::class, 'getImage']);
 
 /*
 * PLACEMENT
@@ -93,6 +94,12 @@ Route::get('placement/{placement}/byid', [\App\Http\Controllers\SearchController
 *   REQUEST
 */
 Route::resource('student.request', \App\Http\Controllers\RequestController::class);
+
+Route::get('request/{placement}/index', [\App\Http\Controllers\RequestController::class, 'indexByPlacement']);
+
+Route::get('student/{student}/requestActive', [\App\Http\Controllers\RequestController::class, 'requestActive']);
+
+Route::get('student/{student}/requestClosed', [\App\Http\Controllers\RequestController::class, 'requestClosed']);
 
 
 Route::get('/session',[\App\Http\Controllers\SessionController::class, 'dataSession'])->middleware('auth');

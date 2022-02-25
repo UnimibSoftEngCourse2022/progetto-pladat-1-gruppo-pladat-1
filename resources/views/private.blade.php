@@ -34,7 +34,7 @@
                      <div>Elimina</div>
                      <div id="modificaPrivato">Modifica</div>
                   </div>
-                  <img data-bs-toggle="" data-bs-target="#cambiaImmagine" src="image/profilo.png" alt="foto-profilo"/>
+                  <img id="immagineDiProfilo" data-bs-toggle="" data-bs-target="#cambiaImmagine" src="image/profilo.png" alt="foto-profilo"/>
                   <div class="gruppo gutente">
                      <label class="input-modificato">Email</label>
                      <input type="email" name="email" disabled/>
@@ -106,7 +106,7 @@
                      <input id="immaginetta" type="file" accept=".jpg, .png">
                   </div>
                   <div class="modal-footer">
-                     <button id="#inviaImaginetta" type="button" class="bottone-invio"  data-bs-dismiss="modal">Salva</button>
+                     <button id="inviaImaginetta" type="button" class="bottone-invio"  data-bs-dismiss="modal">Salva</button>
                   </div>
                </div>
             </div>
@@ -140,16 +140,6 @@
                      <button type="button" class="chiusurax" data-bs-dismiss="modal" aria-label="Close">&#10006;</button>
                   </div>
                   <div class="modal-body elencoApplicanti">
-                     <div class="bloccoelencoapplicanti">
-                        <div>
-                           <p>Google com</p>
-                           <p>Front-end developer</p>
-                           <a href="***" download><img alt="dowload" src="image/download.png"></a>
-                           <p class="attendo sceltaAccettazione">&#10140;</p>
-                        </div>
-                        <div class="nascondi">
-                           <p>Il tirocinio proposto bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</p>
-                        </div>
                      </div>
                   </div>
                </div>

@@ -76,7 +76,10 @@ nav {
 	color: #3c4043 !important;
 	display: table !important;
 }
-
+#immagineDiProfilo
+{
+	border: 2px solid #3c4043;
+}
 .nav-link:hover {
 	color: #1a73e8 !important;
 }
@@ -217,8 +220,8 @@ nav {
 }
 
 #modifica>img {
-	width: 8vw;
-	height: 8vw;
+	width: 100px;
+	height: 100px;
 	border-radius: 50%;
 	display: block;
 	margin: 0 auto;
@@ -427,7 +430,7 @@ nav {
 }
 
 .privato-richiesta,
-.privato-placement {
+.privato-placement, .privato-placement-1 {
 	display: flex;
 	align-content: space-between;
 }
@@ -437,17 +440,21 @@ nav {
 }
 
 .privato-richiesta>p,
-.privato-placement>p {
+.privato-placement>p,
+.privato-placement-1 >p, .privato-placement-1 >a {
 	display: block;
 	margin-bottom: 0px;
 }
-
+.privato-placement-1 >a {
+color:#3c4043;
+}
 .privato-richiesta>p:nth-child(2),
-.privato-placement>p:nth-child(2) {
+.privato-placement>p:nth-child(2)
+ {
 	margin-left: auto;
 }
 
-.privato-richiesta>p:nth-child(3) {
+.privato-richiesta>p:nth-child(3),.privato-placement-1 >a {
 	margin-left: auto;
 }
 
@@ -463,7 +470,7 @@ nav {
 	color: #fbbc05;
 }
 
-.privato-placement>p:nth-child(3) {
+.privato-placement>p:nth-child(3), .privato-placement-1>p:nth-child(3) {
 	margin-left: auto;
 }
 
@@ -689,6 +696,7 @@ hr {
 }
 
 .privato-placement>p:hover,
+.privato-placement-1>a:hover,
 .elencoOfferte>div>p:hover {
 	color: #1a73e8;
 }
@@ -813,7 +821,8 @@ hr {
 @media screen and (max-width: 992px) {
 	#iscrizione>img,
 	#modifica>img {
-		width: 10vw;
+		width: 100px;
+		height: 100px;
 	}
 	.flex-ricerca>div>.gruppo {
 		width: 80%;
@@ -855,7 +864,8 @@ hr {
 @media screen and (max-width: 768px) {
 	#iscrizione>img,
 	#modifica>img {
-		width: 14vw;
+		width: 80px;
+		height: 80px;
 	}
 	#scrittaRicerconaAuto {
 		font-size: 16px;
@@ -870,6 +880,8 @@ hr {
 	.elencoOfferte>div>p,
 	.privato-richiesta>p,
 	.privato-placement>p,
+	privato-placement-1>p,
+	privato-placement-1>a,
 	.bloccoelencoapplicanti>div>p {
 		font-size: 12px;
 	}
@@ -881,7 +893,8 @@ hr {
 @media screen and (max-width: 576px) {
 	#iscrizione>img,
 	#modifica>img {
-		width: 18vw;
+		width: 70px;
+		height: 70px;
 	}
 	.elencoOfferte>div>p:nth-child(3) {
 		display: none;
