@@ -13,11 +13,10 @@ Route::post('student/{student}/edit', [\App\Http\Controllers\StudentController::
 
 Route::get('student/{student}/delete', [\App\Http\Controllers\StudentController::class, 'destroy']);
 
-/*
 Route::post('student/{student}/addImage', [\App\Http\Controllers\StudentController::class, 'addImage']);
 
 Route::get('student/{student}/getImage', [\App\Http\Controllers\StudentController::class, 'getImage']);
-*/
+
 
 /*
  * EMPLOYER

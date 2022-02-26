@@ -46,8 +46,3 @@ Route::post('/registrazioneStudent', [\App\Http\Controllers\RegistrationControll
 Route::post('/registrazioneEmployer', [\App\Http\Controllers\RegistrationController::class, 'EmployerRegistration']);
 
 Route::get('/getCategory', [\App\Http\Controllers\RegistrationController::class, 'getCategory']);
-
-
-Route::post('student/{student}/addImage', [\App\Http\Controllers\StudentController::class, 'addImage']);
-
-Route::get('student/{student}/getImage', [\App\Http\Controllers\StudentController::class, 'getImage']);
