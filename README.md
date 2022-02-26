@@ -3,6 +3,9 @@
 ## Cosa è Pladat
 PlaDat è una **piattaforma online** nata come luogo di incontro tra studenti ed aziende. Il **tirocinio** è un'esperienza formativa importante nella crescita professionale di uno **studente** e PlaDat fornisce gli strumenti essenziali per trovare uno stage adatto alle sue esigenze. Per le **aziende**, invece, ci impegniamo ad offrire tutte le funzionalità per un recruiting semplice ed efficace!
 
+## Versione rilasciata
+Versione 1.0.0
+
 ## Installazione (Windows)
 Per un'installazione semplice e veloce seguire i seguenti passaggi.
 
