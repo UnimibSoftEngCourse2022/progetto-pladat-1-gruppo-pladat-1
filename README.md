@@ -1,17 +1,18 @@
 # PlaDat: il tirocinio 2.0
 
 ## Cosa è Pladat
-PlaDat è una **piattaforma online** nata come luogo di incontro tra studenti ed aziende. Il **tirocinio** è un'esperienza formativa importante nella crescita professionale di uno **studente** e PlaDat fornisce gli strumenti essenziali per trovare uno stage adatto alle sue esigenze. Per le **aziende**, invece, ci impegniamo ad offrire tutte le funzionalità per un recruiting semplice ed efficace!
+PlaDat è una **piattaforma online** nata come luogo di incontro tra studenti ed aziende. Il **tirocinio** è un'esperienza formativa importante nella crescita professionale di uno **studente** e PlaDat fornisce ad esso gli strumenti essenziali per trovare uno stage adatto alle sue esigenze. Per le **aziende**, invece, PlaDat si impegna a fornire tutte le funzionalità per un recruiting semplice ed efficace!
 
 ## Versione rilasciata
 Versione 1.0.0
+Molte novità in arrivo a breve!
 
 ## Installazione (Windows)
 Per un'installazione semplice e veloce seguire i seguenti passaggi.
 
-### Scaricare progetto
-1) Cliccare sul tasto verde "Code" in alto a destra nella pagina gitHub del progetto (https://github.com/UnimibSoftEngCourse2022/progetto-pladat-1-gruppo-pladat-1) e cliccare su "Download ZIP";
-2) estrarre lo ZIP in una cartella da te scelta;
+### Dowload del progetto
+1) Fare riferimento all'ultima release di progetto (https://github.com/UnimibSoftEngCourse2022/progetto-pladat-1-gruppo-pladat-1) e ed effettuare un click su "Download ZIP";
+2) estrarre lo ZIP in una cartella a scelta.
 
 ### Installazione MySQL Developer
 1) Scaricare [MySQL](https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-8.0.28.0.msi);
@@ -67,7 +68,7 @@ Nel caso si volesse terminare l'esecuzione basta premere Ctrl-C.
 Per utilizzare la piattaforma digitare http://localhost:8000
 
 ## Problemi
-In caso di problemi contattare m.piazzalunga2@campus.unimib.it
+PlaDat è stato più volte testato sia per quanto riguarda la fase di installazione, sia per i possibili errori relativi alle funzionalità. Il gruppo di PlaDat tiene molto alla riuscita di questo progetto e, di conseguenza, rimane disponibile per risolvere eventuali problematiche a questo indirizzo: m.piazzalunga2@campus.unimib.it
 
 ## Contributo
 Il contributo per la realizzazione di questo progetto è stato dato da:
