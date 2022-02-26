@@ -143,6 +143,12 @@ class EmployerController extends Controller
                     ->get();
                 File::delete($oldPath);
             }
+
+            DB::table('photo')
+                ->insert([
+                    'path' => $path.'.'.$extention,
+                ]);
+                
             $id = DB::table('photo')
                 ->latest('id')
                 ->first()

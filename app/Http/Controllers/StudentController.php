@@ -140,8 +140,6 @@ class StudentController extends Controller
                     ]);
             }
 
-            
-
         }catch(QueryException){
             return response(0);
         }
@@ -168,13 +166,8 @@ class StudentController extends Controller
                 ->where('email', $student->email)
                 ->delete();
 
-            $id = DB::table('student')
-                ->where('email', $student->email)
-                ->select('idPhoto')
-                ->get();
-
-            $path = Photo::all()
-                ->where('id', $id)
+            $path = DB::table('photo')
+                ->where('id', $student->id)
                 ->get();
 
             File::delete($path);
@@ -210,15 +203,20 @@ class StudentController extends Controller
                 File::delete($oldPath);
             }
             
+            DB::table('photo')
+                ->insert([
+                    'path' => $path.'.'.$extention,
+                ]);
+
             $id = DB::table('photo')
                 ->latest('id')
                 ->first()
                 ->id;
-            
+          
             DB::table('student')
                 ->where('email', $student->email)
                 ->update([
-                'idPhoto'=>$id,
+                    'idPhoto'=>$id,
                 ]);
 
             DB::table('photo')
